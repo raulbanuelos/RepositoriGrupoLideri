@@ -1,6 +1,8 @@
 ﻿using System;
 using Modelo.ServiceObject;
 using Modelo;
+using System.Collections.Generic;
+using System.Data;
 
 namespace GrupoLideri.Models
 {
@@ -97,7 +99,53 @@ namespace GrupoLideri.Models
             }
             
 
-        } 
+        }
+        #endregion
+
+        #region Promotor
+
+        /// <summary>
+        /// Método que obtiene todos los folios de un promotor.
+        /// </summary>
+        /// <param name="fechaIncial"></param>
+        /// <param name="fechaFinal"></param>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        public static List<N_Folio_SIAC> GetFoliosPromotor(string fechaIncial, string fechaFinal, int idUsuario)
+        {
+            SO_Folio ServicioFolio = new SO_Folio();
+
+            List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
+
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServicioFolio.GetFoliosPromotor(fechaIncial, fechaFinal, idUsuario);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow element in informacionBD.Tables[0].Rows)
+                    {
+                        N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                        folio.FECHA_CAPTURA = element["FECHA_CAPTURA"].ToString();
+                        folio.FOLIO_SIAC = element["FOLIO_SIAC"].ToString();
+                        folio.ESTATUS_SIAC = element["ESTATUS_SIAC"].ToString();
+                        folio.TIPO_LINEA = element["TIPO_LINEA"].ToString();
+                        folio.LINEA_CONTRATADA = element["LINEA_CONTRATADA"].ToString();
+                        folio.PAQUETE = element["PAQUETE"].ToString();
+                        folio.OBSERVACIONES = element["OBSERVACIONES"].ToString();
+                        folio.ESTATUS_PISA_MULTIORDEN = element["ESTATUS_PISA_MULTIORDEN"].ToString();
+                        folio.ESTATUS_PAGADO = Convert.ToBoolean(element["ESTATUS_PAGADO"].ToString());
+
+                        listaResultante.Add(folio);
+                    }
+                }
+            }
+
+            return listaResultante;
+        }
         #endregion
     }
 }
