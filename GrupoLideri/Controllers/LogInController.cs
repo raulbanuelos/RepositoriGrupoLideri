@@ -13,6 +13,9 @@ namespace GrupoLideri.Controllers
         public ActionResult Index()
         {
             return View();
+
+
+
         }
 
         public ActionResult Ingresar([Bind(Include = "Usuario,Contrasena")] DO_Persona persona)
