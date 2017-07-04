@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Modelo.ServiceObject;
 using Modelo;
 
@@ -31,7 +28,7 @@ namespace GrupoLideri.Models
         #endregion
 
         #region Folio
-        public static bool InsertFolioSIAC(N_Folio_SIAC folio)
+        public static bool InsertOrUpdateFolioSIAC(N_Folio_SIAC folio)
         {
             SO_Folio ServicioFolio = new SO_Folio();
 
@@ -69,9 +66,9 @@ namespace GrupoLideri.Models
             n_folio.NOMBRE_EMPRESA = folio.NOMBRE_EMPRESA;
             n_folio.OBSERVACIONES = folio.OBSERVACIONES;
             n_folio.ORDEN_SERVICIO_TV = folio.ORDEN_SERVICIO_TV;
-            n_folio.OS_ALTA_LINEA_MULTIORDEN = folio.OS_ALTA_LINEA_MULTIORDEN == "-" ? DateTime.MinValue.ToString() : folio.OS_ALTA_LINEA_MULTIORDEN;
+            n_folio.OS_ALTA_LINEA_MULTIORDEN = folio.OS_ALTA_LINEA_MULTIORDEN;
             n_folio.PAQUETE = folio.PAQUETE;
-            n_folio.PISA_OS_FECHA_POSTEO_MULTIORDEN = folio.PISA_OS_FECHA_POSTEO_MULTIORDEN == "-" ? DateTime.MinValue : Convert.ToDateTime(folio.PISA_OS_FECHA_POSTEO_MULTIORDEN);
+            n_folio.PISA_OS_FECHA_POSTEO_MULTIORDEN = folio.PISA_OS_FECHA_POSTEO_MULTIORDEN;
             n_folio.PISA_OS_FECHA_POSTEO_TV = folio.PISA_OS_FECHA_POSTEO_TV;
             n_folio.PROMOTOR = folio.PROMOTOR;
             n_folio.RESPUESTA_TELMEX = folio.RESPUESTA_TELMEX;
@@ -86,7 +83,18 @@ namespace GrupoLideri.Models
             n_folio.TERMINAL = folio.Terminal;
             n_folio.DISTRITO = folio.Distrito;
             n_folio.TECELULAR = folio.TeCelular;
-            return ServicioFolio.InsertFolio(n_folio);
+
+            bool existe = ServicioFolio.ExistsFolio(n_folio.FOLIO_SIAC);
+
+            if (existe)
+            {
+                return ServicioFolio.UpdateFolioSIAC(n_folio);
+            }
+            else
+            {
+                return ServicioFolio.InsertFolio(n_folio);
+            }
+            
 
         } 
         #endregion
