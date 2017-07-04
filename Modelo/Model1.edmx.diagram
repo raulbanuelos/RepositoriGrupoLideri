@@ -4,15 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="065c4f9eaf1b499ca027fdd72f6c2b58" Name="Diagram1" ZoomLevel="39">
-        <EntityTypeShape EntityType="BD_JDAModel.TBL_FOLIOS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_JDAModel.CAT_BANCO" Width="2" PointX="9.875" PointY="6" />
-        <EntityTypeShape EntityType="BD_JDAModel.CAT_JERARQUIA" Width="2" PointX="3.375" PointY="1.875" />
-        <EntityTypeShape EntityType="BD_JDAModel.TBL_PERSONA" Width="2" PointX="5.625" PointY="1" />
-        <EntityTypeShape EntityType="BD_JDAModel.TR_PERSONA_BANCO" Width="2" PointX="7.875" PointY="1.75" />
-        <AssociationConnector Association="BD_JDAModel.FK_TR_PERSONA_BANCO_CAT_BANCO" />
-        <AssociationConnector Association="BD_JDAModel.FK_TBL_PERSONA_CAT_JERARQUIA" />
-        <AssociationConnector Association="BD_JDAModel.FK_TR_PERSONA_BANCO_TBL_PERSONA" />
+      <Diagram DiagramId="065c4f9eaf1b499ca027fdd72f6c2b58" Name="Diagram1" ZoomLevel="53">
+        <EntityTypeShape EntityType="BD_JDAModel.TBL_FOLIOS" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BD_JDAModel.TBL_USUARIOS" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

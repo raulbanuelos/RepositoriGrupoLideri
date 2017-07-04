@@ -26,9 +26,6 @@ namespace Modelo
         }
     
         public virtual DbSet<TBL_FOLIOS> TBL_FOLIOS { get; set; }
-        public virtual DbSet<CAT_BANCO> CAT_BANCO { get; set; }
-        public virtual DbSet<CAT_JERARQUIA> CAT_JERARQUIA { get; set; }
-        public virtual DbSet<TBL_PERSONA> TBL_PERSONA { get; set; }
-        public virtual DbSet<TR_PERSONA_BANCO> TR_PERSONA_BANCO { get; set; }
+        public virtual DbSet<TBL_USUARIOS> TBL_USUARIOS { get; set; }
     }
 }

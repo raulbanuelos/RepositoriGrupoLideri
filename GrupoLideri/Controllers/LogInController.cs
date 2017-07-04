@@ -21,7 +21,7 @@ namespace GrupoLideri.Controllers
             {
                 DO_Persona usuario = DataManager.LogIn(persona.Usuario, persona.Contrasena);
 
-                if (usuario == null)
+                if (usuario != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -30,7 +30,8 @@ namespace GrupoLideri.Controllers
                     return View("Index");
                 }
             }
-            else {
+            else
+            {
                 return View("Index");
             }
             
