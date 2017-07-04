@@ -17,31 +17,47 @@ namespace GrupoLideri.Controllers
             return View();
         }
 
-        [System.Web.Mvc.HttpPost]
-        public ActionResult SubirPIPES(HttpPostedFileBase file)
+        [HttpPost]
+        public ActionResult SubirPIPES(HttpPostedFileBase archivoPIPES)
         {
             try
             {
-                if (file.ContentLength == 0)
+                //Verificamos que el archivo contenga valores.
+                if (archivoPIPES.ContentLength == 0)
                     throw new Exception("Su archivo esta vacío!");
                 else
                 {
-                    var fileName = Path.GetFileName(file.FileName);
-                    var filePath = Path.Combine(Server.MapPath("~/Documents/Pipes"), "PIPES-" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + ".xlsx");
-                    file.SaveAs(filePath);
+                    //Obtenemos el nombre del archivo.
+                    var fileName = Path.GetFileName(archivoPIPES.FileName);
 
+                    //Creamos el nombre con la ruta del archivo el cual va a subirse al servidor.
+                    var filePath = Path.Combine(Server.MapPath("~/Documents/Pipes"), "PIPES-" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + ".xlsx");
+
+                    //Guardamos el archivo.
+                    archivoPIPES.SaveAs(filePath);
+
+                    //Verificamos que el nombre del archivo sea distinto de nulo o vació.
                     if (!string.IsNullOrEmpty(filePath))
                     {
+                        //Asignamos la ruta completa del archivo a una variable local.
                         string pathToExcelFile = filePath;
 
+                        //Asignamos el nombre de la hoja del archivo del excel en donde se encuentra la inforamción.
                         string sheetName = "PRODUCCION";
 
+                        //Mapeamos el archivo a una variable anónima.
                         var excelFile = new ExcelQueryFactory(pathToExcelFile);
+
+                        //Obtenemos los registros de la hoja.
                         var folios = from a in excelFile.Worksheet(sheetName) select a;
 
+                        //Iteramos todos los folios obtenidos.
                         foreach (var folio in folios)
                         {
+                            //Declaramos un objeto de tipo N_Folio_SIAC que será el que insertaremos.
                             N_Folio_SIAC obj = new N_Folio_SIAC();
+
+                            //Mapeamos los valores a las propiedades correspondientes.
                             obj.FECHA_CAPTURA = folio["Fecha Captura"];
                             obj.ESTRATEGIA = folio["Estrategia"];
                             obj.PROMOTOR = folio["Promotor"];
@@ -88,6 +104,8 @@ namespace GrupoLideri.Controllers
                             obj.Terminal = folio["Terminal"];
                             obj.Distrito = folio["Distrito"];
                             obj.TeCelular = folio["TeCelular"];
+
+                            //Ejecutamos el método el cual inserta el objeto en la base de datos.
                             DataManager.InsertOrUpdateFolioSIAC(obj);
                         }
                     }
@@ -95,9 +113,11 @@ namespace GrupoLideri.Controllers
             }
             catch (Exception er)
             {
+
                 string a = er.Message;
             }
 
+            //Retornamos a la vista inicial.
             return View("Index");
         }
     }
