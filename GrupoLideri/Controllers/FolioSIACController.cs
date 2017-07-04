@@ -17,24 +17,24 @@ namespace GrupoLideri.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult SubirPIPES(HttpPostedFileBase archivoPIPES)
+        [System.Web.Mvc.HttpPost]
+        public ActionResult SubirPIPES(HttpPostedFileBase file)
         {
             try
             {
                 //Verificamos que el archivo contenga valores.
-                if (archivoPIPES.ContentLength == 0)
+                if (file == null || file.ContentLength == 0)
                     throw new Exception("Su archivo esta vacío!");
                 else
                 {
                     //Obtenemos el nombre del archivo.
-                    var fileName = Path.GetFileName(archivoPIPES.FileName);
+                    var fileName = Path.GetFileName(file.FileName);
 
                     //Creamos el nombre con la ruta del archivo el cual va a subirse al servidor.
                     var filePath = Path.Combine(Server.MapPath("~/Documents/Pipes"), "PIPES-" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + ".xlsx");
 
                     //Guardamos el archivo.
-                    archivoPIPES.SaveAs(filePath);
+                    file.SaveAs(filePath);
 
                     //Verificamos que el nombre del archivo sea distinto de nulo o vació.
                     if (!string.IsNullOrEmpty(filePath))
