@@ -92,6 +92,7 @@ namespace GrupoLideri.Models
             }
             else
             {
+                n_folio.FECHA_CREACION = DateTime.Now;
                 return ServicioFolio.InsertFolio(n_folio);
             }
             
