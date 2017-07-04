@@ -23,6 +23,7 @@ namespace GrupoLideri.Controllers
         [System.Web.Mvc.HttpPost]
         public JsonResult upload(HttpPostedFileBase file)
         {
+            string mensaje = "";
             StringBuilder strbuild = new StringBuilder();
 
             Excel.Application ExcelApp = null;
@@ -113,6 +114,7 @@ namespace GrupoLideri.Controllers
                         }
                     }
                 }
+                
             }
             catch (Exception er)
             {
@@ -120,12 +122,12 @@ namespace GrupoLideri.Controllers
                 Marshal.ReleaseComObject(ExcelWork);
                 ExcelApp.Quit();
                 Marshal.ReleaseComObject(ExcelApp);
-            }
-
+                mensaje = er.Message;
+        }
             return new JsonResult()
             {
-                Data = strbuild.ToString()
+                Data = mensaje
             };
-        }
+    }
     }
 }
