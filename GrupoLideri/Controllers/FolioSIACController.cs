@@ -24,7 +24,7 @@ namespace GrupoLideri.Controllers
             {
                 //Verificamos que el archivo contenga valores.
                 if (file == null || file.ContentLength == 0)
-                    throw new Exception("Su archivo esta vacío!");
+                    throw new Exception("Su archivo está vacío!");
                 else
                 {
                     //Obtenemos el nombre del archivo.
