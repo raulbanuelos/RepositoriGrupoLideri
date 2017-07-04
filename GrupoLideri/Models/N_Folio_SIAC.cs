@@ -53,5 +53,8 @@ namespace GrupoLideri.Models
         public string Terminal { get; set; }
         public string Distrito { get; set; }
         public string TeCelular { get; set; }
+
+
+        public bool ESTATUS_PAGADO { get; set; }
     }
 }
