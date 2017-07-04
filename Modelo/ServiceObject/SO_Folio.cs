@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Modelo.SQLServer;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 
@@ -140,6 +143,38 @@ namespace Modelo.ServiceObject
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Método que obtiene todos los folios de un promotor a partir de la fecha incial y fecha final.
+        /// </summary>
+        /// <param name="fechaIncial"></param>
+        /// <param name="fechaFinal"></param>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        public DataSet GetFoliosPromotor(string fechaIncial, string fechaFinal, int idUsuario)
+        {
+            try
+            {
+                DataSet datos = null;
+
+                GrupoLideri_SQL conexion = new GrupoLideri_SQL("data source=74.208.227.248;initial catalog=Juda;persist security info=True;user id=userPixie;password=Bd.KJY64;");
+
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("fechaInicial", fechaIncial);
+                parametros.Add("fechaFinal", fechaFinal);
+                parametros.Add("idUsuario", idUsuario);
+
+                datos = conexion.EjecutarStoredProcedure("SP_PROMOTOR_GET_FOLIOS", parametros);
+
+                return datos;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
     }
 }
