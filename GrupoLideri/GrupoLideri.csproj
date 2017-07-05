@@ -900,6 +900,7 @@
     <Content Include="assets\dash\plugins\ui\title-notifier\title_notifier.min.js" />
     <Content Include="assets\img\Logotipo.png" />
     <Content Include="assets\img\LogotipoF.png" />
+    <Content Include="assets\dash\img\manual.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

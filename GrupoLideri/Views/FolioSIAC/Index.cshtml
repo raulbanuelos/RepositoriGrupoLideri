@@ -4,21 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Cargar PIPES</h2>
 <body>
     @using (@Html.BeginForm("SubirPIPES", "FolioSIAC", FormMethod.Post,
              new { enctype = "multipart/form-data" }))
     {
-        if (TempData["Message"] != null)
-        {
-            <p>@TempData["Message"]</p>
-        }
+        
+       <p>@Session["MENSAJE"]</p>
+        
         <table>
-            <tr>
-                <td style="padding-bottom: 35px" colspan="2">
-                    <h2>Cargar PIPES</h2>
-                </td>
-            </tr>
             <tr>
                 <td style="width: 200px;">
                     <b>Selecciona el archivo:</b>
@@ -30,7 +24,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td colspan="2" style="padding-top: 30px">
-                    <input type="submit" class="btn" value="Read Text" name="submit" />
+                    <input type="submit" class="btn btn-primary" value="Subir PIPES" name="submit" />
                 </td>
             </tr>
         </table>
