@@ -901,6 +901,7 @@
     <Content Include="assets\img\fondoInicio.jpg" />
     <Content Include="assets\img\Logotipo.png" />
     <Content Include="assets\img\LogotipoF.png" />
+    <Content Include="assets\dash\img\manual.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

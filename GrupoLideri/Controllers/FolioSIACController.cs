@@ -113,8 +113,8 @@ namespace GrupoLideri.Controllers
             }
             catch (Exception er)
             {
-
                 string a = er.Message;
+                Session["MENSAJE"] = er.Message;
             }
 
             //Retornamos a la vista inicial.
