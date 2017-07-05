@@ -23,6 +23,7 @@ namespace GrupoLideri.Controllers
 
                 if (usuario != null)
                 {
+                    Session["UsuarioConectado"] = usuario;
                     return RedirectToAction("Index", "Home");
                 }
                 else
