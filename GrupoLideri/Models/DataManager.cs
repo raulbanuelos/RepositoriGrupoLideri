@@ -24,6 +24,8 @@ namespace GrupoLideri.Models
                 persona.Nombre = informacionBD.NOMBRE;
                 persona.ApellidoMaterno = informacionBD.APELLIDO_MATERNO;
                 persona.ApellidoPaterno = informacionBD.APELLIDO_PATERNO;
+                persona.idJerarquia = informacionBD.ID_JERARQUIA;
+                
             }
             return persona;
         }
@@ -111,24 +113,33 @@ namespace GrupoLideri.Models
         /// <param name="fechaFinal"></param>
         /// <param name="idUsuario"></param>
         /// <returns></returns>
-        public static List<N_Folio_SIAC> GetFoliosPromotor(string fechaIncial, string fechaFinal, int idUsuario)
+        public static List<N_Folio_SIAC> GetFoliosPromotor(string fechaIncial, string fechaFinal, int idUsuario,int isPosteada)
         {
+            //Inicializamos los servicios de SO_Folio.
             SO_Folio ServicioFolio = new SO_Folio();
 
+            //Declaramos una lista la cual sera la que retornemos en el método.
             List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
 
+            //Declaramos un dataset en el cual guardaremos la información de la base de datos.
             DataSet informacionBD = new DataSet();
 
-            informacionBD = ServicioFolio.GetFoliosPromotor(fechaIncial, fechaFinal, idUsuario);
+            //Ejecutamos el método para obtener los folios. El resultado lo asignamos al objeto dataset.
+            informacionBD = ServicioFolio.GetFoliosPromotor(fechaIncial, fechaFinal, idUsuario,isPosteada);
 
+            //Verificamos si el objeto resultante no es nulo.
             if (informacionBD != null)
             {
+                //Verificamos que el dataset contenga al menos una tabla y al menos un registro.
                 if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
                 {
+                    //Iteramos los registros de la primer tabla.
                     foreach (DataRow element in informacionBD.Tables[0].Rows)
                     {
+                        //Decalaramos un objeto de tipo N_Folio_SIAC el cual agregaremos a la lista.
                         N_Folio_SIAC folio = new N_Folio_SIAC();
 
+                        //Mapeamos los valores obtenidos a las propiedades correspondientes del objeto.
                         folio.FECHA_CAPTURA = element["FECHA_CAPTURA"].ToString();
                         folio.FOLIO_SIAC = element["FOLIO_SIAC"].ToString();
                         folio.ESTATUS_SIAC = element["ESTATUS_SIAC"].ToString();
@@ -138,14 +149,34 @@ namespace GrupoLideri.Models
                         folio.OBSERVACIONES = element["OBSERVACIONES"].ToString();
                         folio.ESTATUS_PISA_MULTIORDEN = element["ESTATUS_PISA_MULTIORDEN"].ToString();
                         folio.ESTATUS_PAGADO = Convert.ToBoolean(element["ESTATUS_PAGADO"].ToString());
+                        folio.TELEFONO_ASIGNADO = element["TELEFONO_ASIGNADO"].ToString();
+                        folio.ORDEN_SERVICIO_TV = element["ORDEN_SERVICIO_TV"].ToString();
+                        folio.COMISION_PAQUETE = Convert.ToDouble(element["COMISION_PAQUETE"]);
+                        folio.PORCENTAJE_COMISION = Convert.ToDouble(element["PORCENTAJE_COMISION"]);
+                        folio.COMISION_TOTAL = Convert.ToDouble(element["COMISION_TOTAL"]);
 
+                        /*Gerente
+                         * 
+                         * fecha_captura, promotor (nombre), folio siac, estatus siac, tipo de linea, linea contratada, paquete, telefono asignado, estatus multiorden, orden de servicio, comision.
+                         * 
+                         */
+
+                        /*gerente promotor
+                         *
+                         * fecha_captura, promotor, estrategia, area, folio siac, estatus siac, tipo de linea, linea contratada, paquete,telefono asignado, estatus multiorden, orden de servicio, comisión.
+                         * 
+                         */ 
+
+                        //Agregamos el objeto a la lista resultante.
                         listaResultante.Add(folio);
                     }
                 }
             }
 
+            //Retornamos la lista.
             return listaResultante;
         }
+
         #endregion
     }
 }
