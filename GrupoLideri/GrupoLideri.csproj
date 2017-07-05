@@ -898,6 +898,7 @@
     <Content Include="assets\dash\plugins\ui\skycons\skycons.js" />
     <Content Include="assets\dash\plugins\ui\title-notifier\title_notifier.js" />
     <Content Include="assets\dash\plugins\ui\title-notifier\title_notifier.min.js" />
+    <Content Include="assets\img\fondoInicio.jpg" />
     <Content Include="assets\img\Logotipo.png" />
     <Content Include="assets\img\LogotipoF.png" />
     <Content Include="Content\bootstrap-theme.css" />
