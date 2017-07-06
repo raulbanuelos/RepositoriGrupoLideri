@@ -19,6 +19,7 @@ namespace GrupoLideri.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
+        [GrupoLideriVerificarRol]
         public ActionResult SubirPIPES(HttpPostedFileBase file)
         {
             try

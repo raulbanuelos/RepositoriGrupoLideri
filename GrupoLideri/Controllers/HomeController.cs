@@ -9,6 +9,7 @@ namespace GrupoLideri.Controllers
 {
     public class HomeController : Controller
     {
+        [GrupoLideriVerificarRol]
         public ActionResult Index()
         {
             return View();

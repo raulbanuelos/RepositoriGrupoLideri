@@ -9,6 +9,7 @@ namespace GrupoLideri.Controllers
     public class MiOrganizacionController : Controller
     {
         // GET: MiOrganizacion
+        [GrupoLideriVerificarRol]
         public ActionResult Index()
         {
             return View();

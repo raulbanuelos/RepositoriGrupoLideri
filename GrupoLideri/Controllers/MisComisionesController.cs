@@ -9,6 +9,7 @@ namespace GrupoLideri.Controllers
     public class MisComisionesController : Controller
     {
         // GET: MisComisiones
+        [GrupoLideriVerificarRol]
         public ActionResult Index()
         {
             return View();

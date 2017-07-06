@@ -9,6 +9,7 @@ namespace GrupoLideri.Controllers
     public class OverController : Controller
     {
         // GET: Over
+        [GrupoLideriVerificarRol]
         public ActionResult Index()
         {
             return View();
