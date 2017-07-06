@@ -172,8 +172,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FolioSIACController.cs" />
+    <Compile Include="Controllers\GrupoLideriVerificarRol.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
+    <Compile Include="Controllers\MiOrganigramaController.cs" />
+    <Compile Include="Controllers\MiOrganizacionController.cs" />
+    <Compile Include="Controllers\MisComisionesController.cs" />
+    <Compile Include="Controllers\MisFoliosController.cs" />
+    <Compile Include="Controllers\OverController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -902,6 +908,7 @@
     <Content Include="assets\img\Logotipo.png" />
     <Content Include="assets\img\LogotipoF.png" />
     <Content Include="assets\dash\img\manual.jpg" />
+    <Content Include="assets\img\Trabajando.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -979,6 +986,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\LogIn\Index.cshtml" />
     <Content Include="Views\FolioSIAC\Index.cshtml" />
+    <Content Include="Views\MisFolios\Index.cshtml" />
+    <Content Include="Views\MiOrganizacion\Index.cshtml" />
+    <Content Include="Views\MiOrganigrama\Index.cshtml" />
+    <Content Include="Views\MisComisiones\Index.cshtml" />
+    <Content Include="Views\Over\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

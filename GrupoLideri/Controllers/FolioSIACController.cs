@@ -12,6 +12,7 @@ namespace GrupoLideri.Controllers
     {
         // GET: FolioSIAC
         [HttpGet]
+        [GrupoLideriVerificarRol]
         public ActionResult Index()
         {
             return View();
