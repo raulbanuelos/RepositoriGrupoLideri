@@ -48,6 +48,9 @@ namespace GrupoLideri.Controllers
                 JerarquiasPermitidas.Add(2018);
                 JerarquiasPermitidas.Add(2019);
 
+                //Borrar
+                JerarquiasPermitidas.Add(1);
+
                 return JerarquiasPermitidas.Contains(idJerarquia);
             }
             #endregion

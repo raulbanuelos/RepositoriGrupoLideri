@@ -3,42 +3,69 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<html>
+<head>
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" />
+    <script src="@Url.Content("~/Content/jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/bootstrap.min.js")" type="text/javascript"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-theme.css")" />
 
-<div class="container">
-    <div class="col-md-5">
-        <div class="form-group">
-            <div class="input-group date" id="datetimepicker6">
-                <input type="text" class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+
+    @* DatePicker *@
+    <link rel="stylesheet" href="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.css")">
+        <link rel="stylesheet" href="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.min.css")">
+        <script src="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.es.min.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-5" id="cambiarFecha">
+            <div class="form-group">
+                <div class="input-group date" id="datetimepicker6">
+                    <input type="text" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <div class="input-group date" id="datetimepicker7">
+                    <input type="text" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-5">
-        <div class="form-group">
-            <div class="input-group date" id="datetimepicker7">
-                <input type="text" class="form-control"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
+    <input id="btnBuscar" type="button" onclick="Buscar()" class="btn btn-primary" value="Buscar" />
+</body>
+</html>
+
+
+
 
 <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker6').datetimepicker();
-        $('#datetimepicker7').datetimepicker({
-            useCurrent: false //Important! See issue #1075
-        });
-
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
+    $('#cambiarFecha .input-group.date').datepicker({
+        format: "dd/mm/yyyy",
+        todayBtn: "linked",
+        clearBtn: true,
+        language: lang,
+        forceParse: false,
+        autoclose: true,
+        todayHighlight: true
     });
+
+    function Buscar()
+    {
+        var urlSave = '@Url.Action("BuscarFolio","MisFolios")';
+        $.ajax({
+            type: "POST",
+            url: urlSave,
+            data: JSON.stringify
+        });
+    }
 </script>
