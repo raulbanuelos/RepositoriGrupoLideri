@@ -23,7 +23,6 @@ namespace GrupoLideri.Controllers
         [System.Web.Mvc.HttpPost]
         public JsonResult upload(HttpPostedFileBase file)
         {
-            string mensaje = "";
             StringBuilder strbuild = new StringBuilder();
 
             Excel.Application ExcelApp = null;
@@ -35,7 +34,9 @@ namespace GrupoLideri.Controllers
                 else
                 {
                     var fileName = Path.GetFileName(file.FileName);
+                    
                     var filePath = Path.Combine(Server.MapPath("~/Documents/Pipes"), "PIPES-" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + ".xlsx");
+                    
                     file.SaveAs(filePath);
                     if (!string.IsNullOrEmpty(filePath))
                     {
@@ -122,11 +123,11 @@ namespace GrupoLideri.Controllers
                 Marshal.ReleaseComObject(ExcelWork);
                 ExcelApp.Quit();
                 Marshal.ReleaseComObject(ExcelApp);
-                mensaje = er.Message;
+                
         }
             return new JsonResult()
             {
-                Data = mensaje
+                Data = ""
             };
     }
     }

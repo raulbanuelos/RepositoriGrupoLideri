@@ -927,6 +927,7 @@
     <Content Include="assets\dash\plugins\forms\bootstrap-tagsinput\bootstrap-tagsinput.min.js.map" />
     <Content Include="assets\dash\plugins\misc\gmaps\gmaps.min.js.map" />
     <None Include="Properties\PublishProfiles\GrupoLideri.pubxml" />
+    <None Include="Properties\PublishProfiles\PublishLideri.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -985,6 +986,7 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
@@ -994,6 +996,7 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
