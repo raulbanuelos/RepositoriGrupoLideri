@@ -4,29 +4,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Cargar PIPES</h2>
+<html>
+<head>
+    <title>Cargar PIPES</title>
+    <script type="text/javascript">
+
+        function SubirPIPES()
+        {
+            var formData = new FormData();
+            var totalFiles = document.getElementById("file").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("file").files[i];
+
+                formData.append("file", file);
+            }
+            var urlSave = '@Url.Action("SubirPIPES", "FolioSIAC")';
+            $.ajax({
+                type: "POST",
+                url: urlSave,
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert("success!!");
+                },
+                error: function (error) {
+                    alert("Error!");
+                }
+            });
+        }
+    </script>
+</head>
+
 <body>
-    @using (@Html.BeginForm("SubirPIPES", "FolioSIAC", FormMethod.Post,
-             new { enctype = "multipart/form-data" }))
-    {
-        
-       <p>@Session["MENSAJE"]</p>
-        
-        <table>
-            <tr>
-                <td style="width: 200px;">
-                    <b>Selecciona el archivo:</b>
-                </td>
-                <td>
-                    <input type="file" name="file" id="file" />
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td colspan="2" style="padding-top: 30px">
-                    <input type="submit" class="btn btn-primary" value="Subir PIPES" name="submit" />
-                </td>
-            </tr>
-        </table>
-    }
+    <table>
+        <tr>
+            <td style="width: 200px;">
+                <b>Selecciona el archivo:</b>
+            </td>
+            <td>
+                <input type="file" name="file" id="file" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2" style="padding-top: 30px">
+                <input id="btnSubir" onclick="SubirPIPES()" class="btn btn-primary" type="button" value="Subir" name="submit" />
+            </td>
+        </tr>
+    </table>
 </body>
+</html>
