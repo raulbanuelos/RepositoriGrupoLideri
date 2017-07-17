@@ -19,7 +19,7 @@ namespace GrupoLideri.Controllers
          * 1018:    RECURSOS HUMANOS
          * 1019:    NOMINAS
          * 2018:    DIRECTIVO
-         * 2017:    GERENTE PROMOTOR
+         * 2019:    GERENTE PROMOTOR
          */
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
@@ -59,7 +59,7 @@ namespace GrupoLideri.Controllers
             if (nombreControlador.Equals("MiOrganigrama"))
             {
                 JerarquiasPermitidas.Add(10);
-                JerarquiasPermitidas.Add(2017);
+                JerarquiasPermitidas.Add(2019);
                 JerarquiasPermitidas.Add(1);
 
                 return JerarquiasPermitidas.Contains(idJerarquia);
@@ -69,7 +69,7 @@ namespace GrupoLideri.Controllers
             #region Mi organización
             if (nombreControlador.Equals("MiOrganizacion"))
             {
-                JerarquiasPermitidas.Add(2017);
+                JerarquiasPermitidas.Add(2019);
                 JerarquiasPermitidas.Add(1);
 
                 return JerarquiasPermitidas.Contains(idJerarquia);
@@ -82,7 +82,7 @@ namespace GrupoLideri.Controllers
                 JerarquiasPermitidas.Add(1);
                 JerarquiasPermitidas.Add(10);
                 JerarquiasPermitidas.Add(14);
-                JerarquiasPermitidas.Add(2017);
+                JerarquiasPermitidas.Add(2019);
                 JerarquiasPermitidas.Add(2018);
 
                 return JerarquiasPermitidas.Contains(idJerarquia);
@@ -95,7 +95,7 @@ namespace GrupoLideri.Controllers
                 JerarquiasPermitidas.Add(1);
                 JerarquiasPermitidas.Add(10);
                 JerarquiasPermitidas.Add(14);
-                JerarquiasPermitidas.Add(2017);
+                JerarquiasPermitidas.Add(2019);
                 JerarquiasPermitidas.Add(2018);
 
                 return JerarquiasPermitidas.Contains(idJerarquia);
@@ -107,7 +107,7 @@ namespace GrupoLideri.Controllers
             {
                 JerarquiasPermitidas.Add(1);
                 JerarquiasPermitidas.Add(10);
-                JerarquiasPermitidas.Add(2017);
+                JerarquiasPermitidas.Add(2019);
                 JerarquiasPermitidas.Add(2018);
 
                 return JerarquiasPermitidas.Contains(idJerarquia);
@@ -125,7 +125,7 @@ namespace GrupoLideri.Controllers
                 JerarquiasPermitidas.Add(1018);
                 JerarquiasPermitidas.Add(1019);
                 JerarquiasPermitidas.Add(2018);
-                JerarquiasPermitidas.Add(2017);
+                JerarquiasPermitidas.Add(2019);
                 return JerarquiasPermitidas.Contains(idJerarquia);
             } 
             #endregion
