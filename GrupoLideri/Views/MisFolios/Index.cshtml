@@ -66,8 +66,36 @@
             <tbody id="tblFolios"></tbody>
         </table>
     </div>
+
+    <div id="modalguardandobitacora" data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header alert alert-success">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td><h3 class="modal-title">Espere por favor</h3></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-body" id="div1">
+                    <p><b>Cargando el archivo</b></p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" id="progressbarEspera" role="progressbar" aria-valuemax="100" style="width:100%">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
+
 
 
 <script type="text/javascript">
@@ -129,4 +157,21 @@
 
         $("#tblFolios").html(row);
     }
+
+    var funcionModalProcesando;
+    function mostrarModalProcesando() {
+        funcionModalProcesando = setTimeout(function () { $("#modalguardando").modal() }, 0);
+    }
+
+    function terminarModalProcesando() {
+        clearTimeout(funcionModalProcesando);
+        $("#modalguardando").modal('hide');
+    }
+
+    $(document).ajaxStart(function () {
+        mostrarModalProcesando();
+    });
+    $(document).ajaxStop(function () {
+        terminarModalProcesando();
+    });
 </script>
