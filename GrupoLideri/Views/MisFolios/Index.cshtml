@@ -6,27 +6,21 @@
 <html>
 <head>
     
+    
+    
+
+    
 </head>
 <body>
     <div class="container">
         <div class="col-md-5">
             <div class="form-group">
-                <div class="input-group date" id="datetimepicker6">
-                    <input type="text" class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                <input type="date" id="txtFechaIncial" />
             </div>
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                <div class="input-group date" id="datetimepicker7">
-                    <input type="text" class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                <input type="date" id="txtFechaFinal" />
             </div>
         </div>
     </div>
@@ -100,24 +94,24 @@
     //    todayHighlight: true
     //});
 
-    $(function () {
-        $("#datetimepicker6").datepicker({
-            format: "dd/mm/yyyy",
-            todayBtn: "linked",
-            clearBtn: true,
-            forceParse: false,
-            autoclose: true,
-            todayHighlight: true
-        });
-        $("#datetimepicker7").datepicker();
+    //$(function () {
+    //    $("#datetimepicker6").datepicker({
+    //        format: "dd/mm/yyyy",
+    //        todayBtn: "linked",
+    //        clearBtn: true,
+    //        forceParse: false,
+    //        autoclose: true,
+    //        todayHighlight: true
+    //    });
+    //    $("#datetimepicker7").datepicker();
 
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $("#datetimepicker7").data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $("#datetimepicker6").data("DateTimePicker").maxDate(e.date);
-        });
-    });
+    //    $("#datetimepicker6").on("dp.change", function (e) {
+    //        $("#datetimepicker7").data("DateTimePicker").minDate(e.date);
+    //    });
+    //    $("#datetimepicker7").on("dp.change", function (e) {
+    //        $("#datetimepicker6").data("DateTimePicker").maxDate(e.date);
+    //    });
+    //});
 
 
     function Buscar()
@@ -159,9 +153,9 @@
             row += "<td>" + item.ESTATUS_PAGADO + "</td>";
             row += "<td>" + item.TELEFONO_ASIGNADO + "</td>";
             row += "<td>" + item.ORDEN_SERVICIO_TV + "</td>";
-            row += "<td>" + item.COMISION_PAQUETE + "</td>";
+            row += "<td>$" + item.COMISION_PAQUETE + "</td>";
             row += "<td>" + item.PORCENTAJE_COMISION + "</td>";
-            row += "<td>" + item.COMISION_TOTAL + "</td>";
+            row += "<td>$" + item.COMISION_TOTAL + "</td>";
 
             row += "</tr>";
         });
