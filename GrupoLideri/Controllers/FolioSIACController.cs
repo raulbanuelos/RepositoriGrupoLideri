@@ -1,13 +1,10 @@
 ﻿using GrupoLideri.Models;
+using LinqToExcel;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace GrupoLideri.Controllers
 {
@@ -15,120 +12,221 @@ namespace GrupoLideri.Controllers
     {
         // GET: FolioSIAC
         [HttpGet]
+        [GrupoLideriVerificarRol]
         public ActionResult Index()
         {
             return View();
         }
 
-        [System.Web.Mvc.HttpPost]
-        public JsonResult upload(HttpPostedFileBase file)
-        {
-            StringBuilder strbuild = new StringBuilder();
+        //[System.Web.Mvc.HttpPost]
+        //[GrupoLideriVerificarRol]
+        //public ActionResult SubirPIPES(HttpPostedFileBase file)
+        //{
+        //    try
+        //    {
+        //        //Verificamos que el archivo contenga valores.
+        //        if (file == null || file.ContentLength == 0)
+        //            throw new Exception("Su archivo está vacío!");
+        //        else
+        //        {
+        //            //Obtenemos el nombre del archivo.
+        //            var fileName = Path.GetFileName(file.FileName);
 
-            Excel.Application ExcelApp = null;
-            Excel.Workbook ExcelWork = null;
+        //            //Creamos el nombre con la ruta del archivo el cual va a subirse al servidor.
+        //            var filePath = Path.Combine(Server.MapPath("~/Documents/Pipes"), "PIPES-" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + ".xlsx");
+
+        //            //Guardamos el archivo.
+        //            file.SaveAs(filePath);
+
+        //            //Verificamos que el nombre del archivo sea distinto de nulo o vació.
+        //            if (!string.IsNullOrEmpty(filePath))
+        //            {
+        //                //Asignamos la ruta completa del archivo a una variable local.
+        //                string pathToExcelFile = filePath;
+
+        //                //Asignamos el nombre de la hoja del archivo del excel en donde se encuentra la inforamción.
+        //                string sheetName = "PRODUCCION";
+
+        //                //Mapeamos el archivo a una variable anónima.
+        //                var excelFile = new ExcelQueryFactory(pathToExcelFile);
+
+        //                //Obtenemos los registros de la hoja.
+        //                var folios = from a in excelFile.Worksheet(sheetName) select a;
+
+        //                //Iteramos todos los folios obtenidos.
+        //                foreach (var folio in folios)
+        //                {
+        //                    //Declaramos un objeto de tipo N_Folio_SIAC que será el que insertaremos.
+        //                    N_Folio_SIAC obj = new N_Folio_SIAC();
+
+        //                    //Mapeamos los valores a las propiedades correspondientes.
+        //                    obj.FECHA_CAPTURA = folio["Fecha Captura"];
+        //                    obj.ESTRATEGIA = folio["Estrategia"];
+        //                    obj.PROMOTOR = folio["Promotor"];
+        //                    obj.FOLIO_SIAC = folio["Folio SIAC"];
+        //                    obj.ESTATUS_SIAC = folio["Estatus SIAC"];
+        //                    obj.TIPO_LINEA = folio["Tipo Linea"];
+        //                    obj.LINEA_CONTRATADA = folio["Linea Contratada"];
+        //                    obj.AREA = folio["Area"];
+        //                    obj.DIVICION = folio["Division"];
+        //                    obj.TIENDA = folio["Tienda"];
+        //                    obj.PAQUETE = folio["Paquete"];
+        //                    obj.OBSERVACIONES = folio["Observaciones"];
+        //                    obj.RESPUESTA_TELMEX = folio["Respuesta Telmex"];
+        //                    obj.MOTIVO_RECHAZO = folio["Motivo Rechazo "];
+        //                    obj.TELEFONO_ASIGNADO = folio["Telefono Asignado"];
+        //                    obj.TELEFONO_PORTADO = folio["Telefono Portado"];
+        //                    obj.OS_ALTA_LINEA_MULTIORDEN = folio["OS Alta Linea o Multiorden"];
+        //                    obj.FECHA_OS_ALTA_LINEA_MULTIORDEN = folio["Fecha OS Alta Linea o Multiorden"];
+        //                    obj.ORDEN_SERVICIO_TV = folio["Orden de Servicio TV"];
+        //                    obj.FECHA_OS_TV = folio["Fecha de Os TV"];
+        //                    obj.CAMPANA = folio["Campana"];
+        //                    obj.ESTATUS_ATENCION_MULTIORDEN = folio["Estatus de Atención Multiorden"];
+        //                    obj.ESTATUS_PISA_MULTIORDEN = folio["Estatus PISA Multiorden"];
+        //                    obj.PISA_OS_FECHA_POSTEO_MULTIORDEN = folio["Pisa OS Fecha POSTEO Multiorden"];
+        //                    obj.ESTATUS_PISA_TV = folio["Estatus PISA TV"];
+        //                    obj.PISA_OS_FECHA_POSTEO_TV = folio["Pisa OS Fecha POSTEO TV"];
+        //                    obj.FECHA_CAMBIO_ESTATUS_SIAC = folio["Fecha cambio estatus SIAC"];
+        //                    obj.CLAVE_EMPRESA = folio["Clave de Empresa"];
+        //                    obj.NOMBRE_EMPRESA = folio["Nombre de Empresa"];
+        //                    obj.SERVICIO_FACTURACION_TERCEROS = folio["Servicio de Facturación a Terceros"];
+        //                    obj.ETAPA_PISA_MULTIORDEN = folio["Etapa PISA Multiorden"];
+        //                    obj.ETAPA_PISA_TV = folio["Etapa PISA TV"];
+        //                    obj.ETIQUETA_TRAFICO_VOZ = folio["Etiqueta Trafico Voz"];
+        //                    obj.TRAFICO_VOZ_ENTRANTE = folio["Tráfico Voz Entrante"];
+        //                    obj.TRAFICO_VOZ_SALIENTE = folio["Tráfico Voz Saliente"];
+        //                    obj.FECHA_TRAFICO_VOZ = folio["Fecha tráfico voz"];
+        //                    obj.TRAFICO_DATOS = folio["Tráfico Datos"];
+        //                    obj.FECHA_TRAFICO_DATOS = folio["Fecha tráfico datos"];
+        //                    obj.FECHA_FACTURCION = folio["Fecha Facturación"];
+        //                    obj.DESCRIPCION_VALIDA_ADEUDO = folio["Descripción valida adeudo"];
+        //                    obj.CORREO_ELECTRONICO = folio["Correo Electrónico"];
+        //                    obj.FECHA_NACIMIENTO = folio["Fecha de nacimiento"];
+        //                    obj.ID = folio["ID"];
+        //                    obj.Terminal = folio["Terminal"];
+        //                    obj.Distrito = folio["Distrito"];
+        //                    obj.TeCelular = folio["TeCelular"];
+
+        //                    //Ejecutamos el método el cual inserta el objeto en la base de datos.
+        //                    DataManager.InsertOrUpdateFolioSIAC(obj);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception er)
+        //    {
+        //        string a = er.Message;
+        //        Session["MENSAJE"] = er.Message;
+        //    }
+
+        //    //Retornamos a la vista inicial.
+        //    return View("Index");
+        //}
+
+        [System.Web.Mvc.HttpPost]
+        [GrupoLideriVerificarRol]
+        public ActionResult SubirPIPES()
+        {
             try
             {
-                if (file.ContentLength == 0)
-                    throw new Exception("Zero length file!");
+                var file = Request.Files[0];
+                //Verificamos que el archivo contenga valores.
+                if (file == null || file.ContentLength == 0)
+                    throw new Exception("Su archivo está vacío!");
                 else
                 {
+                    //Obtenemos el nombre del archivo.
                     var fileName = Path.GetFileName(file.FileName);
-                    
-                    var filePath = Path.Combine(Server.MapPath("~/Documents/Pipes"), "PIPES-" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + ".xlsx");
-                    
+
+                    //Creamos el nombre con la ruta del archivo el cual va a subirse al servidor.
+                    var filePath = Path.Combine(Server.MapPath("~/Documents/Pipes"), "PIPES-" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " " + DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + ".xlsx");
+
+                    //Guardamos el archivo.
                     file.SaveAs(filePath);
+
+                    //Verificamos que el nombre del archivo sea distinto de nulo o vació.
                     if (!string.IsNullOrEmpty(filePath))
                     {
-                        string filename = filePath;
+                        //Asignamos la ruta completa del archivo a una variable local.
+                        string pathToExcelFile = filePath;
 
-                        ExcelApp = new Excel.Application();
-                        ExcelWork = ExcelApp.Workbooks.Open(filename, true);
+                        //Asignamos el nombre de la hoja del archivo del excel en donde se encuentra la inforamción.
+                        string sheetName = "PRODUCCION";
 
-                        foreach (Excel.Worksheet sheet in ExcelWork.Sheets)
+                        //Mapeamos el archivo a una variable anónima.
+                        var excelFile = new ExcelQueryFactory(pathToExcelFile);
+
+                        //Obtenemos los registros de la hoja.
+                        var folios = from a in excelFile.Worksheet(sheetName) select a;
+
+                        //Iteramos todos los folios obtenidos.
+                        foreach (var folio in folios)
                         {
-                            //Obtenemos el rango de la hoja que estamos leyendo
-                            Excel.Range range = sheet.UsedRange;
+                            //Declaramos un objeto de tipo N_Folio_SIAC que será el que insertaremos.
+                            N_Folio_SIAC obj = new N_Folio_SIAC();
 
-                            //Obtiene el número de filas de la hoja
-                            int rowCount = range.Rows.Count;
+                            //Mapeamos los valores a las propiedades correspondientes.
+                            obj.FECHA_CAPTURA = folio["Fecha Captura"];
+                            obj.ESTRATEGIA = folio["Estrategia"];
+                            obj.PROMOTOR = folio["Promotor"];
+                            obj.FOLIO_SIAC = folio["Folio SIAC"];
+                            obj.ESTATUS_SIAC = folio["Estatus SIAC"];
+                            obj.TIPO_LINEA = folio["Tipo Linea"];
+                            obj.LINEA_CONTRATADA = folio["Linea Contratada"];
+                            obj.AREA = folio["Area"];
+                            obj.DIVICION = folio["Division"];
+                            obj.TIENDA = folio["Tienda"];
+                            obj.PAQUETE = folio["Paquete"];
+                            obj.OBSERVACIONES = folio["Observaciones"];
+                            obj.RESPUESTA_TELMEX = folio["Respuesta Telmex"];
+                            obj.MOTIVO_RECHAZO = folio["Motivo Rechazo "];
+                            obj.TELEFONO_ASIGNADO = folio["Telefono Asignado"];
+                            obj.TELEFONO_PORTADO = folio["Telefono Portado"];
+                            obj.OS_ALTA_LINEA_MULTIORDEN = folio["OS Alta Linea o Multiorden"];
+                            obj.FECHA_OS_ALTA_LINEA_MULTIORDEN = folio["Fecha OS Alta Linea o Multiorden"];
+                            obj.ORDEN_SERVICIO_TV = folio["Orden de Servicio TV"];
+                            obj.FECHA_OS_TV = folio["Fecha de Os TV"];
+                            obj.CAMPANA = folio["Campana"];
+                            obj.ESTATUS_ATENCION_MULTIORDEN = folio["Estatus de Atención Multiorden"];
+                            obj.ESTATUS_PISA_MULTIORDEN = folio["Estatus PISA Multiorden"];
+                            obj.PISA_OS_FECHA_POSTEO_MULTIORDEN = folio["Pisa OS Fecha POSTEO Multiorden"];
+                            obj.ESTATUS_PISA_TV = folio["Estatus PISA TV"];
+                            obj.PISA_OS_FECHA_POSTEO_TV = folio["Pisa OS Fecha POSTEO TV"];
+                            obj.FECHA_CAMBIO_ESTATUS_SIAC = folio["Fecha cambio estatus SIAC"];
+                            obj.CLAVE_EMPRESA = folio["Clave de Empresa"];
+                            obj.NOMBRE_EMPRESA = folio["Nombre de Empresa"];
+                            obj.SERVICIO_FACTURACION_TERCEROS = folio["Servicio de Facturación a Terceros"];
+                            obj.ETAPA_PISA_MULTIORDEN = folio["Etapa PISA Multiorden"];
+                            obj.ETAPA_PISA_TV = folio["Etapa PISA TV"];
+                            obj.ETIQUETA_TRAFICO_VOZ = folio["Etiqueta Trafico Voz"];
+                            obj.TRAFICO_VOZ_ENTRANTE = folio["Tráfico Voz Entrante"];
+                            obj.TRAFICO_VOZ_SALIENTE = folio["Tráfico Voz Saliente"];
+                            obj.FECHA_TRAFICO_VOZ = folio["Fecha tráfico voz"];
+                            obj.TRAFICO_DATOS = folio["Tráfico Datos"];
+                            obj.FECHA_TRAFICO_DATOS = folio["Fecha tráfico datos"];
+                            obj.FECHA_FACTURCION = folio["Fecha Facturación"];
+                            obj.DESCRIPCION_VALIDA_ADEUDO = folio["Descripción valida adeudo"];
+                            obj.CORREO_ELECTRONICO = folio["Correo Electrónico"];
+                            obj.FECHA_NACIMIENTO = folio["Fecha de nacimiento"];
+                            obj.ID = folio["ID"];
+                            obj.Terminal = folio["Terminal"];
+                            obj.Distrito = folio["Distrito"];
+                            obj.TeCelular = folio["TeCelular"];
 
-                            int aux = 2;
-                            while (aux <= rowCount)
-                            {
-                                N_Folio_SIAC obj = new N_Folio_SIAC();
-                                obj.FECHA_CAPTURA = range.Cells[aux, 1].Value.ToString() != null ? range.Cells[aux, 1].Value.ToString() : string.Empty;
-                                obj.ESTRATEGIA = range.Cells[aux, 2].Value.ToString() != null ? range.Cells[aux, 2].Value.ToString() : string.Empty;
-                                obj.PROMOTOR = range.Cells[aux, 3].Value.ToString() != null ? range.Cells[aux, 3].Value.ToString() : string.Empty;
-                                obj.FOLIO_SIAC = range.Cells[aux, 4].Value.ToString() != null ? range.Cells[aux, 4].Value.ToString() : string.Empty;
-                                obj.ESTATUS_SIAC = range.Cells[aux, 5].Value.ToString() != null ? range.Cells[aux, 5].Value.ToString() : string.Empty;
-                                obj.TIPO_LINEA = range.Cells[aux, 6].Value.ToString() != null ? range.Cells[aux, 6].Value.ToString() : string.Empty;
-                                obj.LINEA_CONTRATADA = range.Cells[aux, 7].Value.ToString() != null ? range.Cells[aux, 7].Value.ToString() : string.Empty;
-                                obj.AREA = range.Cells[aux, 8].Value.ToString() != null ? range.Cells[aux, 8].Value.ToString() : string.Empty;
-                                obj.DIVICION = range.Cells[aux, 9].Value.ToString() != null ? range.Cells[aux, 9].Value.ToString() : string.Empty;
-                                obj.TIENDA = range.Cells[aux, 10].Value.ToString() != null ? range.Cells[aux, 10].Value.ToString() : string.Empty;
-                                obj.PAQUETE = range.Cells[aux, 11].Value.ToString() != null ? range.Cells[aux, 11].Value.ToString() : string.Empty;
-                                obj.OBSERVACIONES = range.Cells[aux, 12].Value.ToString() != null ? range.Cells[aux, 12].Value.ToString() : string.Empty;
-                                obj.RESPUESTA_TELMEX = range.Cells[aux, 13].Value.ToString() != null ? range.Cells[aux, 13].Value.ToString() : string.Empty;
-                                obj.MOTIVO_RECHAZO = range.Cells[aux, 14].Value.ToString() != null ? range.Cells[aux, 14].Value.ToString() : string.Empty;
-                                obj.TELEFONO_ASIGNADO = range.Cells[aux, 15].Value.ToString() != null ? range.Cells[aux, 15].Value.ToString() : string.Empty;
-                                obj.TELEFONO_PORTADO = range.Cells[aux, 16].Value.ToString() != null ? range.Cells[aux, 16].Value.ToString() : string.Empty;
-                                obj.OS_ALTA_LINEA_MULTIORDEN = range.Cells[aux, 17].Value.ToString() != null ? range.Cells[aux, 17].Value.ToString() : string.Empty;
-                                obj.FECHA_OS_ALTA_LINEA_MULTIORDEN = range.Cells[aux, 18].Value.ToString() != null ? range.Cells[aux, 18].Value.ToString() : string.Empty;
-                                obj.ORDEN_SERVICIO_TV = range.Cells[aux, 19].Value.ToString() != null ? range.Cells[aux, 19].Value.ToString() : string.Empty;
-                                obj.FECHA_OS_TV = range.Cells[aux, 20].Value.ToString() != null ? range.Cells[aux, 20].Value.ToString() : string.Empty;
-                                obj.CAMPANA = range.Cells[aux, 21].Value.ToString() != null ? range.Cells[aux, 21].Value.ToString() : string.Empty;
-                                obj.ESTATUS_ATENCION_MULTIORDEN = range.Cells[aux, 22].Value.ToString() != null ? range.Cells[aux, 22].Value.ToString() : string.Empty;
-                                obj.ESTATUS_PISA_MULTIORDEN = range.Cells[aux, 23].Value.ToString() != null ? range.Cells[aux, 23].Value.ToString() : string.Empty;
-                                obj.PISA_OS_FECHA_POSTEO_MULTIORDEN = range.Cells[aux, 24].Value.ToString() != null ? range.Cells[aux, 24].Value.ToString() : string.Empty;
-                                obj.ESTATUS_PISA_TV = range.Cells[aux, 25].Value.ToString() != null ? range.Cells[aux, 25].Value.ToString() : string.Empty;
-                                obj.PISA_OS_FECHA_POSTEO_TV = range.Cells[aux, 26].Value.ToString() != null ? range.Cells[aux, 26].Value.ToString() : string.Empty;
-                                obj.FECHA_CAMBIO_ESTATUS_SIAC = range.Cells[aux, 27].Value.ToString() != null ? range.Cells[aux, 27].Value.ToString() : string.Empty;
-                                obj.CLAVE_EMPRESA = range.Cells[aux, 28].Value.ToString() != null ? range.Cells[aux, 28].Value.ToString() : string.Empty;
-                                obj.NOMBRE_EMPRESA = range.Cells[aux, 29].Value.ToString() != null ? range.Cells[aux, 29].Value.ToString() : string.Empty;
-                                obj.SERVICIO_FACTURACION_TERCEROS = range.Cells[aux, 30].Value.ToString() != null ? range.Cells[aux, 30].Value.ToString() : string.Empty;
-                                obj.ETAPA_PISA_MULTIORDEN = range.Cells[aux, 31].Value.ToString() != null ? range.Cells[aux, 31].Value.ToString() : string.Empty;
-                                obj.ETAPA_PISA_TV = range.Cells[aux, 32].Value.ToString() != null ? range.Cells[aux, 32].Value.ToString() : string.Empty;
-                                obj.ETIQUETA_TRAFICO_VOZ = range.Cells[aux, 33].Value.ToString() != null ? range.Cells[aux, 33].Value.ToString() : string.Empty;
-                                obj.TRAFICO_VOZ_ENTRANTE = range.Cells[aux, 34].Value.ToString() != null ? range.Cells[aux, 34].Value.ToString() : string.Empty;
-                                obj.TRAFICO_VOZ_SALIENTE = range.Cells[aux, 35].Value.ToString() != null ? range.Cells[aux, 35].Value.ToString() : string.Empty;
-                                obj.FECHA_TRAFICO_VOZ = range.Cells[aux, 36].Value.ToString() != null ? range.Cells[aux, 36].Value.ToString() : string.Empty;
-                                obj.TRAFICO_DATOS = range.Cells[aux, 37].Value.ToString() != null ? range.Cells[aux, 37].Value.ToString() : string.Empty;
-                                obj.FECHA_TRAFICO_DATOS = range.Cells[aux, 38].Value.ToString() != null ? range.Cells[aux, 38].Value.ToString() : string.Empty;
-                                obj.FECHA_FACTURCION = range.Cells[aux, 39].Value.ToString() != null ? range.Cells[aux, 39].Value.ToString() : string.Empty;
-                                obj.DESCRIPCION_VALIDA_ADEUDO = range.Cells[aux, 40].Value.ToString() != null ? range.Cells[aux, 40].Value.ToString() : string.Empty;
-                                obj.CORREO_ELECTRONICO = range.Cells[aux, 41].Value.ToString() != null ? range.Cells[aux, 41].Value.ToString() : string.Empty;
-                                obj.FECHA_NACIMIENTO = range.Cells[aux, 42].Value.ToString() != null ? range.Cells[aux, 42].Value.ToString() : string.Empty;
-                                obj.ID = range.Cells[aux, 43].Value.ToString() != null ? range.Cells[aux, 43].Value.ToString() : string.Empty;
-                                obj.Terminal = range.Cells[aux, 44].Value.ToString() != null ? range.Cells[aux, 44].Value.ToString() : string.Empty;
-                                obj.Distrito = range.Cells[aux, 45].Value.ToString() != null ? range.Cells[aux, 45].Value.ToString() : string.Empty;
-                                obj.TeCelular = range.Cells[aux, 46].Value.ToString() != null ? range.Cells[aux, 46].Value.ToString() : string.Empty;
-                                
-                                DataManager.InsertFolioSIAC(obj);
-                                aux += 1;
-                            }
-
-                            ExcelWork.Close();
-                            Marshal.ReleaseComObject(ExcelWork);
-                            ExcelApp.Quit();
-                            Marshal.ReleaseComObject(ExcelApp);
+                            //Ejecutamos el método el cual inserta el objeto en la base de datos.
+                            DataManager.InsertOrUpdateFolioSIAC(obj);
                         }
                     }
                 }
-                
             }
             catch (Exception er)
             {
-                ExcelWork.Close();
-                Marshal.ReleaseComObject(ExcelWork);
-                ExcelApp.Quit();
-                Marshal.ReleaseComObject(ExcelApp);
-                
+                string a = er.Message;
+                Session["MENSAJE"] = er.Message;
+            }
+
+            //Retornamos a la vista inicial.
+            return View("Index");
         }
-            return new JsonResult()
-            {
-                Data = ""
-            };
-    }
     }
 }

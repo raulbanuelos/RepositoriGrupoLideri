@@ -7,11 +7,11 @@ namespace Modelo.SQLServer
 {
     public class GrupoLideri_SQL
     {
-        private string StringDeConexion = string.Empty;
-
-        public GrupoLideri_SQL(string stringDeConexion)
+        private string StringDeConexion = @"data source=74.208.227.248;initial catalog=Juda;persist security info=True;user id=userPixie;password=Bd.KJY64;";
+        
+        public GrupoLideri_SQL()
         {
-            this.StringDeConexion = stringDeConexion;
+
         }
 
         public DataSet EjecutarStoredProcedure(string nombreProcedimientoAlmacenado, Dictionary<string, object> parametros)

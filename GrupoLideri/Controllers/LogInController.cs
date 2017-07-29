@@ -13,9 +13,6 @@ namespace GrupoLideri.Controllers
         public ActionResult Index()
         {
             return View();
-
-
-
         }
 
         public ActionResult Ingresar([Bind(Include = "Usuario,Contrasena")] DO_Persona persona)
@@ -26,6 +23,7 @@ namespace GrupoLideri.Controllers
 
                 if (usuario != null)
                 {
+                    Session["UsuarioConectado"] = usuario;
                     return RedirectToAction("Index", "Home");
                 }
                 else

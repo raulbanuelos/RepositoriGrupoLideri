@@ -20,8 +20,8 @@ body.loaded.boxed-layout {
   background: #cfd8dc;
 }
 body.login-page {
-  background: url("../img/login-cover.jpg") center center no-repeat #cfd8dc;
-  background-size: cover !important;
+  background: url('../../../dash/img/manual.jpg') center center no-repeat #cfd8dc;
+  background-size: contain 
 }
 body.login-page .login-container .login-panel .user-avatar img {
   border-color: #eceff1;

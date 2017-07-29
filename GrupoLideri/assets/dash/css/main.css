@@ -124,6 +124,7 @@ body.onCanvas .top-bar .navbar {
 body.login-page {
   background-size: cover;
   padding-top: 35px;
+
 }
 body.login-page .login-container .login-panel {
   width: 360px;

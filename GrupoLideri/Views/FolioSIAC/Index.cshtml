@@ -4,35 +4,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-<body>
-    @using (@Html.BeginForm("upload", "FolioSIAC", FormMethod.Post,
-             new { enctype = "multipart/form-data" }))
-    {
-        if (TempData["Message"] != null)
+<html>
+<head>
+    <title>Cargar PIPES</title>
+    <script type="text/javascript">
+
+        function SubirPIPES()
         {
-            <p>@TempData["Message"]</p>
+            var formData = new FormData();
+            var totalFiles = document.getElementById("file").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("file").files[i];
+
+                formData.append("file", file);
+            }
+            var urlSave = '@Url.Action("SubirPIPES", "FolioSIAC")';
+            $.ajax({
+                type: "POST",
+                url: urlSave,
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert("success!!");
+                },
+                error: function (error) {
+                    alert("Error!");
+                }
+            });
         }
-        <table>
-            <tr>
-                <td style="padding-bottom: 35px" colspan="2">
-                    <h2>Cargar PIPES</h2>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 200px;">
-                    <b>Selecciona el archivo:</b>
-                </td>
-                <td>
-                    <input type="file" name="file" id="file" />
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td colspan="2" style="padding-top: 30px">
-                    <input type="submit" class="btn" value="Read Text" name="submit" />
-                </td>
-            </tr>
-        </table>
-    }
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td style="width: 200px;">
+                <b>Selecciona el archivo:</b>
+            </td>
+            <td>
+                <input type="file" name="file" id="file" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="2" style="padding-top: 30px">
+                <input id="btnSubir" onclick="SubirPIPES()" class="btn btn-primary" type="button" value="Subir" name="submit" />
+            </td>
+        </tr>
+    </table>
 </body>
+</html>

@@ -33,7 +33,7 @@
           <Property Name="CAMPANA" Type="varchar(max)" />
           <Property Name="ESTATUS_ATENCION_MULTIORDEN" Type="varchar(max)" />
           <Property Name="ESTATUS_PISA_MULTIORDEN" Type="varchar(max)" />
-          <Property Name="PISA_OS_FECHA_POSTEO_MULTIORDEN" Type="datetime" />
+          <Property Name="PISA_OS_FECHA_POSTEO_MULTIORDEN" Type="varchar(max)" />
           <Property Name="ESTATUS_PISA_TV" Type="varchar(max)" />
           <Property Name="PISA_OS_FECHA_POSTEO_TV" Type="varchar(max)" />
           <Property Name="FECHA_CAMBIO_ESTATUS_SIAC" Type="varchar(max)" />
@@ -102,64 +102,9 @@
     <edmx:ConceptualModels>
       <Schema Namespace="BD_JDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BD_JDAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TBL_FOLIOS" EntityType="BD_JDAModel.TBL_FOLIOS" />
           <EntitySet Name="TBL_USUARIOS" EntityType="BD_JDAModel.TBL_USUARIOS" />
+          <EntitySet Name="TBL_FOLIOS" EntityType="BD_JDAModel.TBL_FOLIOS" />
         </EntityContainer>
-        <EntityType Name="TBL_FOLIOS">
-          <Key>
-            <PropertyRef Name="ID_FOLIO" />
-          </Key>
-          <Property Name="ID_FOLIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FOLIO_SIAC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_CAPTURA" Type="DateTime" Precision="3" />
-          <Property Name="ESTRATEGIA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PROMOTOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ESTATUS_SIAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TIPO_LINEA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="LINEA_CONTRATADA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="AREA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DIVICION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TIENDA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PAQUETE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OBSERVACIONES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="RESPUESTA_TELMEX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="MOTIVO_RECHAZO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TELEFONO_ASIGNADO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TELEFONO_PORTADO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OS_ALTA_LINEA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_OS_ALTA_LINEA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ORDEN_SERVICIO_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_OS_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CAMPANA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ESTATUS_ATENCION_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ESTATUS_PISA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PISA_OS_FECHA_POSTEO_MULTIORDEN" Type="DateTime" Precision="3" />
-          <Property Name="ESTATUS_PISA_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PISA_OS_FECHA_POSTEO_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_CAMBIO_ESTATUS_SIAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CLAVE_EMPRESA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SERVICIO_FACTURACION_TERCEROS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ETAPA_PISA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ETAPA_PISA_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ETIQUETA_TRAFICO_VOZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TRAFICO_VOZ_ENTRANTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TRAFICO_VOZ_SALIENTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_TRAFICO_VOZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TRAFICO_DATOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_TRAFICO_DATOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_FACTURCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DESCRIPCION_VALIDA_ADEUDO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_NACIMIENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TERMINAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DISTRITO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TECELULAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
-          <Property Name="FECHA_CALCULO_COMISION" Type="DateTime" Precision="3" />
-          <Property Name="ESTATUS_PAGADO" Type="Boolean" />
-        </EntityType>
         <EntityType Name="TBL_USUARIOS">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
@@ -193,12 +138,101 @@
           <Property Name="NOMBRE_RENTERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TELEFONO_RENTERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="TBL_FOLIOS">
+          <Key>
+            <PropertyRef Name="ID_FOLIO" />
+          </Key>
+          <Property Name="ID_FOLIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FOLIO_SIAC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CAPTURA" Type="DateTime" Precision="3" />
+          <Property Name="ESTRATEGIA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PROMOTOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ESTATUS_SIAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_LINEA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LINEA_CONTRATADA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AREA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DIVICION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TIENDA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PAQUETE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RESPUESTA_TELMEX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MOTIVO_RECHAZO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO_ASIGNADO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO_PORTADO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OS_ALTA_LINEA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_OS_ALTA_LINEA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ORDEN_SERVICIO_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_OS_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CAMPANA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ESTATUS_ATENCION_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ESTATUS_PISA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PISA_OS_FECHA_POSTEO_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ESTATUS_PISA_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PISA_OS_FECHA_POSTEO_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CAMBIO_ESTATUS_SIAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CLAVE_EMPRESA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SERVICIO_FACTURACION_TERCEROS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ETAPA_PISA_MULTIORDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ETAPA_PISA_TV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ETIQUETA_TRAFICO_VOZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TRAFICO_VOZ_ENTRANTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TRAFICO_VOZ_SALIENTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_TRAFICO_VOZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TRAFICO_DATOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_TRAFICO_DATOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_FACTURCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION_VALIDA_ADEUDO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TERMINAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DISTRITO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TECELULAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_CALCULO_COMISION" Type="DateTime" Precision="3" />
+          <Property Name="ESTATUS_PAGADO" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BD_JDAModelStoreContainer" CdmEntityContainer="BD_JDAEntities">
+          <EntitySetMapping Name="TBL_USUARIOS">
+            <EntityTypeMapping TypeName="BD_JDAModel.TBL_USUARIOS">
+              <MappingFragment StoreEntitySet="TBL_USUARIOS">
+                <ScalarProperty Name="TELEFONO_RENTERO" ColumnName="TELEFONO_RENTERO" />
+                <ScalarProperty Name="NOMBRE_RENTERO" ColumnName="NOMBRE_RENTERO" />
+                <ScalarProperty Name="TELEFONO_OFICINA" ColumnName="TELEFONO_OFICINA" />
+                <ScalarProperty Name="DIRECCION_OFICINA" ColumnName="DIRECCION_OFICINA" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="USUARIO_ACTUALIZACION" ColumnName="USUARIO_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="ESTRATEGIA_GERENTE_PROMOTOR" ColumnName="ESTRATEGIA_GERENTE_PROMOTOR" />
+                <ScalarProperty Name="CTA_BANORTE" ColumnName="CTA_BANORTE" />
+                <ScalarProperty Name="CTA_SALDAZO" ColumnName="CTA_SALDAZO" />
+                <ScalarProperty Name="CVE_INTERBANCARIA" ColumnName="CVE_INTERBANCARIA" />
+                <ScalarProperty Name="CTA_COPPEL" ColumnName="CTA_COPPEL" />
+                <ScalarProperty Name="ESTRATEGIA" ColumnName="ESTRATEGIA" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="FACTURA" ColumnName="FACTURA" />
+                <ScalarProperty Name="JEFEID" ColumnName="JEFEID" />
+                <ScalarProperty Name="MATRICULA" ColumnName="MATRICULA" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
+                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="ID_JERARQUIA" ColumnName="ID_JERARQUIA" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TBL_FOLIOS">
             <EntityTypeMapping TypeName="BD_JDAModel.TBL_FOLIOS">
               <MappingFragment StoreEntitySet="TBL_FOLIOS">
@@ -252,40 +286,6 @@
                 <ScalarProperty Name="FECHA_CAPTURA" ColumnName="FECHA_CAPTURA" />
                 <ScalarProperty Name="FOLIO_SIAC" ColumnName="FOLIO_SIAC" />
                 <ScalarProperty Name="ID_FOLIO" ColumnName="ID_FOLIO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBL_USUARIOS">
-            <EntityTypeMapping TypeName="BD_JDAModel.TBL_USUARIOS">
-              <MappingFragment StoreEntitySet="TBL_USUARIOS">
-                <ScalarProperty Name="TELEFONO_RENTERO" ColumnName="TELEFONO_RENTERO" />
-                <ScalarProperty Name="NOMBRE_RENTERO" ColumnName="NOMBRE_RENTERO" />
-                <ScalarProperty Name="TELEFONO_OFICINA" ColumnName="TELEFONO_OFICINA" />
-                <ScalarProperty Name="DIRECCION_OFICINA" ColumnName="DIRECCION_OFICINA" />
-                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
-                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
-                <ScalarProperty Name="USUARIO_ACTUALIZACION" ColumnName="USUARIO_ACTUALIZACION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
-                <ScalarProperty Name="ESTRATEGIA_GERENTE_PROMOTOR" ColumnName="ESTRATEGIA_GERENTE_PROMOTOR" />
-                <ScalarProperty Name="CTA_BANORTE" ColumnName="CTA_BANORTE" />
-                <ScalarProperty Name="CTA_SALDAZO" ColumnName="CTA_SALDAZO" />
-                <ScalarProperty Name="CVE_INTERBANCARIA" ColumnName="CVE_INTERBANCARIA" />
-                <ScalarProperty Name="CTA_COPPEL" ColumnName="CTA_COPPEL" />
-                <ScalarProperty Name="ESTRATEGIA" ColumnName="ESTRATEGIA" />
-                <ScalarProperty Name="AREA" ColumnName="AREA" />
-                <ScalarProperty Name="FACTURA" ColumnName="FACTURA" />
-                <ScalarProperty Name="JEFEID" ColumnName="JEFEID" />
-                <ScalarProperty Name="MATRICULA" ColumnName="MATRICULA" />
-                <ScalarProperty Name="RFC" ColumnName="RFC" />
-                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
-                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
-                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
-                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
-                <ScalarProperty Name="ID_JERARQUIA" ColumnName="ID_JERARQUIA" />
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
