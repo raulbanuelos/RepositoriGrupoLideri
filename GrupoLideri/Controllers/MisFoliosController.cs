@@ -18,6 +18,13 @@ namespace GrupoLideri.Controllers
 
         public JsonResult BuscarFolios(string fechaIncial, string fechaFinal, int IsPosteada)
         {
+            DateTime FechaIncial = Convert.ToDateTime(fechaIncial);
+            DateTime FechaFinal = Convert.ToDateTime(fechaFinal);
+
+            fechaIncial = FechaIncial.Day + "/" + FechaIncial.Month + "/" + FechaIncial.Year;
+            fechaFinal = FechaFinal.Day + "/" + FechaFinal.Month + "/" + FechaFinal.Year;
+
+
             DO_Persona usuario = (DO_Persona)Session["UsuarioConectado"];
 
             List<N_Folio_SIAC> ListaFolios = DataManager.GetFoliosPromotor(fechaIncial, fechaFinal, usuario.idPersona, IsPosteada);

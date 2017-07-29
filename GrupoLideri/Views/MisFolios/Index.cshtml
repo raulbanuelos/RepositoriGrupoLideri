@@ -5,42 +5,27 @@
 }
 <html>
 <head>
-    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" />
-    <script src="@Url.Content("~/Content/jquery.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Content/bootstrap.min.js")" type="text/javascript"></script>
-    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-theme.css")" />
+    
+    
+    
 
-
-    @* DatePicker *@
-    <link rel="stylesheet" href="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.css")">
-        <link rel="stylesheet" href="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.min.css")">
-        <script src="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.min.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/assets/DatePicker/bootstrap-datepicker.es.min.js")" type="text/javascript"></script>
+    
 </head>
 <body>
     <div class="container">
-        <div class="col-md-5" id="cambiarFecha">
+        <div class="col-md-5">
             <div class="form-group">
-                <div class="input-group date" id="datetimepicker6">
-                    <input type="text" class="form-control" id="txtFechaIncial" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                <input type="date" id="txtFechaIncial" />
             </div>
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                <div class="input-group date" id="datetimepicker7">
-                    <input type="text" class="form-control" id="txtFechaFinal" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                <input type="date" id="txtFechaFinal" />
             </div>
         </div>
     </div>
+
+
     <input id="btnBuscar" type="button" onclick="Buscar()" class="btn btn-primary" value="Buscar" />
 
     <div class="table-responsive">
@@ -66,20 +51,68 @@
             <tbody id="tblFolios"></tbody>
         </table>
     </div>
+
+    <div id="modalguardandobitacora" data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header alert alert-success">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td><h3 class="modal-title">Espere por favor</h3></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-body" id="div1">
+                    <p><b>Cargando el archivo</b></p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" id="progressbarEspera" role="progressbar" aria-valuemax="100" style="width:100%">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
 
 
+
 <script type="text/javascript">
-    $('#cambiarFecha .input-group.date').datepicker({
-        format: "dd/mm/yyyy",
-        todayBtn: "linked",
-        clearBtn: true,
-        language: lang,
-        forceParse: false,
-        autoclose: true,
-        todayHighlight: true
-    });
+    //$('#datetimepicker7').datepicker({
+    //    format: "dd/mm/yyyy",
+    //    todayBtn: "linked",
+    //    clearBtn: true,
+    //    language: lang,
+    //    forceParse: false,
+    //    autoclose: true,
+    //    todayHighlight: true
+    //});
+
+    //$(function () {
+    //    $("#datetimepicker6").datepicker({
+    //        format: "dd/mm/yyyy",
+    //        todayBtn: "linked",
+    //        clearBtn: true,
+    //        forceParse: false,
+    //        autoclose: true,
+    //        todayHighlight: true
+    //    });
+    //    $("#datetimepicker7").datepicker();
+
+    //    $("#datetimepicker6").on("dp.change", function (e) {
+    //        $("#datetimepicker7").data("DateTimePicker").minDate(e.date);
+    //    });
+    //    $("#datetimepicker7").on("dp.change", function (e) {
+    //        $("#datetimepicker6").data("DateTimePicker").maxDate(e.date);
+    //    });
+    //});
+
 
     function Buscar()
     {
@@ -120,13 +153,31 @@
             row += "<td>" + item.ESTATUS_PAGADO + "</td>";
             row += "<td>" + item.TELEFONO_ASIGNADO + "</td>";
             row += "<td>" + item.ORDEN_SERVICIO_TV + "</td>";
-            row += "<td>" + item.COMISION_PAQUETE + "</td>";
+            row += "<td>$" + item.COMISION_PAQUETE + "</td>";
             row += "<td>" + item.PORCENTAJE_COMISION + "</td>";
-            row += "<td>" + item.COMISION_TOTAL + "</td>";
+            row += "<td>$" + item.COMISION_TOTAL + "</td>";
 
             row += "</tr>";
         });
 
         $("#tblFolios").html(row);
     }
+
+    var funcionModalProcesando;
+    function mostrarModalProcesando() {
+        funcionModalProcesando = setTimeout(function () { $("#modalguardandobitacora").modal() }, 0);
+    }
+
+    function terminarModalProcesando() {
+        clearTimeout(funcionModalProcesando);
+        $("#modalguardandobitacora").modal('hide');
+    }
+
+    $(document).ajaxStart(function () {
+        alert("Hola");
+        mostrarModalProcesando();
+    });
+    $(document).ajaxStop(function () {
+        terminarModalProcesando();
+    });
 </script>
