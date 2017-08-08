@@ -179,6 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataManager.cs" />
+    <Compile Include="Models\DO_Item_Chart.cs" />
     <Compile Include="Models\DO_Persona.cs" />
     <Compile Include="Models\N_Folio_SIAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1035,6 +1036,9 @@
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <None Include="Properties\PublishProfiles\GrupoLideri.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\getorgchart.css" />
+    <Content Include="Scripts\getorgchart.js" />
+    <Content Include="Scripts\graphics.png" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -1051,6 +1055,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\readme.txt" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />

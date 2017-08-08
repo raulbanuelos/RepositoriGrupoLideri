@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Modelo.SQLServer;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +38,29 @@ namespace Modelo.ServiceObject
                 //Registrar error en base de datos.
                 return null;
             }
+        }
+
+        public DataSet GetOrganigrama(int idUsuario)
+        {
+            try
+            {
+                DataSet datos = null;
+
+                GrupoLideri_SQL conexion = new GrupoLideri_SQL();
+
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("IdUsuario", idUsuario);
+
+                datos = conexion.EjecutarStoredProcedure("SP_ORG_GetOrganigrama", parametros);
+
+                return datos;
+            }
+            catch (Exception er)
+            {
+                return null;
+            }
+
         }
     }
 }

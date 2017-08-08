@@ -3,6 +3,7 @@ using Modelo.ServiceObject;
 using Modelo;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace GrupoLideri.Models
 {
@@ -29,6 +30,38 @@ namespace GrupoLideri.Models
             }
             return persona;
         }
+        
+        public static List<DO_Item_Chart> GetOrganigrama(int idUsuario)
+        {
+            List<DO_Item_Chart> ListaPersonas = new List<DO_Item_Chart>();
+
+            SO_Persona ServicioPersona = new SO_Persona();
+
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServicioPersona.GetOrganigrama(idUsuario);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        DO_Item_Chart persona = new DO_Item_Chart();
+                        persona.Id = Convert.ToInt32(item["ID_USUARIO"].ToString());
+                        persona.parentId = Convert.ToInt32(item["ID_JEFE"].ToString());
+                        persona.Name = item["NOMBRE_PROMOTOR"].ToString();
+
+                        ListaPersonas.Add(persona);
+
+
+                    }
+                }
+            }
+
+            return ListaPersonas;
+        }
+        
         #endregion
 
         #region Folio

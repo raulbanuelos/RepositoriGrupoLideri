@@ -15,5 +15,10 @@ namespace GrupoLideri.Models
         public string Contrasena { get; set; }
         public int idJerarquia { get; set; }
 
+        //JefeId
+        public int parentId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+
     }
 }
