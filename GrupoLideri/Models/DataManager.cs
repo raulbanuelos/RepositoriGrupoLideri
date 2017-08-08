@@ -4,6 +4,7 @@ using Modelo;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Collections;
 
 namespace GrupoLideri.Models
 {
@@ -60,6 +61,58 @@ namespace GrupoLideri.Models
             }
 
             return ListaPersonas;
+        }
+
+        public static List<FO_Item_Combo> GetPersonas(int idPersona)
+        {
+            SO_Persona ServicioPersona = new SO_Persona();
+
+            List<FO_Item_Combo> listaResultante = new List<FO_Item_Combo>();
+
+            IList informacionBD = ServicioPersona.GetPersonas(idPersona);
+
+            if (informacionBD != null)
+            {
+                foreach (var item in informacionBD)
+                {
+                    System.Type tipo = item.GetType();
+
+                    FO_Item_Combo persona = new FO_Item_Combo();
+
+                    persona.Id = (int)tipo.GetProperty("ID_USUARIO").GetValue(item, null);
+                    string nombre = (string)tipo.GetProperty("NOMBRE").GetValue(item, null);
+                    string apaterno = (string)tipo.GetProperty("APELLIDO_PATERNO").GetValue(item, null);
+                    string amaterno = (string)tipo.GetProperty("APELLIDO_MATERNO").GetValue(item, null);
+
+                    persona.Text = nombre + " " + apaterno + " " + amaterno;
+
+                    listaResultante.Add(persona);
+                }
+            }
+
+            return listaResultante;
+        }
+
+        public static string InsertOrUptadeOrDeletePersona(int idJerarquia,string usuario,string contrasena,string nombre,string aPaterno,string aMaterno,string fechaNacimiento,string rfc,string matricula,int idJefe,string area,string estrategia,int activo,int opcion,string usuarioLogueado)
+        {
+            SO_Persona ServicioPersona = new SO_Persona();
+
+            string respuesta = "";
+
+            DataSet datos = ServicioPersona.InsertOrUpdateOrDeletePersona(idJerarquia, usuario, contrasena, nombre, aPaterno, aMaterno, fechaNacimiento, rfc, matricula, idJefe, area, estrategia, activo, opcion, usuarioLogueado);
+
+            if (datos != null)
+            {
+                if (datos.Tables.Count > 0 && datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in datos.Tables[0].Rows)
+                    {
+                        respuesta = item["RESPUESTA"].ToString();
+                    }
+                }
+            }
+
+            return respuesta;
         }
         
         #endregion

@@ -41,11 +41,6 @@
     <!-- Custom stylesheets ( Put your own changes here ) -->
     <link href="@Url.Content("~/assets/dash/css/custom.css")" rel="stylesheet" />
 
-    
-
-
-    
-
 </head>
 <body class="loading ball-scale-multiple top-bar-fixed left-sidebar-fixed page-footer ovh">
     
@@ -152,6 +147,14 @@
                         <li class="nav-section-header">
                             <h5>Administración</h5>
                         </li>
+
+                        <li>
+                            <a href="@Url.Action("Index","Persona")">
+                                <i class="fa fa-users"></i>
+                                <span class="nav-item-text">Agregar promotor</span>
+                            </a>
+                        </li>
+
                         <li>
                             <a href="@Url.Action("Index","FolioSIAC")">
                                 <i class="fa fa-barcode"></i>

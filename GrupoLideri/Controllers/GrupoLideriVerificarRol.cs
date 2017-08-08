@@ -127,7 +127,19 @@ namespace GrupoLideri.Controllers
                 JerarquiasPermitidas.Add(2018);
                 JerarquiasPermitidas.Add(2019);
                 return JerarquiasPermitidas.Contains(idJerarquia);
-            } 
+            }
+            #endregion
+
+            #region Persona
+            if (nombreControlador.Equals("Persona"))
+            {
+                JerarquiasPermitidas.Add(1);
+                JerarquiasPermitidas.Add(1018);
+                JerarquiasPermitidas.Add(17);
+                JerarquiasPermitidas.Add(1019);
+                JerarquiasPermitidas.Add(2018);
+                return JerarquiasPermitidas.Contains(idJerarquia);
+            }
             #endregion
 
             return false;

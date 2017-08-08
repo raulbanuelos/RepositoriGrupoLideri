@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron text-center">
+    <h1>Alta</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <!--Columna 1-->
+        <div class="col-sm-4">
+            <!--Usuario-->
+            <div class="form-group">
+                <label for="usr">Usuario:</label>
+                <input type="text" class="form-control" id="txtUsuario">
+            </div>
+            <!--Nombre-->
+            <div class="form-group">
+                <label for="usr">Nombre:</label>
+                <input type="text" class="form-control" id="txtNombre">
+            </div>
+
+            <!--Fecah de nacimiento-->
+            <div class="form-group">
+                <label for="usr">Fecha de nacimiento:</label>
+                <input type="text" class="form-control" id="txtFechaNacimiento">
+            </div>
+        </div>
+
+        <!--Columna 2-->
+        <div class="col-sm-4">
+            <!--Contraseña-->
+            <div class="form-group">
+                <label for="usr">Contraseña:</label>
+                <input type="text" class="form-control" id="txtContaseña">
+            </div>
+
+            <!--Paterno-->
+            <div class="form-group">
+                <label for="usr">Apellido paterno:</label>
+                <input type="text" class="form-control" id="txtAPaterno">
+            </div>
+
+            <!--RFC-->
+            <div class="form-group">
+                <label for="usr">RFC:</label>
+                <input type="text" class="form-control" id="txtRFC">
+            </div>
+        </div>
+
+        <!--Columna 3-->
+        <div class="col-sm-4">
+            <!--Clave promotor-->
+            <div class="form-group">
+                <label for="usr">Clave promotor:</label>
+                <input type="text" class="form-control" id="txtClavePromotor">
+            </div>
+
+            <!--Materno-->
+            <div class="form-group">
+                <label for="usr">Apellido materno:</label>
+                <input type="text" class="form-control" id="txtAMaterno">
+            </div>
+
+            <!--Promotor-->
+            <div class="form-group">
+                <label for="usr">Promotor:</label>
+                <input type="text" class="form-control" id="txtPromotor">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <input id="btnBuscar" type="button" onclick="Guardar()" class="btn btn-primary" value="Guardar" />
+    </div>
+</div>
+<script>
+    function Guardar()
+    {
+        alert("Guardar");
+    }
+</script>

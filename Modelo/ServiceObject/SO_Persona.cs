@@ -1,5 +1,6 @@
 ﻿using Modelo.SQLServer;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -63,7 +64,32 @@ namespace Modelo.ServiceObject
 
         }
 
-        public DataSet InsertOrUpdateOrDeletePersona(int idJeraquia, string usuario, string contrasena, string nombre, string aPaterno, string aMaterno, string fechaNacimiento, string rfc, string matricula, int idJefe, string Area, string estrategia, int activo,string direccionOficina, string telefonoOficina, string nombreRentero, string telefonoRentero, string usuarioCreo, int opcion, int idUsuario = 0, int factura = 0, string ctaCoppel = "", string cveInterbancaria = "", string ctaSaldazo = "", string ctaBanorte = "")
+        /// <summary>
+        /// Método que obtiene todas las personas a excepción del idPersona que se recibe en el parámetro.
+        /// </summary>
+        /// <param name="idPersona"></param>
+        /// <returns></returns>
+        public IList GetPersonas(int idPersona)
+        {
+            try
+            {
+                using (var Conexion = new BD_JDAEntities())
+                {
+                    var Lista = (from a in Conexion.TBL_USUARIOS
+                                 where a.ID_USUARIO != idPersona
+                                 select a).ToList();
+                    return Lista;
+                }
+            }
+            catch (Exception er)
+            {
+                return null;
+            }
+        }
+
+        public DataSet InsertOrUpdateOrDeletePersona(int idJeraquia, string usuario, string contrasena, string nombre, string aPaterno, string aMaterno, 
+            string fechaNacimiento, string rfc, string matricula, int idJefe, string Area, string estrategia, int activo , int opcion, string usuarioCreo,
+            string direccionOficina="", string telefonoOficina = "", string nombreRentero= "", string telefonoRentero="", int idUsuario = 0, int factura = 0, string ctaCoppel = "", string cveInterbancaria = "", string ctaSaldazo = "", string ctaBanorte = "")
         {
             try
             {

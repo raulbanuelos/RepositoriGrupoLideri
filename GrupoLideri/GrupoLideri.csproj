@@ -175,12 +175,14 @@
     <Compile Include="Controllers\MisComisionesController.cs" />
     <Compile Include="Controllers\MisFoliosController.cs" />
     <Compile Include="Controllers\OverController.cs" />
+    <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataManager.cs" />
     <Compile Include="Models\DO_Item_Chart.cs" />
     <Compile Include="Models\DO_Persona.cs" />
+    <Compile Include="Models\FO_Item_Combo.cs" />
     <Compile Include="Models\N_Folio_SIAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1082,6 +1084,7 @@
     <Content Include="Views\MiOrganigrama\Index.cshtml" />
     <Content Include="Views\MisComisiones\Index.cshtml" />
     <Content Include="Views\Over\Index.cshtml" />
+    <Content Include="Views\Persona\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
