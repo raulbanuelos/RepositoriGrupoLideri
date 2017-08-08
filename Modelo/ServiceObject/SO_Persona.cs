@@ -62,5 +62,48 @@ namespace Modelo.ServiceObject
             }
 
         }
+
+        public DataSet InsertOrUpdateOrDeletePersona(int idJeraquia, string usuario, string contrasena, string nombre, string aPaterno, string aMaterno, string fechaNacimiento, string rfc, string matricula, int idJefe, string Area, string estrategia, int activo,string direccionOficina, string telefonoOficina, string nombreRentero, string telefonoRentero, string usuarioCreo, int opcion, int idUsuario = 0, int factura = 0, string ctaCoppel = "", string cveInterbancaria = "", string ctaSaldazo = "", string ctaBanorte = "")
+        {
+            try
+            {
+                DataSet datos = null;
+
+                GrupoLideri_SQL conexion = new GrupoLideri_SQL();
+
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("ID_USUARIO", idUsuario);
+                parametros.Add("ID_JERARQUIA", idJeraquia);
+                parametros.Add("USUARIO", usuario);
+                parametros.Add("CONTRASENA", contrasena);
+                parametros.Add("NOMBRE",nombre);
+                parametros.Add("APELLIDO_PATERNO",aPaterno);
+                parametros.Add("APELLIDO_MATERNO", aMaterno);
+                parametros.Add("FECHA_NACIMIENTO",fechaNacimiento);
+                parametros.Add("RFC",rfc);
+                parametros.Add("MATRICULA", matricula);
+                parametros.Add("JEFEID",idJefe);
+                parametros.Add("FACTURA", factura);
+                parametros.Add("AREA", Area);
+                parametros.Add("ESTRATEGIA", estrategia);
+                parametros.Add("CTA_COPPEL", ctaCoppel);
+                parametros.Add("CVE_INTERBANCARIA",cveInterbancaria);
+                parametros.Add("CTA_SALDAZO",ctaSaldazo);
+                parametros.Add("CTA_BANORTE",ctaBanorte);
+                parametros.Add("ACTIVO", activo);
+                parametros.Add("DIRECCION_OFICINA", direccionOficina);
+                parametros.Add("TELEFONO_OFICINA", telefonoOficina);
+                parametros.Add("NOMBRE_RENTERO",nombreRentero);
+                parametros.Add("TELEFONO_RENTERO",telefonoRentero);
+                parametros.Add("USUARIO_ADD_UPDATE",usuarioCreo);
+                parametros.Add("OPCION",opcion);
+                return datos = conexion.EjecutarStoredProcedure("InsertOrUpdateOrDeleteTBL_USUARIOS", parametros);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }
