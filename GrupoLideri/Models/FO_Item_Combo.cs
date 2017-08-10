@@ -7,7 +7,7 @@ namespace GrupoLideri.Models
 {
     public class FO_Item_Combo
     {
-        public int Id { get; set; }
+        public int Value { get; set; }
         public string Text { get; set; }
     }
 }

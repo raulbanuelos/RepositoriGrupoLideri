@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Collections;
+using System.Web.Mvc;
 
 namespace GrupoLideri.Models
 {
@@ -79,7 +80,7 @@ namespace GrupoLideri.Models
 
                     FO_Item_Combo persona = new FO_Item_Combo();
 
-                    persona.Id = (int)tipo.GetProperty("ID_USUARIO").GetValue(item, null);
+                    persona.Value = (int)tipo.GetProperty("ID_USUARIO").GetValue(item, null);
                     string nombre = (string)tipo.GetProperty("NOMBRE").GetValue(item, null);
                     string apaterno = (string)tipo.GetProperty("APELLIDO_PATERNO").GetValue(item, null);
                     string amaterno = (string)tipo.GetProperty("APELLIDO_MATERNO").GetValue(item, null);
@@ -264,5 +265,17 @@ namespace GrupoLideri.Models
         }
 
         #endregion
+
+        public static List<SelectListItem> ToDropdownListFromItemCombo(List<FO_Item_Combo> lista)
+        {
+            List<SelectListItem> DropDownList = new List<SelectListItem>();
+
+            foreach (FO_Item_Combo elemento in lista)
+            {
+                DropDownList.Add(new SelectListItem { Text = elemento.Text, Value = elemento.Value.ToString() });
+            }
+
+            return DropDownList;
+        }
     }
 }

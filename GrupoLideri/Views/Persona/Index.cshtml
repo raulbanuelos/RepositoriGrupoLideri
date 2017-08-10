@@ -68,17 +68,8 @@
             <!--Promotor-->
             <div class="form-group">
                <label for="usr">Gerente promotor:</label>
-                <select class="selectpicker" data-header="Selecciona un gerente">
-                    <optgroup label="Picnic">
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
-                    </optgroup>
-                    <optgroup label="Camping">
-                        <option>Tent</option>
-                        <option>Flashlight</option>
-                        <option>Toilet Paper</option>
-                    </optgroup>
+                <select id="dllPromotores" class="js-example-basic-multiple" data-width="100%">
+
                 </select>
             </div>
         </div>
@@ -90,9 +81,29 @@
 </div>
 <script>
 
-    
+    $(function () {
+        var urlSave = '@Url.Action("CargarPersonas","Persona")';
+        var _parametro = "";
+        $.ajax({
+            type: "POST",
+            url: urlSave,
+            dataType: "json",
+            data: JSON.stringify({ parametro: _parametro }),
+            success: function (personas) {
+                $.each(personas, function (i, persona) {
+                    $("#dllPromotores").append('<option value="' + persona.Value + '">' + persona.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Error');
+            }
+        });
 
+    });
 
+    $(".js-example-basic-multiple").select2({
+        placeholder: "Promotor"
+    });
 
     function Guardar()
     {

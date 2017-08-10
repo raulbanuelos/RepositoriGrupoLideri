@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GrupoLideri.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,18 @@ namespace GrupoLideri.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public JsonResult CargarPersonas(string parametro)
+        {
+            DO_Persona usuario = (DO_Persona)Session["UsuarioConectado"];
+
+            List<FO_Item_Combo> ListaPersonas = DataManager.GetPersonas(usuario.idPersona);
+
+            //Convertimos la lista FO_ItemCombo lista de tipo SelectListItem.
+            List<SelectListItem> Participantes = DataManager.ToDropdownListFromItemCombo(ListaPersonas);
+
+            return Json(new SelectList(Participantes, "Value", "Text"));
         }
     }
 }
