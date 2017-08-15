@@ -26,7 +26,7 @@
             <!--Fecah de nacimiento-->
             <div class="form-group">
                 <label for="usr">Fecha de nacimiento:</label>
-                <input type="text" class="form-control" id="txtFechaNacimiento">
+                <input type="date" class="form-control" id="txtFechaNacimiento">
             </div>
         </div>
 
@@ -35,7 +35,7 @@
             <!--Contraseña-->
             <div class="form-group">
                 <label for="usr">Contraseña:</label>
-                <input type="text" class="form-control" id="txtContaseña">
+                <input type="password" class="form-control" id="txtContasena">
             </div>
 
             <!--Paterno-->
@@ -73,6 +73,30 @@
                 </select>
             </div>
         </div>
+
+        <!--Columna 4-->
+        <div class="col-sm-4">
+            <!--Clave Area-->
+            <div class="form-group">
+                <label for="usr">Area:</label>
+                <input type="text" class="form-control" id="txtArea">
+            </div>
+
+            <!--Estrategia-->
+            <div class="form-group">
+                <label for="usr">Estrategia:</label>
+                <input type="text" class="form-control" id="txtEstrategia">
+            </div>
+
+            <!--Jerarquia-->
+            <div class="form-group">
+                <label for="usr">Jerarquia:</label>
+                <select id="ddlJerarquia" class="js-example-basic-multiple" data-width="100%">
+                    <option value="10">GERENTE</option>
+                    <option value="14">PROMOTOR</option>
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -107,6 +131,32 @@
 
     function Guardar()
     {
-        alert("Guardar");
+        //alert("Guardar");
+        var urlSave = '@Url.Action("GuardarPersona","Persona")';
+        var _usuario = $("#txtUsuario").val();
+        var _contrasena = $("#txtContasena").val();
+        var _nombre = $("#txtNombre").val();
+        var _aPaterno = $("#txtAPaterno").val();
+        var _aMaterno = ("#txtAMaterno").val();
+        var _fechaNacimiento = $("#txtFechaNacimiento").val();
+        var _rfc = $("#txtRFC").val();
+        var _matricula = $("#txtClavePromotor");
+        var _idGerentePromotor = $("#dllPromotores").val();
+        var _area = $("#txtArea").val();
+        var _estrategia = $("#txtEstrategia").val();
+        var _idJerarquia = $("#ddlJerarquia").val();
+        $.ajax({
+            type: "POST",
+            url: urlSave,
+            data: JSON.stringify({
+                idJerarquia: _idJerarquia, usuario: _usuario, contrasena: _contrasena,
+                nombre: _nombre, aPaterno: _aPaterno, aMaterno: _aMaterno, fechaNacimiento: _fechaNacimiento, rfc: _rfc,
+                matricula: _matricula, idGerentePromotor: _idGerentePromotor, area: _area, estrategia: _estrategia,
+                activo: 1,
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+        alert("Persona registrada");
     }
 </script>
