@@ -19,7 +19,7 @@ namespace GrupoLideri.Controllers
         {
             if (ModelState.IsValid)
             {
-                DO_Persona usuario = DataManager.LogIn(persona.Usuario, persona.Contrasena);
+                DO_Persona usuario = DataManagerLideri.LogIn(persona.Usuario, persona.Contrasena);
 
                 if (usuario != null)
                 {

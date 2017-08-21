@@ -180,6 +180,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataManager.cs" />
+    <Compile Include="Models\DataManagerLideri.cs" />
     <Compile Include="Models\DO_Item_Chart.cs" />
     <Compile Include="Models\DO_Persona.cs" />
     <Compile Include="Models\FO_Item_Combo.cs" />
@@ -1173,6 +1174,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ModeloPRD\ModeloPRD.csproj">
+      <Project>{3ebffe2c-3760-4506-88df-438bb7f0480b}</Project>
+      <Name>ModeloPRD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{0d42d2ee-d3be-45f5-9c43-54a7b35c0616}</Project>
       <Name>Modelo</Name>
