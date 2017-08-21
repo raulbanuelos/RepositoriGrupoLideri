@@ -31,17 +31,27 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
-        public ActionResult GuardarPersona(int idJerarquia, string usuario, string contrasena,
-            string nombre,string aPaterno,string aMaterno,string fechaNacimiento,string rfc,string matricula,int idGerentePromotor,
-            string area,string estrategia,int activo)
+        public ActionResult InsertPersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia,string matricula,string nombre,string rfc, string telefono, string usuario)
         {
-            DO_Persona usuarioLogueado = (DO_Persona)Session["UsuarioConectado"];
-            DataManager.InsertOrUptadeOrDeletePersona(idJerarquia, usuario, contrasena, nombre,
-                aPaterno, aMaterno, fechaNacimiento, rfc, matricula, idGerentePromotor, area, estrategia, activo, 1, "admin");
-
+            int respuesta = DataManagerLideri.InsertUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, matricula, nombre, rfc, telefono, usuario);
 
             return RedirectToAction("Index", "Persona");
+        }
 
+        [HttpPost]
+        public ActionResult UpdatePersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia, string matricula, string nombre, string rfc, string telefono, string usuario, int idUsuario)
+        {
+            int respuesta = DataManagerLideri.UpdateUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, matricula, nombre, rfc, telefono, usuario, idUsuario);
+
+            return RedirectToAction("Index", "Persona");
+        }
+
+        [HttpPost]
+        public ActionResult DeletePersona(int idUsuario)
+        {
+            int respuesta = DataManagerLideri.DeleteUsuario(idUsuario);
+
+            return RedirectToAction("Index", "Persona");
         }
 
     }
