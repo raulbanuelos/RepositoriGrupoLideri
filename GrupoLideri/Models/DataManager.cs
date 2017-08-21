@@ -94,6 +94,23 @@ namespace GrupoLideri.Models
             return listaResultante;
         }
 
+        public static bool ExistsMatricula(string matricula)
+        {
+            SO_Persona ServicioPersona = new SO_Persona();
+
+            IList informacionBD = ServicioPersona.ExistsMatricula(matricula);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
         public static string InsertOrUptadeOrDeletePersona(int idJerarquia,string usuario,string contrasena,string nombre,string aPaterno,string aMaterno,string fechaNacimiento,string rfc,string matricula,int idJefe,string area,string estrategia,int activo,int opcion,string usuarioLogueado)
         {
             SO_Persona ServicioPersona = new SO_Persona();
@@ -263,7 +280,7 @@ namespace GrupoLideri.Models
             //Retornamos la lista.
             return listaResultante;
         }
-
+        
         #endregion
 
         public static List<SelectListItem> ToDropdownListFromItemCombo(List<FO_Item_Combo> lista)

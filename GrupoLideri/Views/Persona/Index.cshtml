@@ -15,18 +15,18 @@
             <!--Usuario-->
             <div class="form-group">
                 <label for="usr">Usuario:</label>
-                <input type="text" class="form-control" id="txtUsuario">
+                <input type="text" class="form-control" id="txtUsuario" name="txtUsuario">
             </div>
             <!--Nombre-->
             <div class="form-group">
                 <label for="usr">Nombre:</label>
-                <input type="text" class="form-control" id="txtNombre">
+                <input type="text" class="form-control" id="txtNombre" name="txtNombre">
             </div>
 
             <!--Fecah de nacimiento-->
             <div class="form-group">
                 <label for="usr">Fecha de nacimiento:</label>
-                <input type="date" class="form-control" id="txtFechaNacimiento">
+                <input type="date" class="form-control" id="txtFechaNacimiento" name="txtFechaNacimiento">
             </div>
         </div>
 
@@ -35,19 +35,19 @@
             <!--Contraseña-->
             <div class="form-group">
                 <label for="usr">Contraseña:</label>
-                <input type="password" class="form-control" id="txtContasena">
+                <input type="password" class="form-control" id="txtContasena" name="txtContasena">
             </div>
 
             <!--Paterno-->
             <div class="form-group">
                 <label for="usr">Apellido paterno:</label>
-                <input type="text" class="form-control" id="txtAPaterno">
+                <input type="text" class="form-control" id="txtAPaterno" name="txtAPaterno">
             </div>
 
             <!--RFC-->
             <div class="form-group">
                 <label for="usr">RFC:</label>
-                <input type="text" class="form-control" id="txtRFC">
+                <input type="text" class="form-control" id="txtRFC" name="txtRFC">
             </div>
         </div>
 
@@ -56,13 +56,13 @@
             <!--Clave promotor-->
             <div class="form-group">
                 <label for="usr">Clave promotor:</label>
-                <input type="text" class="form-control" id="txtClavePromotor">
+                <input type="text" class="form-control" id="txtClavePromotor" name="txtClavePromotor">
             </div>
 
             <!--Materno-->
             <div class="form-group">
                 <label for="usr">Apellido materno:</label>
-                <input type="text" class="form-control" id="txtAMaterno">
+                <input type="text" class="form-control" id="txtAMaterno" name="txtAMaterno">
             </div>
 
             <!--Promotor-->
@@ -79,13 +79,13 @@
             <!--Clave Area-->
             <div class="form-group">
                 <label for="usr">Area:</label>
-                <input type="text" class="form-control" id="txtArea">
+                <input type="text" class="form-control" id="txtArea" name="txtArea">
             </div>
 
             <!--Estrategia-->
             <div class="form-group">
                 <label for="usr">Estrategia:</label>
-                <input type="text" class="form-control" id="txtEstrategia">
+                <input type="text" class="form-control" id="txtEstrategia" name="txtEstrategia">
             </div>
 
             <!--Jerarquia-->
@@ -133,18 +133,20 @@
     {
         //alert("Guardar");
         var urlSave = '@Url.Action("GuardarPersona","Persona")';
+        debugger;
         var _usuario = $("#txtUsuario").val();
         var _contrasena = $("#txtContasena").val();
         var _nombre = $("#txtNombre").val();
         var _aPaterno = $("#txtAPaterno").val();
-        var _aMaterno = ("#txtAMaterno").val();
+        var _aMaterno = $("#txtAMaterno").val();
         var _fechaNacimiento = $("#txtFechaNacimiento").val();
         var _rfc = $("#txtRFC").val();
-        var _matricula = $("#txtClavePromotor");
+        var _matricula = $("#txtClavePromotor").val();
         var _idGerentePromotor = $("#dllPromotores").val();
         var _area = $("#txtArea").val();
         var _estrategia = $("#txtEstrategia").val();
         var _idJerarquia = $("#ddlJerarquia").val();
+
         $.ajax({
             type: "POST",
             url: urlSave,
@@ -159,4 +161,6 @@
         });
         alert("Persona registrada");
     }
+
+
 </script>

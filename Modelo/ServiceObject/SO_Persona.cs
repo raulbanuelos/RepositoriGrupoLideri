@@ -87,6 +87,24 @@ namespace Modelo.ServiceObject
             }
         }
 
+        public IList ExistsMatricula(string matricula)
+        {
+            try
+            {
+                using (var Conexion = new BD_JDAEntities())
+                {
+                    var Lista = (from a in Conexion.TBL_USUARIOS
+                                 where a.MATRICULA == matricula
+                                 select a).ToList();
+                    return Lista;
+                }
+            }
+            catch (Exception er)
+            {
+                return null;
+            }
+        }
+
         public DataSet InsertOrUpdateOrDeletePersona(int idJeraquia, string usuario, string contrasena, string nombre, string aPaterno, string aMaterno, 
             string fechaNacimiento, string rfc, string matricula, int idJefe, string Area, string estrategia, int activo , int opcion, string usuarioCreo,
             string direccionOficina="", string telefonoOficina = "", string nombreRentero= "", string telefonoRentero="", int idUsuario = 0, int factura = 0, string ctaCoppel = "", string cveInterbancaria = "", string ctaSaldazo = "", string ctaBanorte = "")

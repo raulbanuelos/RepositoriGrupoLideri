@@ -37,7 +37,7 @@ namespace GrupoLideri.Controllers
         {
             DO_Persona usuarioLogueado = (DO_Persona)Session["UsuarioConectado"];
             DataManager.InsertOrUptadeOrDeletePersona(idJerarquia, usuario, contrasena, nombre,
-                aPaterno, aMaterno, fechaNacimiento, rfc, matricula, idGerentePromotor, area, estrategia, activo, 1, usuarioLogueado.Usuario);
+                aPaterno, aMaterno, fechaNacimiento, rfc, matricula, idGerentePromotor, area, estrategia, activo, 1, "admin");
 
 
             return RedirectToAction("Index", "Persona");
