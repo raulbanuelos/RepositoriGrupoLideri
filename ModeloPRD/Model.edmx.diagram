@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="JudaPRDModel.TBL_JERARQUIA" Width="1.5" PointX="0.75" PointY="1.75" />
         <EntityTypeShape EntityType="JudaPRDModel.TBL_USUARIO" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA" />
+        <EntityTypeShape EntityType="JudaPRDModel.TBL_FOLIOS" Width="3.125" PointX="9.375" PointY="0.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

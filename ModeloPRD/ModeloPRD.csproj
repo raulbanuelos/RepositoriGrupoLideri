@@ -67,8 +67,12 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceObject\SO_Folio.cs" />
     <Compile Include="ServiceObject\SO_Persona.cs" />
     <Compile Include="SQLServer\GrupoLideri_SQL.cs" />
+    <Compile Include="TBL_FOLIOS.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="TBL_JERARQUIA.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

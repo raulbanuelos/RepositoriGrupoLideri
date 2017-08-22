@@ -30,6 +30,9 @@ var formsWizard = function () {
                     ApellidoMaterno: {
                         required: true
                     },
+                    RFC:{
+                        required: true
+                    },
                     email: {
                         required: true,
                         email: true

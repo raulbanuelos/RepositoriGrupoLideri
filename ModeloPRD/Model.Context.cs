@@ -27,5 +27,6 @@ namespace ModeloPRD
     
         public virtual DbSet<TBL_JERARQUIA> TBL_JERARQUIA { get; set; }
         public virtual DbSet<TBL_USUARIO> TBL_USUARIO { get; set; }
+        public virtual DbSet<TBL_FOLIOS> TBL_FOLIOS { get; set; }
     }
 }

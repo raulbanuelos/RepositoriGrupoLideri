@@ -214,7 +214,10 @@ namespace GrupoLideri.Controllers
                             obj.TeCelular = folio["TeCelular"];
 
                             //Ejecutamos el método el cual inserta el objeto en la base de datos.
-                            DataManager.InsertOrUpdateFolioSIAC(obj);
+                            //DataManager.InsertOrUpdateFolioSIAC(obj);
+
+                            //Ejecutamos el método el cual inserta el objeto en la base de datos.
+                            DataManagerLideri.InsertOrUpdateFolioSIAC(obj);
                         }
                     }
                 }
