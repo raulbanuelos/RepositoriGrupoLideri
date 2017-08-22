@@ -21,7 +21,13 @@ var formsWizard = function () {
                 },
                 errorClass: 'help-block',
                 rules: {
-                    firstname: {
+                    Nombre: {
+                        required: true
+                    },
+                    ApellidoPaterno: {
+                        required: true
+                    },
+                    ApellidoMaterno: {
                         required: true
                     },
                     email: {
@@ -42,8 +48,14 @@ var formsWizard = function () {
                     }
                 },
                 messages: {
-                    firstname: {
-                        required: "Tell me your first name"
+                    Nombre: {
+                        required: "El nombre es requerido"
+                    },
+                    ApellidoPaterno: {
+                        required: "El apellido paterno es requerido"
+                    },
+                    ApellidoMaterno: {
+                        required: "El apellido materno es requerido"
                     },
                     email: {
                         required: "You email is required"
