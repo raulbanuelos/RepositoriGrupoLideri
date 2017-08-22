@@ -12,21 +12,11 @@ namespace ModeloPRD
     using System;
     using System.Collections.Generic;
     
-    public partial class TBL_USUARIO
+    public partial class TBL_PCT_COMISION
     {
-        public int ID_USUARIO { get; set; }
-        public int ID_JERARQUIA { get; set; }
-        public Nullable<int> ID_JEFE { get; set; }
-        public string USUARIO { get; set; }
-        public string CONTRASENA { get; set; }
-        public string APELLIDO_PATERNO { get; set; }
-        public string APELLIDO_MATERNO { get; set; }
-        public string NOMBRE { get; set; }
-        public System.DateTime FECHA_NACIMIENTO { get; set; }
-        public string RFC { get; set; }
-        public string MATRICULA { get; set; }
-        public string TELEFONO { get; set; }
-        public string EMAIL { get; set; }
+        public int ID_PCT_COMISION { get; set; }
+        public Nullable<int> ID_JERARQUIA { get; set; }
+        public Nullable<decimal> PCT { get; set; }
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public Nullable<System.DateTime> FECHA_ACTUALIZACION { get; set; }
     

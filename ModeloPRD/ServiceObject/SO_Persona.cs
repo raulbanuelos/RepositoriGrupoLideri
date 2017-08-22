@@ -51,6 +51,8 @@ namespace ModeloPRD.ServiceObject
                     persona.RFC = rfc;
                     persona.TELEFONO = telefono;
                     persona.USUARIO = usuario;
+                    persona.FECHA_CREACION = DateTime.Now;
+                    persona.FECHA_ACTUALIZACION = DateTime.Now;
                     Contexto.TBL_USUARIO.Add(persona);
                     return Contexto.SaveChanges();
                 }
@@ -81,6 +83,7 @@ namespace ModeloPRD.ServiceObject
                     usuariobd.RFC = rfc;
                     usuariobd.TELEFONO = telefono;
                     usuariobd.USUARIO = usuario;
+                    usuariobd.FECHA_ACTUALIZACION = DateTime.Now;
 
                     Conexion.Entry(usuariobd).State = EntityState.Modified;
 

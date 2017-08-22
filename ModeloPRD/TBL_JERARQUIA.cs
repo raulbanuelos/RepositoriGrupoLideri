@@ -17,6 +17,7 @@ namespace ModeloPRD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TBL_JERARQUIA()
         {
+            this.TBL_PCT_COMISION = new HashSet<TBL_PCT_COMISION>();
             this.TBL_USUARIO = new HashSet<TBL_USUARIO>();
         }
     
@@ -26,6 +27,8 @@ namespace ModeloPRD
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public Nullable<System.DateTime> FECHA_ACTUALIZACION { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TBL_PCT_COMISION> TBL_PCT_COMISION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBL_USUARIO> TBL_USUARIO { get; set; }
     }

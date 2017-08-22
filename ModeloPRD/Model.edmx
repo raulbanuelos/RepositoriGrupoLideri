@@ -70,6 +70,16 @@
           <Property Name="FECHA_CREACION" Type="datetime" />
           <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
         </EntityType>
+        <EntityType Name="TBL_PCT_COMISION">
+          <Key>
+            <PropertyRef Name="ID_PCT_COMISION" />
+          </Key>
+          <Property Name="ID_PCT_COMISION" Type="int" Nullable="false" />
+          <Property Name="ID_JERARQUIA" Type="int" />
+          <Property Name="PCT" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_ACTUALIZACION" Type="date" />
+        </EntityType>
         <EntityType Name="TBL_USUARIO">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
@@ -87,7 +97,21 @@
           <Property Name="MATRICULA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TELEFONO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_ACTUALIZACION" Type="date" />
         </EntityType>
+        <Association Name="FK_TBL_PCT_COMISION_TBL_JERARQUIA">
+          <End Role="TBL_JERARQUIA" Type="Self.TBL_JERARQUIA" Multiplicity="0..1" />
+          <End Role="TBL_PCT_COMISION" Type="Self.TBL_PCT_COMISION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_JERARQUIA">
+              <PropertyRef Name="ID_JERARQUIA" />
+            </Principal>
+            <Dependent Role="TBL_PCT_COMISION">
+              <PropertyRef Name="ID_JERARQUIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TBL_USUARIO_TBL_JERARQUIA">
           <End Role="TBL_JERARQUIA" Type="Self.TBL_JERARQUIA" Multiplicity="1" />
           <End Role="TBL_USUARIO" Type="Self.TBL_USUARIO" Multiplicity="*" />
@@ -103,7 +127,12 @@
         <EntityContainer Name="JudaPRDModelStoreContainer">
           <EntitySet Name="TBL_FOLIOS" EntityType="Self.TBL_FOLIOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_JERARQUIA" EntityType="Self.TBL_JERARQUIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PCT_COMISION" EntityType="Self.TBL_PCT_COMISION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_USUARIO" EntityType="Self.TBL_USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_PCT_COMISION_TBL_JERARQUIA" Association="Self.FK_TBL_PCT_COMISION_TBL_JERARQUIA">
+            <End Role="TBL_JERARQUIA" EntitySet="TBL_JERARQUIA" />
+            <End Role="TBL_PCT_COMISION" EntitySet="TBL_PCT_COMISION" />
+          </AssociationSet>
           <AssociationSet Name="FK_TBL_USUARIO_TBL_JERARQUIA" Association="Self.FK_TBL_USUARIO_TBL_JERARQUIA">
             <End Role="TBL_JERARQUIA" EntitySet="TBL_JERARQUIA" />
             <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
@@ -115,12 +144,17 @@
       <Schema Namespace="JudaPRDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="JudaPRDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TBL_JERARQUIA" EntityType="JudaPRDModel.TBL_JERARQUIA" />
+          <EntitySet Name="TBL_FOLIOS" EntityType="JudaPRDModel.TBL_FOLIOS" />
+          <EntitySet Name="TBL_PCT_COMISION" EntityType="JudaPRDModel.TBL_PCT_COMISION" />
           <EntitySet Name="TBL_USUARIO" EntityType="JudaPRDModel.TBL_USUARIO" />
+          <AssociationSet Name="FK_TBL_PCT_COMISION_TBL_JERARQUIA" Association="JudaPRDModel.FK_TBL_PCT_COMISION_TBL_JERARQUIA">
+            <End Role="TBL_JERARQUIA" EntitySet="TBL_JERARQUIA" />
+            <End Role="TBL_PCT_COMISION" EntitySet="TBL_PCT_COMISION" />
+          </AssociationSet>
           <AssociationSet Name="FK_TBL_USUARIO_TBL_JERARQUIA" Association="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA">
             <End Role="TBL_JERARQUIA" EntitySet="TBL_JERARQUIA" />
             <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
           </AssociationSet>
-          <EntitySet Name="TBL_FOLIOS" EntityType="JudaPRDModel.TBL_FOLIOS" />
         </EntityContainer>
         <EntityType Name="TBL_JERARQUIA">
           <Key>
@@ -131,39 +165,9 @@
           <Property Name="VALOR" Type="Int32" />
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
           <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TBL_PCT_COMISION" Relationship="JudaPRDModel.FK_TBL_PCT_COMISION_TBL_JERARQUIA" FromRole="TBL_JERARQUIA" ToRole="TBL_PCT_COMISION" />
           <NavigationProperty Name="TBL_USUARIO" Relationship="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA" FromRole="TBL_JERARQUIA" ToRole="TBL_USUARIO" />
         </EntityType>
-        <EntityType Name="TBL_USUARIO">
-          <Key>
-            <PropertyRef Name="ID_USUARIO" />
-          </Key>
-          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_JERARQUIA" Type="Int32" Nullable="false" />
-          <Property Name="ID_JEFE" Type="Int32" />
-          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CONTRASENA" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDO_PATERNO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDO_MATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="RFC" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Name="MATRICULA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TELEFONO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TBL_JERARQUIA" Relationship="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA" FromRole="TBL_USUARIO" ToRole="TBL_JERARQUIA" />
-        </EntityType>
-        <Association Name="FK_TBL_USUARIO_TBL_JERARQUIA">
-          <End Type="JudaPRDModel.TBL_JERARQUIA" Role="TBL_JERARQUIA" Multiplicity="1" />
-          <End Type="JudaPRDModel.TBL_USUARIO" Role="TBL_USUARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_JERARQUIA">
-              <PropertyRef Name="ID_JERARQUIA" />
-            </Principal>
-            <Dependent Role="TBL_USUARIO">
-              <PropertyRef Name="ID_JERARQUIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="TBL_FOLIOS">
           <Key>
             <PropertyRef Name="ID_FOLIO" />
@@ -219,6 +223,62 @@
           <Property Name="FECHA_CALCULO_COMISION" Type="DateTime" Precision="3" />
           <Property Name="ESTATUS_PAGADO" Type="Boolean" />
         </EntityType>
+        <EntityType Name="TBL_PCT_COMISION">
+          <Key>
+            <PropertyRef Name="ID_PCT_COMISION" />
+          </Key>
+          <Property Name="ID_PCT_COMISION" Type="Int32" Nullable="false" />
+          <Property Name="ID_JERARQUIA" Type="Int32" />
+          <Property Name="PCT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBL_JERARQUIA" Relationship="JudaPRDModel.FK_TBL_PCT_COMISION_TBL_JERARQUIA" FromRole="TBL_PCT_COMISION" ToRole="TBL_JERARQUIA" />
+        </EntityType>
+        <EntityType Name="TBL_USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_JERARQUIA" Type="Int32" Nullable="false" />
+          <Property Name="ID_JEFE" Type="Int32" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENA" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_PATERNO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_MATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RFC" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="MATRICULA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBL_JERARQUIA" Relationship="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA" FromRole="TBL_USUARIO" ToRole="TBL_JERARQUIA" />
+        </EntityType>
+        <Association Name="FK_TBL_PCT_COMISION_TBL_JERARQUIA">
+          <End Type="JudaPRDModel.TBL_JERARQUIA" Role="TBL_JERARQUIA" Multiplicity="0..1" />
+          <End Type="JudaPRDModel.TBL_PCT_COMISION" Role="TBL_PCT_COMISION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_JERARQUIA">
+              <PropertyRef Name="ID_JERARQUIA" />
+            </Principal>
+            <Dependent Role="TBL_PCT_COMISION">
+              <PropertyRef Name="ID_JERARQUIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_USUARIO_TBL_JERARQUIA">
+          <End Type="JudaPRDModel.TBL_JERARQUIA" Role="TBL_JERARQUIA" Multiplicity="1" />
+          <End Type="JudaPRDModel.TBL_USUARIO" Role="TBL_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_JERARQUIA">
+              <PropertyRef Name="ID_JERARQUIA" />
+            </Principal>
+            <Dependent Role="TBL_USUARIO">
+              <PropertyRef Name="ID_JERARQUIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -233,25 +293,6 @@
                 <ScalarProperty Name="VALOR" ColumnName="VALOR" />
                 <ScalarProperty Name="JERARQUIA" ColumnName="JERARQUIA" />
                 <ScalarProperty Name="ID_JERARQUIA" ColumnName="ID_JERARQUIA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBL_USUARIO">
-            <EntityTypeMapping TypeName="JudaPRDModel.TBL_USUARIO">
-              <MappingFragment StoreEntitySet="TBL_USUARIO">
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
-                <ScalarProperty Name="MATRICULA" ColumnName="MATRICULA" />
-                <ScalarProperty Name="RFC" ColumnName="RFC" />
-                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
-                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
-                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
-                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
-                <ScalarProperty Name="ID_JEFE" ColumnName="ID_JEFE" />
-                <ScalarProperty Name="ID_JERARQUIA" ColumnName="ID_JERARQUIA" />
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -308,6 +349,38 @@
                 <ScalarProperty Name="FECHA_CAPTURA" ColumnName="FECHA_CAPTURA" />
                 <ScalarProperty Name="FOLIO_SIAC" ColumnName="FOLIO_SIAC" />
                 <ScalarProperty Name="ID_FOLIO" ColumnName="ID_FOLIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PCT_COMISION">
+            <EntityTypeMapping TypeName="JudaPRDModel.TBL_PCT_COMISION">
+              <MappingFragment StoreEntitySet="TBL_PCT_COMISION">
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="PCT" ColumnName="PCT" />
+                <ScalarProperty Name="ID_JERARQUIA" ColumnName="ID_JERARQUIA" />
+                <ScalarProperty Name="ID_PCT_COMISION" ColumnName="ID_PCT_COMISION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_USUARIO">
+            <EntityTypeMapping TypeName="JudaPRDModel.TBL_USUARIO">
+              <MappingFragment StoreEntitySet="TBL_USUARIO">
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="MATRICULA" ColumnName="MATRICULA" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
+                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="ID_JEFE" ColumnName="ID_JEFE" />
+                <ScalarProperty Name="ID_JERARQUIA" ColumnName="ID_JERARQUIA" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

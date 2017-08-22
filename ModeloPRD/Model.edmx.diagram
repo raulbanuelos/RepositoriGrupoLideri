@@ -6,9 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="c50fdd0525ca4633b4cb224c91028121" Name="Diagram1">
         <EntityTypeShape EntityType="JudaPRDModel.TBL_JERARQUIA" Width="1.5" PointX="0.75" PointY="1.75" />
-        <EntityTypeShape EntityType="JudaPRDModel.TBL_USUARIO" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA" />
         <EntityTypeShape EntityType="JudaPRDModel.TBL_FOLIOS" Width="3.125" PointX="9.375" PointY="0.875" />
+        <EntityTypeShape EntityType="JudaPRDModel.TBL_PCT_COMISION" Width="2.75" PointX="2.125" PointY="5.625" />
+        <EntityTypeShape EntityType="JudaPRDModel.TBL_USUARIO" Width="2.375" PointX="5" PointY="1.125" />
+        <AssociationConnector Association="JudaPRDModel.FK_TBL_PCT_COMISION_TBL_JERARQUIA" />
+        <AssociationConnector Association="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

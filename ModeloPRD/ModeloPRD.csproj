@@ -76,6 +76,9 @@
     <Compile Include="TBL_JERARQUIA.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="TBL_PCT_COMISION.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="TBL_USUARIO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
