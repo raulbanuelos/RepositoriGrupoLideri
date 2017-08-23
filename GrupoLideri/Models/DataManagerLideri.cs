@@ -183,5 +183,34 @@ namespace GrupoLideri.Models
 
         }
         #endregion
+
+        #region Jerarquias
+        public static List<FO_Item_Combo> GetJearaquias()
+        {
+            SO_Jerarquia ServicioJerarquia = new SO_Jerarquia();
+
+            List<FO_Item_Combo> ListaResultante = new List<FO_Item_Combo>();
+
+            IList informacionBD = ServicioJerarquia.GetJerarquias();
+
+            if (informacionBD != null)
+            {
+                foreach (var item in informacionBD)
+                {
+                    System.Type tipo = item.GetType();
+
+                    FO_Item_Combo jerarquia = new FO_Item_Combo();
+
+                    jerarquia.Value = (int)tipo.GetProperty("ID_JERARQUIA").GetValue(item, null);
+                    jerarquia.Text = (string)tipo.GetProperty("JERARQUIA").GetValue(item, null);
+
+                    ListaResultante.Add(jerarquia);
+
+                }
+            }
+
+            return ListaResultante;
+        } 
+        #endregion
     }
 }
