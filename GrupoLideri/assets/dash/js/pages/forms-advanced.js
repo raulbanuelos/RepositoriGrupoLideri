@@ -4,14 +4,14 @@ var FormsAdvanced = function () {
     return {
 
         // dual list box
-        dualListBox : function () {
-           $('.duallistbox').bootstrapDualListbox({
-                nonSelectedListLabel: 'Non-selected',
-                selectedListLabel: 'Selected',
-                preserveSelectionOnMove: 'moved',
-                moveOnSelect: false,
-            });
-        },
+        //dualListBox : function () {
+        //   $('.duallistbox').bootstrapDualListbox({
+        //        nonSelectedListLabel: 'Non-selected',
+        //        selectedListLabel: 'Selected',
+        //        preserveSelectionOnMove: 'moved',
+        //        moveOnSelect: false,
+        //    });
+        //},
 
         //Fancy select 
         fancySelect : function () {
@@ -35,7 +35,7 @@ var FormsAdvanced = function () {
             $('.select2-minimum').select2({
                 theme: "bootstrap",
                 placeholder: 'Select state',
-                minimumInputLength: 2,
+                minimumInputLength: 1,
             });
         },
 
@@ -177,7 +177,7 @@ var FormsAdvanced = function () {
 }();
 
 $(document).ready(function() {    
-    FormsAdvanced.dualListBox(); //Activate dual list box
+    //FormsAdvanced.dualListBox(); //Activate dual list box
     FormsAdvanced.fancySelect(); //Activate fancy select plugin
     FormsAdvanced.select2(); //Activate fancy select plugin
     FormsAdvanced.maskedInput(); //Activate masked input

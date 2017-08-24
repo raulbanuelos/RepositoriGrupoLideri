@@ -155,5 +155,23 @@ namespace ModeloPRD.ServiceObject
             }
         }
 
+        public IList GetUsuarios()
+        {
+            try
+            {
+                using (var Conexion = new JudaPRDEntities())
+                {
+                    var ListaUsuarios = (from a in Conexion.TBL_USUARIO
+                                         select a).OrderBy(x => x.NOMBRE).ToList();
+
+                    return ListaUsuarios;
+                }
+            }
+            catch (Exception er)
+            {
+                return null;
+            }
+        }
+
     }
 }

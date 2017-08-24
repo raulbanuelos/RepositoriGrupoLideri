@@ -24,13 +24,13 @@
                                 <li>
                                     <a href="#tab2" data-toggle="tab">
                                         <span class="step-number">2</span>
-                                        <span class="step-text">Información de contacto</span>
+                                        <span class="step-text">Información del grupo</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#tab3" data-toggle="tab">
                                         <span class="step-number">3</span>
-                                        <span class="step-text">Información del Grupo Lideri</span>
+                                        <span class="step-text">Información de contacto</span>
                                     </a>
                                 </li>
                             </ul>
@@ -69,7 +69,57 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab2">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-3 control-label">Usuario</label>
+                                            <div class="col-lg-10 col-md-9">
+                                                <input class="form-control" name="Usuario" type="text">
+                                            </div>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-3 control-label">Contraseña</label>
+                                            <div class="col-lg-10 col-md-9">
+                                                <input class="form-control" name="Contrasena" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-3 control-label">Matricula</label>
+                                            <div class="col-lg-10 col-md-9">
+                                                <input class="form-control" name="Matricula" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-3 control-label">Jerarquia</label>
+                                            <div class="col-lg-10 col-md-9">
+                                                <select class="form-control select2" id="ddlJerarquia">
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-3 control-label">Jefe</label>
+                                            <div class="col-lg-10 col-md-9">
+                                                <select class="form-control select2" id="ddlJefe">
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab3">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-3 control-label">email</label>
+                                            <div class="col-lg-10 col-md-9">
+                                                <input class="form-control" name="email" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 col-md-3 control-label">Teléfono</label>
+                                            <div class="col-lg-10 col-md-9">
+                                                <input class="form-control" name="Telefono" type="text">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -102,7 +152,26 @@
 <script>
 
     $(function () {
-        var urlSave = '@Url.Action("CargarPersonas","Persona")';
+        var urlSave = '@Url.Action("CargarJerarquias", "Persona")';
+        var _parametro = "";
+        $.ajax({
+            type: "POST",
+            url: urlSave,
+            dataType: "json",
+            data: JSON.stringify({ parametro: _parametro }),
+            success: function (jerarquias) {
+                $.each(jerarquias, function (i, jerarquia) {
+                    $("#ddlJerarquia").append('<option value="' + jerarquia.Value + '">' + jerarquia.Text + '</option>');
+                });
+            },
+            error: function (ex) {
+                alert('Error');
+            }
+        });
+    });
+
+    $(function () {
+        var urlSave = '@Url.Action("CargarPersonas", "Persona")';
         var _parametro = "";
         $.ajax({
             type: "POST",
@@ -111,7 +180,7 @@
             data: JSON.stringify({ parametro: _parametro }),
             success: function (personas) {
                 $.each(personas, function (i, persona) {
-                    $("#dllPromotores").append('<option value="' + persona.Value + '">' + persona.Text + '</option>');
+                    $("#ddlJefe").append('<option value="' + persona.Value + '">' + persona.Text + '</option>');
                 });
             },
             error: function (ex) {

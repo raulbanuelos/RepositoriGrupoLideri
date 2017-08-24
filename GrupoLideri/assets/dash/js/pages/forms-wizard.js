@@ -37,17 +37,12 @@ var formsWizard = function () {
                         required: true,
                         email: true
                     },
-                    username: {
+                    Usuario: {
                         required: true
                     },
-                    password: {
+                    Contrasena: {
                         required: true,
-                        minlength: 5
-                    },
-                    password_2: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
+                        minlength: 8
                     }
                 },
                 messages: {
@@ -61,7 +56,16 @@ var formsWizard = function () {
                         required: "El apellido materno es requerido"
                     },
                     email: {
-                        required: "You email is required"
+                        required: "El email es requerido"
+                    },
+                    RFC: {
+                        required: "El RFC es requerido"
+                    },
+                    Usuario: {
+                        required: "El usuario es requerido"
+                    },
+                    Contrasena: {
+                        required: "La contraseña debe ser mínimo 8 caracteres"
                     }
                 },
                 highlight: function( label ) {

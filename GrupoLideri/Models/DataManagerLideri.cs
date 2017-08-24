@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace GrupoLideri.Models
 {
@@ -33,7 +34,37 @@ namespace GrupoLideri.Models
 
             return persona;
         }
-        
+
+        public static List<FO_Item_Combo> GetPersonas()
+        {
+            SO_Persona ServicioPersona = new SO_Persona();
+
+            List<FO_Item_Combo> ListaResultante = new List<FO_Item_Combo>();
+
+            IList informacionBD = ServicioPersona.GetUsuarios();
+
+            if (informacionBD != null)
+            {
+                foreach (var item in informacionBD)
+                {
+                    System.Type tipo = item.GetType();
+
+                    FO_Item_Combo persona = new FO_Item_Combo();
+
+                    string nombre = (string)tipo.GetProperty("NOMBRE").GetValue(item, null);
+                    string apaterno = (string)tipo.GetProperty("APELLIDO_PATERNO").GetValue(item, null);
+                    string amaterno = (string)tipo.GetProperty("APELLIDO_MATERNO").GetValue(item, null);
+
+                    persona.Text = nombre + " " + apaterno + " " + amaterno;
+                    persona.Value = (int)tipo.GetProperty("ID_USUARIO").GetValue(item, null);
+
+                    ListaResultante.Add(persona);
+                }
+            }
+
+            return ListaResultante;
+        }
+
         public static DO_Persona GetUsuario(int idUsuario)
         {
             SO_Persona ServicioPersona = new SO_Persona();
@@ -210,7 +241,19 @@ namespace GrupoLideri.Models
             }
 
             return ListaResultante;
-        } 
+        }
         #endregion
+
+        public static List<SelectListItem> ToDropdownListFromItemCombo(List<FO_Item_Combo> lista)
+        {
+            List<SelectListItem> DropDownList = new List<SelectListItem>();
+
+            foreach (FO_Item_Combo elemento in lista)
+            {
+                DropDownList.Add(new SelectListItem { Text = elemento.Text, Value = elemento.Value.ToString() });
+            }
+
+            return DropDownList;
+        }
     }
 }

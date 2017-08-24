@@ -18,16 +18,22 @@ namespace GrupoLideri.Controllers
 
         public JsonResult CargarPersonas(string parametro)
         {
-            DO_Persona usuario = (DO_Persona)Session["UsuarioConectado"];
-
-            List<FO_Item_Combo> ListaPersonas = DataManager.GetPersonas(usuario.idPersona);
+            List<FO_Item_Combo> ListaPersonas = DataManagerLideri.GetPersonas();
 
             ListaPersonas =  ListaPersonas.OrderBy(x => x.Text).ToList();
-
-            //Convertimos la lista FO_ItemCombo lista de tipo SelectListItem.
-            List<SelectListItem> Participantes = DataManager.ToDropdownListFromItemCombo(ListaPersonas);
+            
+            List<SelectListItem> Participantes = DataManagerLideri.ToDropdownListFromItemCombo(ListaPersonas);
             
             return Json(new SelectList(Participantes, "Value", "Text"));
+        }
+
+        public JsonResult CargarJerarquias(string parametro)
+        {
+            List<FO_Item_Combo> ListaJerarquias = DataManagerLideri.GetJearaquias();
+
+            List<SelectListItem> Jerarquias = DataManagerLideri.ToDropdownListFromItemCombo(ListaJerarquias);
+
+            return Json(new SelectList(Jerarquias, "Value", "Text"));
         }
 
         [HttpPost]
