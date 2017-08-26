@@ -33,17 +33,21 @@ var formsWizard = function () {
                     RFC:{
                         required: true
                     },
-                    email: {
-                        required: true,
-                        email: true
-                    },
                     Usuario: {
                         required: true
                     },
                     Contrasena: {
                         required: true,
                         minlength: 8
-                    }
+                    },
+                    Matricula: {
+                        required: true,
+                        minlength: 8
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
                 },
                 messages: {
                     Nombre: {
@@ -55,9 +59,6 @@ var formsWizard = function () {
                     ApellidoMaterno: {
                         required: "El apellido materno es requerido"
                     },
-                    email: {
-                        required: "El email es requerido"
-                    },
                     RFC: {
                         required: "El RFC es requerido"
                     },
@@ -66,7 +67,13 @@ var formsWizard = function () {
                     },
                     Contrasena: {
                         required: "La contraseña debe ser mínimo 8 caracteres"
-                    }
+                    },
+                    Matricula: {
+                        required: "La clave promotor debe ser al menos de 8 digitos"
+                    },
+                    email: {
+                        required: "El email es requerido"
+                    },
                 },
                 highlight: function( label ) {
                     $(label).closest('.form-group').removeClass('has-success').addClass('has-error');
@@ -121,20 +128,23 @@ var formsWizard = function () {
 
             //wizard is finish
             $('#wizard .finish').click(function() {
-                var n = noty({
-                    text: '<i class="fa fa-check"></i> Your finish the wizard!',
-                    type: 'success',
-                    layout: 'topRight',
-                    theme: 'bootstrapTheme',//Current theme
-                    closeWith: ['button'],
-                    timeout: 5000, // MiliSeconds before notification close
-                    animation: {
-                        open: 'animated bounceInRight', // Animate.css class names
-                        close: 'animated bounceOutRight', // Animate.css class names
-                        easing: 'swing', // unavailable - no need
-                        speed: 500 // unavailable - no need
-                    }
-                });  
+                //var n = noty({
+                //    text: '<i class="fa fa-check"></i> Your finish the wizard!',
+                //    type: 'success',
+                //    layout: 'topRight',
+                //    theme: 'bootstrapTheme',//Current theme
+                //    closeWith: ['button'],
+                //    timeout: 5000, // MiliSeconds before notification close
+                //    animation: {
+                //        open: 'animated bounceInRight', // Animate.css class names
+                //        close: 'animated bounceOutRight', // Animate.css class names
+                //        easing: 'swing', // unavailable - no need
+                //        speed: 500 // unavailable - no need
+                //    }
+                //});  
+
+                Guardar();
+
             });
         },
 

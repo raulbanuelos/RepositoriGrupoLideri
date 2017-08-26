@@ -37,11 +37,16 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertPersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia,string matricula,string nombre,string rfc, string telefono, string usuario)
+        public JsonResult InsertPersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia,string matricula,string nombre,string rfc, string telefono, string usuario)
         {
             int respuesta = DataManagerLideri.InsertUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, matricula, nombre, rfc, telefono, usuario);
+            
+            List<SelectListItem> lista = new List<SelectListItem>();
 
-            return RedirectToAction("Index", "Persona");
+            lista.Add(new SelectListItem { Text = respuesta.ToString(), Value = respuesta.ToString() });
+
+
+            return Json(new SelectList(lista, "Value", "Text"));
         }
 
         [HttpPost]

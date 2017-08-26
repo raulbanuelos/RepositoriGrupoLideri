@@ -4,13 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="main-content">
-    <div class="content">
+<div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+            <div class="col">
+                <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="panel-title"><i class="fa fa-magic"></i> Form wizard</h4>
+                        <h4 class="panel-title"><i class="fa fa-magic"></i> Alta de personal</h4>
                     </div>
                     <div class="panel-body p0">
                         <div id="wizard" class="bwizard">
@@ -40,31 +39,34 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">Nombre</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="Nombre" type="text">
+                                                <input class="form-control" name="Nombre" id="Nombre" type="text">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">Apellido Paterno</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="ApellidoPaterno" type="text">
+                                                <input class="form-control" name="ApellidoPaterno" id="ApellidoPaterno" type="text">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">Apellido Materno</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="ApellidoMaterno" type="text">
+                                                <input class="form-control" name="ApellidoMaterno" id="ApellidoMaterno" type="text">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">RFC</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="RFC" type="text">
+                                                <input class="form-control" name="RFC" id="RFC" type="text">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Fecha de nacimiento</label>
+                                            <label class="col-lg-2 col-md-3 control-label" for="">Fecha de nacimiento</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input id="basic-datepicker" type="text" class="form-control" />
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input id="basic-datepicker" type="text" class="form-control">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -72,21 +74,19 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">Usuario</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="Usuario" type="text">
+                                                <input class="form-control" name="Usuario" id="Usuario" type="text">
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">Contraseña</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="Contrasena" type="text">
+                                                <input class="form-control" name="Contrasena" id="Contrasena" type="text">
                                             </div>
                                         </div>
-
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Matricula</label>
+                                            <label class="col-lg-2 col-md-3 control-label">Clave promotor</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="Matricula" type="text">
+                                                <input class="form-control" name="Matricula" id="Matricula" type="text">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -110,14 +110,13 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">email</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="email" type="text">
+                                                <input class="form-control" name="email" id="email" type="text">
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 control-label">Teléfono</label>
                                             <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="Telefono" type="text">
+                                                <input class="form-control" name="Telefono" id="Telefono" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -125,13 +124,13 @@
                             </form>
                             <ul class="pager">
                                 <li class="previous">
-                                    <a href="#">&larr; Back</a>
+                                    <a href="#">&larr; Atras</a>
                                 </li>
                                 <li class="next">
-                                    <a href="#">Next &rarr;</a>
+                                    <a href="#">Siguiente &rarr;</a>
                                 </li>
                                 <li class="next finish" style="display:none;">
-                                    <a href="#">Finish</a>
+                                    <a href="#">Guardar</a>
                                 </li>
                             </ul>
                         </div>
@@ -145,11 +144,16 @@
                 <div class="panel panel-default toggle panelMove panelClose panelRefresh">
 
                 </div>
+
             </div>
         </div>
     </div>
-</div>
+
 <script>
+    $(function () {
+        $("#basic-datepicker").datepicker();
+    });
+    
 
     $(function () {
         var urlSave = '@Url.Action("CargarJerarquias", "Persona")';
@@ -197,34 +201,36 @@
     function Guardar()
     {
         //alert("Guardar");
-        var urlSave = '@Url.Action("GuardarPersona","Persona")';
-        debugger;
-        var _usuario = $("#txtUsuario").val();
-        var _contrasena = $("#txtContasena").val();
-        var _nombre = $("#txtNombre").val();
-        var _aPaterno = $("#txtAPaterno").val();
-        var _aMaterno = $("#txtAMaterno").val();
-        var _fechaNacimiento = $("#txtFechaNacimiento").val();
-        var _rfc = $("#txtRFC").val();
-        var _matricula = $("#txtClavePromotor").val();
-        var _idGerentePromotor = $("#dllPromotores").val();
-        var _area = $("#txtArea").val();
-        var _estrategia = $("#txtEstrategia").val();
+        var urlSave = '@Url.Action("InsertPersona", "Persona")';
+        
+        var _amaterno = $("#ApellidoMaterno").val();
+        var _apaterno = $("#ApellidoPaterno").val();
+        var _contrasena = $("#Contrasena").val();
+        var _email = $("#email").val();
+        var _fechaNacimiento = $("#basic-datepicker").val();
+        var _idJefe = $("#ddlJefe").val();
         var _idJerarquia = $("#ddlJerarquia").val();
-
+        var _matricula = $("#Matricula").val();
+        var _nombre = $("#Nombre").val();
+        var _rfc = $("#RFC").val();
+        var _telefono = $("#Telefono").val();
+        var _usuario = $("#Usuario").val();
+        
         $.ajax({
             type: "POST",
             url: urlSave,
             data: JSON.stringify({
-                idJerarquia: _idJerarquia, usuario: _usuario, contrasena: _contrasena,
-                nombre: _nombre, aPaterno: _aPaterno, aMaterno: _aMaterno, fechaNacimiento: _fechaNacimiento, rfc: _rfc,
-                matricula: _matricula, idGerentePromotor: _idGerentePromotor, area: _area, estrategia: _estrategia,
-                activo: 1,
+                aMaterno: _amaterno, aPaterno: _apaterno, contrasena: _contrasena, email: _email, fechaNacimiento: _fechaNacimiento, idJefe: _idJefe,
+                idJerarquia: _idJerarquia, matricula: _matricula, nombre: _nombre, rfc: _rfc, telefono: _telefono, usuario: _usuario
             }),
             contentType: "application/json; charset=utf-8",
-            dataType: "json"
+            dataType: "json",
+            success: function (response) {
+                alert("Persona guardada!");
+            },
+            error: function (error) {
+            }
         });
-        alert("Persona registrada");
     }
 
 
