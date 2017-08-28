@@ -101,18 +101,18 @@ namespace GrupoLideri.Models
             return persona;
         }
 
-        public static int InsertUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string matricula, string nombre, string rfc, string telefono, string usuario)
+        public static int InsertUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,string CURP)
         {
             SO_Persona ServicioPersona = new SO_Persona();
 
-            return ServicioPersona.Insert(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, matricula, nombre, rfc, telefono, usuario);
+            return ServicioPersona.Insert(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, nombre, rfc, telefono, usuario,CURP);
         }
 
-        public static int UpdateUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string matricula, string nombre, string rfc, string telefono, string usuario,int idUsuario)
+        public static int UpdateUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,int idUsuario,string CURP)
         {
             SO_Persona ServicioPersona = new SO_Persona();
 
-            return ServicioPersona.Update(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, matricula, nombre, rfc, telefono, usuario, idUsuario);
+            return ServicioPersona.Update(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, nombre, rfc, telefono, usuario, idUsuario,CURP);
         }
 
         public static int DeleteUsuario(int idUsuario)
@@ -138,6 +138,13 @@ namespace GrupoLideri.Models
             }
             else
                 return false;
+        }
+
+        public static int InsertClavePromotor(string cvePromotor, int idUsuario)
+        {
+            SO_ClavePromotor ServicioPromotor = new SO_ClavePromotor();
+
+            return ServicioPromotor.Insert(cvePromotor, idUsuario);
         }
         
         #endregion
@@ -243,7 +250,7 @@ namespace GrupoLideri.Models
             return ListaResultante;
         }
         #endregion
-
+        
         public static List<SelectListItem> ToDropdownListFromItemCombo(List<FO_Item_Combo> lista)
         {
             List<SelectListItem> DropDownList = new List<SelectListItem>();

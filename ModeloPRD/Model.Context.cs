@@ -28,6 +28,7 @@ namespace ModeloPRD
         public virtual DbSet<TBL_JERARQUIA> TBL_JERARQUIA { get; set; }
         public virtual DbSet<TBL_FOLIOS> TBL_FOLIOS { get; set; }
         public virtual DbSet<TBL_PCT_COMISION> TBL_PCT_COMISION { get; set; }
+        public virtual DbSet<TBL_CLAVE_PROMOTOR> TBL_CLAVE_PROMOTOR { get; set; }
         public virtual DbSet<TBL_USUARIO> TBL_USUARIO { get; set; }
     }
 }

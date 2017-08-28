@@ -14,6 +14,12 @@ namespace ModeloPRD
     
     public partial class TBL_USUARIO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TBL_USUARIO()
+        {
+            this.TBL_CLAVE_PROMOTOR = new HashSet<TBL_CLAVE_PROMOTOR>();
+        }
+    
         public int ID_USUARIO { get; set; }
         public int ID_JERARQUIA { get; set; }
         public Nullable<int> ID_JEFE { get; set; }
@@ -23,13 +29,16 @@ namespace ModeloPRD
         public string APELLIDO_MATERNO { get; set; }
         public string NOMBRE { get; set; }
         public System.DateTime FECHA_NACIMIENTO { get; set; }
+        public string CURP { get; set; }
         public string RFC { get; set; }
-        public string MATRICULA { get; set; }
         public string TELEFONO { get; set; }
         public string EMAIL { get; set; }
+        public byte[] FOTO { get; set; }
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public Nullable<System.DateTime> FECHA_ACTUALIZACION { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TBL_CLAVE_PROMOTOR> TBL_CLAVE_PROMOTOR { get; set; }
         public virtual TBL_JERARQUIA TBL_JERARQUIA { get; set; }
     }
 }

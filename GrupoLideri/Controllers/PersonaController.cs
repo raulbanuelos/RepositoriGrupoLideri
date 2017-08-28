@@ -37,9 +37,9 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
-        public JsonResult InsertPersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia,string matricula,string nombre,string rfc, string telefono, string usuario)
+        public JsonResult InsertPersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia,string nombre,string rfc, string telefono, string usuario,string CURP)
         {
-            int respuesta = DataManagerLideri.InsertUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, matricula, nombre, rfc, telefono, usuario);
+            int respuesta = DataManagerLideri.InsertUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, nombre, rfc, telefono, usuario,CURP);
             
             List<SelectListItem> lista = new List<SelectListItem>();
 
@@ -50,9 +50,9 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdatePersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia, string matricula, string nombre, string rfc, string telefono, string usuario, int idUsuario)
+        public ActionResult UpdatePersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario, int idUsuario,string CURP)
         {
-            int respuesta = DataManagerLideri.UpdateUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, matricula, nombre, rfc, telefono, usuario, idUsuario);
+            int respuesta = DataManagerLideri.UpdateUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, nombre, rfc, telefono, usuario, idUsuario,CURP);
 
             return RedirectToAction("Index", "Persona");
         }

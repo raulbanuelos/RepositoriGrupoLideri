@@ -33,14 +33,13 @@ var formsWizard = function () {
                     RFC:{
                         required: true
                     },
+                    CURP: {
+                        required: true
+                    },
                     Usuario: {
                         required: true
                     },
                     Contrasena: {
-                        required: true,
-                        minlength: 8
-                    },
-                    Matricula: {
                         required: true,
                         minlength: 8
                     },
@@ -62,14 +61,14 @@ var formsWizard = function () {
                     RFC: {
                         required: "El RFC es requerido"
                     },
+                    CURP: {
+                        required: "La CURP es requerida"
+                    },
                     Usuario: {
                         required: "El usuario es requerido"
                     },
                     Contrasena: {
                         required: "La contraseña debe ser mínimo 8 caracteres"
-                    },
-                    Matricula: {
-                        required: "La clave promotor debe ser al menos de 8 digitos"
                     },
                     email: {
                         required: "El email es requerido"

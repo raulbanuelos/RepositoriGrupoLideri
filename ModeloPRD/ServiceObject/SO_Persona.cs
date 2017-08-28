@@ -31,7 +31,7 @@ namespace ModeloPRD.ServiceObject
             }
         }
         
-        public int Insert(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string matricula, string nombre, string rfc, string telefono, string usuario)
+        public int Insert(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,string CURP)
         {
             try
             {
@@ -46,9 +46,9 @@ namespace ModeloPRD.ServiceObject
                     persona.FECHA_NACIMIENTO = fechaNacimiento;
                     persona.ID_JEFE = idJefe;
                     persona.ID_JERARQUIA = idJerarquia;
-                    persona.MATRICULA = matricula;
                     persona.NOMBRE = nombre;
                     persona.RFC = rfc;
+                    persona.CURP = CURP;
                     persona.TELEFONO = telefono;
                     persona.USUARIO = usuario;
                     persona.FECHA_CREACION = DateTime.Now;
@@ -63,7 +63,7 @@ namespace ModeloPRD.ServiceObject
             }
         }
 
-        public int Update(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string matricula, string nombre, string rfc, string telefono, string usuario,int idUsuario)
+        public int Update(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,int idUsuario, string CURP)
         {
             try
             {
@@ -78,9 +78,9 @@ namespace ModeloPRD.ServiceObject
                     usuariobd.FECHA_NACIMIENTO = fechaNacimiento;
                     usuariobd.ID_JEFE = idJefe;
                     usuariobd.ID_JERARQUIA = idJerarquia;
-                    usuariobd.MATRICULA = matricula;
                     usuariobd.NOMBRE = nombre;
                     usuariobd.RFC = rfc;
+                    usuariobd.CURP = CURP;
                     usuariobd.TELEFONO = telefono;
                     usuariobd.USUARIO = usuario;
                     usuariobd.FECHA_ACTUALIZACION = DateTime.Now;
@@ -135,15 +135,15 @@ namespace ModeloPRD.ServiceObject
             }
         }
         
-        public IList ExistsMatricula(string matricula)
+        public IList ExistsMatricula(string cvePromotor)
         {
             try
             {
                 using (var Contexto = new JudaPRDEntities())
                 {
-                    var persona = (from p in Contexto.TBL_USUARIO
-                                   where p.MATRICULA == matricula
-                                   select p).ToList();
+                    var persona = (from p in Contexto.TBL_CLAVE_PROMOTOR
+                             where p.CLAVE_PROMOTOR == cvePromotor
+                             select p).ToList();
 
                     return persona;
                 }
