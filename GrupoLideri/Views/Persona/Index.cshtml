@@ -29,7 +29,7 @@
                                 <li>
                                     <a href="#tab3" data-toggle="tab">
                                         <span class="step-number">3</span>
-                                        <span class="step-text">Información de contacto</span>
+                                        <span class="step-text">Contacto</span>
                                     </a>
                                 </li>
                             </ul>
@@ -98,7 +98,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Jefe</label>
+                                            <label class="col-lg-2 col-md-3 control-label">Gerente promotor</label>
                                             <div class="col-lg-10 col-md-9">
                                                 <select class="form-control select2" id="ddlJefe">
                                                     
@@ -150,9 +150,9 @@
     </div>
 
 <script>
-    $(function () {
-        $("#basic-datepicker").datepicker();
-    });
+    //$(function () {
+    //    $("#basic-datepicker").datepicker();
+    //});
     
 
     $(function () {
@@ -226,9 +226,24 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                alert("Persona guardada!");
+                //alert("Persona guardada!");
+                var n = noty({
+                    text: '<i class="fa fa-check"></i> Persona agregada correctamente',
+                    type: 'success',
+                    layout: 'topRight',
+                    theme: 'bootstrapTheme',//Current theme
+                    closeWith: ['button'],
+                    timeout: 5000, // MiliSeconds before notification close
+                    animation: {
+                        open: 'animated bounceInRight', // Animate.css class names
+                        close: 'animated bounceOutRight', // Animate.css class names
+                        easing: 'swing', // unavailable - no need
+                        speed: 500 // unavailable - no need
+                    }
+                });  
             },
             error: function (error) {
+                alert("Upps! Ocurrio un error!");
             }
         });
     }
