@@ -35,6 +35,13 @@ namespace GrupoLideri.Models
             return persona;
         }
 
+        public static int AsignarCvePromotor(int idUsuario, string cvePromotor)
+        {
+            SO_Persona ServicioPersona = new SO_Persona();
+
+            return ServicioPersona.AsignarCvePromotor(idUsuario, cvePromotor);
+        }
+
         public static List<FO_Item_Combo> GetPersonas()
         {
             SO_Persona ServicioPersona = new SO_Persona();
@@ -86,10 +93,8 @@ namespace GrupoLideri.Models
                     persona.ApellidoPaterno = (string)tipo.GetProperty("APELLIDO_PATERNO").GetValue(item, null);
                     persona.Contrasena = (string)tipo.GetProperty("CONTRASENA").GetValue(item, null);
                     persona.idJerarquia = (int)tipo.GetProperty("ID_JERARQUIA").GetValue(item, null);
-                    persona.idPersona = (int)tipo.GetProperty("ID_USUARIO").GetValue(item, null);
                     persona.Nombre = (string)tipo.GetProperty("NOMBRE").GetValue(item, null);
                     persona.Usuario = (string)tipo.GetProperty("USUARIO").GetValue(item, null);
-                    persona.Matricula = (string)tipo.GetProperty("MATRICULA").GetValue(item, null);
                     persona.RFC = (string)tipo.GetProperty("RFC").GetValue(item, null);
                     persona.Telefono = (string)tipo.GetProperty("TELEFONO").GetValue(item, null);
                     persona.fechaNacimiento = (DateTime)tipo.GetProperty("FECHA_NACIMIENTO").GetValue(item,null);
@@ -108,11 +113,11 @@ namespace GrupoLideri.Models
             return ServicioPersona.Insert(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, nombre, rfc, telefono, usuario,CURP);
         }
 
-        public static int UpdateUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,int idUsuario,string CURP)
+        public static int UpdateUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,int idUsuario,string CURP, bool checkRH)
         {
             SO_Persona ServicioPersona = new SO_Persona();
 
-            return ServicioPersona.Update(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, nombre, rfc, telefono, usuario, idUsuario,CURP);
+            return ServicioPersona.Update(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, nombre, rfc, telefono, usuario, idUsuario,CURP,checkRH);
         }
 
         public static int DeleteUsuario(int idUsuario)
@@ -145,6 +150,43 @@ namespace GrupoLideri.Models
             SO_ClavePromotor ServicioPromotor = new SO_ClavePromotor();
 
             return ServicioPromotor.Insert(cvePromotor, idUsuario);
+        }
+
+        public static List<DO_Persona> GetPersonaPendienteClavePromotor()
+        {
+            SO_Persona ServicioPersona = new SO_Persona();
+
+            List<DO_Persona> ListaPersona = new List<DO_Persona>();
+
+            IList informacionBD = ServicioPersona.GetUsuariosPendienteClavePromotor();
+
+            if (informacionBD != null)
+            {
+                foreach (var item in informacionBD)
+                {
+                    Type tipo = item.GetType();
+
+                    DO_Persona persona = new DO_Persona();
+
+                    persona.idPersona = (int)tipo.GetProperty("ID_USUARIO").GetValue(item, null);
+                    persona.ApellidoMaterno = (string)tipo.GetProperty("APELLIDO_MATERNO").GetValue(item, null);
+                    persona.ApellidoPaterno = (string)tipo.GetProperty("APELLIDO_PATERNO").GetValue(item, null);
+                    persona.Contrasena = (string)tipo.GetProperty("CONTRASENA").GetValue(item, null);
+                    persona.idJerarquia = (int)tipo.GetProperty("ID_JERARQUIA").GetValue(item, null);
+                    persona.Nombre = (string)tipo.GetProperty("NOMBRE").GetValue(item, null);
+                    persona.Usuario = (string)tipo.GetProperty("USUARIO").GetValue(item, null);
+                    persona.RFC = (string)tipo.GetProperty("RFC").GetValue(item, null);
+                    persona.CURP = (string)tipo.GetProperty("CURP").GetValue(item, null);
+                    persona.Telefono = (string)tipo.GetProperty("TELEFONO").GetValue(item, null);
+                    persona.fechaNacimiento = (DateTime)tipo.GetProperty("FECHA_NACIMIENTO").GetValue(item, null);
+                    persona.Email = (string)tipo.GetProperty("EMAIL").GetValue(item, null);
+
+                    ListaPersona.Add(persona);
+                }
+            }
+
+            return ListaPersona;
+
         }
         
         #endregion

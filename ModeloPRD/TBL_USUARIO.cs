@@ -34,6 +34,7 @@ namespace ModeloPRD
         public string TELEFONO { get; set; }
         public string EMAIL { get; set; }
         public byte[] FOTO { get; set; }
+        public Nullable<bool> CHECK_RH { get; set; }
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public Nullable<System.DateTime> FECHA_ACTUALIZACION { get; set; }
     

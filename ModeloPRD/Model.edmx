@@ -107,6 +107,7 @@
           <Property Name="TELEFONO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="CHECK_RH" Type="bit" />
           <Property Name="FECHA_CREACION" Type="date" />
           <Property Name="FECHA_ACTUALIZACION" Type="date" />
         </EntityType>
@@ -187,7 +188,7 @@
             <End Role="TBL_JERARQUIA" EntitySet="TBL_JERARQUIA" />
             <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="TBL_JERARQUIA">
           <Key>
             <PropertyRef Name="ID_JERARQUIA" />
@@ -306,6 +307,7 @@
           <Property Name="TELEFONO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CHECK_RH" Type="Boolean" />
           <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
           <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TBL_CLAVE_PROMOTOR" Relationship="JudaPRDModel.FK_TBL_CLAVE_PROMOTOR_TBL_USUARIO" FromRole="TBL_USUARIO" ToRole="TBL_CLAVE_PROMOTOR" />
@@ -335,7 +337,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -434,6 +436,7 @@
               <MappingFragment StoreEntitySet="TBL_USUARIO">
                 <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
                 <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="CHECK_RH" ColumnName="CHECK_RH" />
                 <ScalarProperty Name="FOTO" ColumnName="FOTO" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />

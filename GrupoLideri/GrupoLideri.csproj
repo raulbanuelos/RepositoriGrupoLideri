@@ -1164,6 +1164,7 @@
     <Content Include="Views\MisComisiones\Index.cshtml" />
     <Content Include="Views\Over\Index.cshtml" />
     <Content Include="Views\Persona\Index.cshtml" />
+    <Content Include="Views\Persona\AsignarMatricula.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

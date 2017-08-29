@@ -53,6 +53,7 @@ namespace ModeloPRD.ServiceObject
                     persona.USUARIO = usuario;
                     persona.FECHA_CREACION = DateTime.Now;
                     persona.FECHA_ACTUALIZACION = DateTime.Now;
+                    persona.CHECK_RH = false;
                     Contexto.TBL_USUARIO.Add(persona);
                     return Contexto.SaveChanges();
                 }
@@ -62,8 +63,8 @@ namespace ModeloPRD.ServiceObject
                 return 0;
             }
         }
-
-        public int Update(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,int idUsuario, string CURP)
+        
+        public int Update(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,int idUsuario, string CURP, bool checkRH)
         {
             try
             {
@@ -84,6 +85,7 @@ namespace ModeloPRD.ServiceObject
                     usuariobd.TELEFONO = telefono;
                     usuariobd.USUARIO = usuario;
                     usuariobd.FECHA_ACTUALIZACION = DateTime.Now;
+                    usuariobd.CHECK_RH = checkRH;
 
                     Conexion.Entry(usuariobd).State = EntityState.Modified;
 
@@ -134,7 +136,31 @@ namespace ModeloPRD.ServiceObject
                 return null;
             }
         }
-        
+
+        public int AsignarCvePromotor(int idUsuario, string cvePromotor)
+        {
+            try
+            {
+                using (var Conexion = new JudaPRDEntities())
+                {
+                    TBL_CLAVE_PROMOTOR clave = new TBL_CLAVE_PROMOTOR();
+
+                    clave.CLAVE_PROMOTOR = cvePromotor;
+                    clave.FECHA_CREACION = DateTime.Now;
+                    clave.ID_USUARIO = idUsuario;
+
+                    Conexion.TBL_CLAVE_PROMOTOR.Add(clave);
+
+                    return Conexion.SaveChanges();
+                    
+                }
+            }
+            catch (Exception er)
+            {
+                return 0;
+            }
+        }
+
         public IList ExistsMatricula(string cvePromotor)
         {
             try
@@ -165,6 +191,25 @@ namespace ModeloPRD.ServiceObject
                                          select a).OrderBy(x => x.NOMBRE).ToList();
 
                     return ListaUsuarios;
+                }
+            }
+            catch (Exception er)
+            {
+                return null;
+            }
+        }
+
+        public IList GetUsuariosPendienteClavePromotor()
+        {
+            try
+            {
+                using (var Conexion = new JudaPRDEntities())
+                {
+                    var ListaUsuario = (from a in Conexion.TBL_USUARIO
+                                        where a.CHECK_RH == false
+                                        select a).ToList();
+
+                    return ListaUsuario;
                 }
             }
             catch (Exception er)

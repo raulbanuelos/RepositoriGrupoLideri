@@ -15,6 +15,7 @@ namespace GrupoLideri.Models
         public string Contrasena { get; set; }
         public int idJerarquia { get; set; }
         public string RFC { get; set; }
+        public string CURP { get; set; }
         public string Matricula { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }

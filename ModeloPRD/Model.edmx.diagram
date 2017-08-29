@@ -10,10 +10,10 @@
         <EntityTypeShape EntityType="JudaPRDModel.TBL_PCT_COMISION" Width="2.75" PointX="4.5" PointY="4.5" />
         <AssociationConnector Association="JudaPRDModel.FK_TBL_PCT_COMISION_TBL_JERARQUIA" />
         <EntityTypeShape EntityType="JudaPRDModel.TBL_CLAVE_PROMOTOR" Width="2.625" PointX="4.625" PointY="7.75" />
-        <EntityTypeShape EntityType="JudaPRDModel.TBL_USUARIO" Width="1.5" PointX="1.875" PointY="7.125" />
+        <EntityTypeShape EntityType="JudaPRDModel.TBL_USUARIO" Width="1.5" PointX="3" PointY="10.875" />
         <AssociationConnector Association="JudaPRDModel.FK_TBL_CLAVE_PROMOTOR_TBL_USUARIO" />
         <AssociationConnector Association="JudaPRDModel.FK_TBL_USUARIO_TBL_JERARQUIA" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
