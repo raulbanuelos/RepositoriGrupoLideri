@@ -3,6 +3,7 @@ using ModeloPRD.ServiceObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -292,7 +293,102 @@ namespace GrupoLideri.Models
             return ListaResultante;
         }
         #endregion
-        
+
+
+        #region Comisiones
+        public static List<N_Folio_SIAC> GetComisionGerente(int idUsuario, string fechaInicial, string fechaFinal)
+        {
+            SO_Comisiones ServiceComisiones = new SO_Comisiones();
+
+            List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
+
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServiceComisiones.GetComosionesGerente(idUsuario, fechaInicial, fechaFinal);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow element in informacionBD.Tables[0].Rows)
+                    {
+                        N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                        folio.FECHA_CAPTURA = element["FECHA_CAPTURA"].ToString();
+                        folio.NombrePromotor = element["NOMBRE_PROMOTOR"].ToString();
+                        folio.FOLIO_SIAC = element["FOLIO_SIAC"].ToString();
+                        folio.ESTATUS_SIAC = element["ESTATUS_SIAC"].ToString();
+                        folio.TIPO_LINEA = element["TIPO_LINEA"].ToString();
+                        folio.LINEA_CONTRATADA = element["LINEA_CONTRATADA"].ToString();
+                        folio.PAQUETE = element["PAQUETE"].ToString();
+                        folio.TELEFONO_ASIGNADO = element["TELEFONO_ASIGNADO"].ToString();
+                        folio.ESTATUS_PISA_MULTIORDEN = element["ESTATUS_PISA_MULTIORDEN"].ToString();
+                        folio.ORDEN_SERVICIO_TV = element["ORDEN_SERVICIO_TV"].ToString();
+                        folio.COMISION_TOTAL = Convert.ToDouble(element["COMISION_TOTAL"]);
+                        /*Gerente
+                        * 
+                        * fecha_captura, promotor (nombre), folio siac, estatus siac, tipo de linea, linea contratada, paquete, telefono asignado, estatus multiorden, orden de servicio, comision.
+                        * 
+                        */
+                        listaResultante.Add(folio);
+                    }
+                }
+            }
+
+            return listaResultante;
+        }
+
+
+                
+            
+        public static List<N_Folio_SIAC> GetComisionPromotor(int idUsuario, string fechaInicial, string fechaFinal)
+        {
+            SO_Comisiones ServiceComisiones = new SO_Comisiones();
+
+            List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
+
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServiceComisiones.GetComosionesPromotor(idUsuario, fechaInicial, fechaFinal);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow element in informacionBD.Tables[0].Rows)
+                    {
+                        N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                        folio.FECHA_CAPTURA = element["FECHA_CAPTURA"].ToString();
+                        folio.PROMOTOR = element["PROMOTOR"].ToString();
+                        folio.ESTRATEGIA = element["ESTRATEGIA"].ToString();
+                        folio.AREA = element["AREA"].ToString();
+                        folio.FOLIO_SIAC = element["FOLIO_SIAC"].ToString();
+                        folio.ESTATUS_SIAC = element["ESTATUS_SIAC"].ToString();
+                        folio.TIPO_LINEA = element["TIPO_LINEA"].ToString();
+                        folio.LINEA_CONTRATADA = element["LINEA_CONTRATADA"].ToString();
+                        folio.PAQUETE = element["PAQUETE"].ToString();
+                        folio.TELEFONO_ASIGNADO = element["TELEFONO_ASIGNADO"].ToString();
+                        folio.ESTATUS_PISA_MULTIORDEN = element["ESTATUS_PISA_MULTIORDEN"].ToString();
+                        folio.ORDEN_SERVICIO_TV = element["ORDEN_SERVICIO_TV"].ToString();
+                        folio.COMISION_TOTAL = Convert.ToDouble(element["COMISION_TOTAL"]);
+                        
+                        /*gerente promotor
+                         *
+                         * fecha_captura, promotor, estrategia, area, folio siac, estatus siac, tipo de linea, linea contratada, paquete,telefono asignado, estatus multiorden, orden de servicio, comisión.
+                         * 
+                         */
+
+                        listaResultante.Add(folio);
+                    }
+                }
+            }
+
+            return listaResultante;
+        }
+        #endregion
+
+        #region Genericos
         public static List<SelectListItem> ToDropdownListFromItemCombo(List<FO_Item_Combo> lista)
         {
             List<SelectListItem> DropDownList = new List<SelectListItem>();
@@ -303,6 +399,7 @@ namespace GrupoLideri.Models
             }
 
             return DropDownList;
-        }
+        } 
+        #endregion
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="ServiceObject\SO_Folio.cs" />
     <Compile Include="ServiceObject\SO_Jerarquia.cs" />
     <Compile Include="ServiceObject\SO_Persona.cs" />
+    <Compile Include="SO_Comisiones.cs" />
     <Compile Include="SQLServer\GrupoLideri_SQL.cs" />
     <Compile Include="TBL_CLAVE_PROMOTOR.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -101,7 +102,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>

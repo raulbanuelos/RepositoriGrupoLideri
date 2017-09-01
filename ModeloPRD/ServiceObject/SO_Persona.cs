@@ -19,7 +19,7 @@ namespace ModeloPRD.ServiceObject
                 using (var Contexto = new JudaPRDEntities())
                 {
                     var persona = (from p in Contexto.TBL_USUARIO
-                                   where p.CONTRASENA == contrasena && p.USUARIO == usuario
+                                   where p.CONTRASENA == contrasena && p.USUARIO == usuario && p.CHECK_RH == true
                                    select p).ToList().FirstOrDefault();
 
                     return persona;

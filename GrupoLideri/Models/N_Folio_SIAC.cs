@@ -59,5 +59,6 @@ namespace GrupoLideri.Models
         public double COMISION_PAQUETE { get; set; }
         public double PORCENTAJE_COMISION { get; set; }
         public double COMISION_TOTAL { get; set; }
+        public string NombrePromotor { get; set; }
     }
 }
