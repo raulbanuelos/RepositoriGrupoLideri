@@ -9,42 +9,6 @@ namespace GrupoLideri.Controllers
 {
     public class PersonaController : Controller
     {
-
-        #region AsignarMatricula
-        public ActionResult AsignarMatricula()
-        {
-            return View();
-        } 
-
-        public JsonResult GetPersonasPendienteClavePromotor()
-        {
-            List<DO_Persona> ListaPersona = new List<DO_Persona>();
-
-            ListaPersona = DataManagerLideri.GetPersonaPendienteClavePromotor();
-
-            var jsonResult = Json(ListaPersona, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-
-            return jsonResult;
-
-        }
-
-        public JsonResult AsignarClavePromotor(int idUsuario, string cvePromotor)
-        {
-            if (!DataManagerLideri.ExistsMatricula(cvePromotor))
-            {
-                int respuesta = DataManagerLideri.AsignarCvePromotor(idUsuario, cvePromotor);
-
-                if (respuesta > 0)
-                    return Json("Los datos fueron guardados correctamente, se le notificará por correo al usuario.");
-                else
-                    return Json("Upps! hubo algún error, favor de intentar mas tarde.");
-            }else
-                return Json("La clave promotor ya existe, favor ingrese otra");
-
-        }
-        #endregion
-
         #region Index
         // GET: Persona
         [GrupoLideriVerificarRol]
@@ -66,7 +30,11 @@ namespace GrupoLideri.Controllers
 
         public JsonResult CargarJerarquias(string parametro)
         {
-            List<FO_Item_Combo> ListaJerarquias = DataManagerLideri.GetJearaquias();
+            DO_Persona usuarioConectado = (DO_Persona)Session["UsuarioConectado"];
+
+            int valorJerarquia = DataManagerLideri.GetValorJerarquia(usuarioConectado.idJerarquia);
+            
+            List<FO_Item_Combo> ListaJerarquias = DataManagerLideri.GetJearaquias(valorJerarquia);
 
             List<SelectListItem> Jerarquias = DataManagerLideri.ToDropdownListFromItemCombo(ListaJerarquias);
 
@@ -74,13 +42,12 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
-        public JsonResult InsertPersona(string aMaterno, string aPaterno, string contrasena, string email, string fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario, string CURP)
+        public JsonResult InsertPersona(string aMaterno, string aPaterno,string email, string fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string CURP)
         {
-            int respuesta = DataManagerLideri.InsertUsuario(aMaterno, aPaterno, contrasena, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, nombre, rfc, telefono, usuario, CURP);
-
-
+            int respuesta = DataManagerLideri.InsertUsuario(aMaterno, aPaterno, email, Convert.ToDateTime(fechaNacimiento), idJefe, idJerarquia, nombre, rfc, telefono, CURP);
+            
             if (respuesta > 0)
-                return Json("Persona agregada correctamente, queda pendiento el VoBo de RH");
+                return Json("Persona agregada correctamente, queda pendiente el VoBo de RH");
             else
                 return Json("Upps! hubo algún error, favor de intentar mas tarde.");
         }

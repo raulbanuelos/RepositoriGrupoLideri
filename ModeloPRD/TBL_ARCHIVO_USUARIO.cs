@@ -12,11 +12,11 @@ namespace ModeloPRD
     using System;
     using System.Collections.Generic;
     
-    public partial class TBL_CLAVE_PROMOTOR
+    public partial class TBL_ARCHIVO_USUARIO
     {
-        public int ID_CLAVE_PROMOTOR { get; set; }
+        public int ID_ARCHIVO_USUARIO { get; set; }
         public Nullable<int> ID_USUARIO { get; set; }
-        public string CLAVE_PROMOTOR { get; set; }
+        public byte[] ARCHIVO { get; set; }
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
     
         public virtual TBL_USUARIO TBL_USUARIO { get; set; }

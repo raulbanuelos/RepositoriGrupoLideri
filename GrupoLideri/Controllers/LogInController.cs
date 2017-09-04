@@ -24,6 +24,7 @@ namespace GrupoLideri.Controllers
                 if (usuario != null)
                 {
                     Session["UsuarioConectado"] = usuario;
+                    InicializarSession(usuario);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -36,6 +37,20 @@ namespace GrupoLideri.Controllers
                 return View("Index");
             }
             
+        }
+
+        private void InicializarSession(DO_Persona usuario)
+        {
+            Session["PROMOTOR"] = usuario.idJerarquia == 1 ? true : false;
+            Session["PROMOTORENTRENADOR"] = usuario.idJerarquia == 2 ? true : false;
+            Session["GERENTE"] = usuario.idJerarquia == 3 ? true : false;
+            Session["GERENTEPROMOTOR"] = usuario.idJerarquia == 4 ? true : false;
+            Session["VICEPRESIDENTE"] = usuario.idJerarquia == 5 ? true : false;
+            Session["RECURSOSHUMANOS"] = usuario.idJerarquia == 6 ? true : false;
+            Session["NOMINAS"] = usuario.idJerarquia == 7 ? true : false;
+            Session["SISTEMAS"] = usuario.idJerarquia == 8 ? true : false;
+            Session["DIRECTIVO"] = usuario.idJerarquia == 9 ? true : false;
+            Session["ADMINISTRACION"] = usuario.idJerarquia == 10 ? true : false;
         }
     }
 }

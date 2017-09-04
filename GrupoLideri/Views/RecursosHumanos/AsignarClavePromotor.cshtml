@@ -1,0 +1,96 @@
+﻿@using GrupoLideri.Models
+@{
+    ViewBag.Title = "AsignarClavePromotor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default toggle panelMove panelClose panelRefresh">
+    <div class="panel-heading">
+        <h4 class="panel-title">Personal</h4>
+    </div>
+    <div class="panel-body">
+        <table id="responsive-datatables" class="table table-bordered table-striped table-hover dt-responsive non-responsive" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido paterno</th>
+                    <th>Apellido materno</th>
+                    <th>RFC</th>
+                    <th>CURP</th>
+                    <th>Telefono</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody id="tblPersonas">
+                @{
+                    if (((List<DO_Persona>)ViewBag.ListaPersonasPorAsignarCve).Count > 0)
+                    {
+                        foreach (DO_Persona item in ViewBag.ListaPersonasPorAsignarCve)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.ApellidoPaterno</td>
+                                <td>@item.ApellidoMaterno</td>
+                                <td>@item.RFC</td>
+                                <td>@item.CURP</td>
+                                <td>@item.Telefono</td>
+                                <td>@item.fechaNacimiento</td>
+                                <td>@item.Email</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+    $(function () {
+        @*var urlSave = '@Url.Action("GetPersonasPendienteClavePromotor", "RecursosHumanos")';
+        var _parametro = "";
+        $.ajax({
+            type: "POST",
+            url: urlSave,
+            dataType: "json",
+            data: JSON.stringify({ parametro: _parametro }),
+            success: function (personas) {
+                llenarTabla(personas);
+            },
+            error: function (ex) {
+                alert("Error");
+            }
+        });*@
+
+
+    });
+
+    function llenarTabla(data) {
+        //<th>Nombre</th>
+        //<th>Apellido paterno</th>
+        //<th>Apellido materno</th>
+        //<th>RFC</th>
+        //<th>CURP</th>
+        //<th>Telefono</th>
+        //<th>Fecha de nacimiento</th>
+        //<th>Correo</th>
+        //var row = "";
+        //$.each(data, function (index, item) {
+        //    row += "<tr>";
+        //    row += "<td>" + item.Nombre + "</td>";
+        //    row += "<td>" + item.ApellidoPaterno + "</td>";
+        //    row += "<td>" + item.ApellidoMaterno + "</td>";
+        //    row += "<td>" + item.RFC + "</td>";
+        //    row += "<td>" + item.CURP + "</td>";
+        //    row += "<td>" + item.Telefono + "</td>";
+        //    row += "<td>" + item.fechaNacimiento + "</td>";
+        //    row += "<td>" + item.Email + "</td>";
+        //    row += "</tr>";
+        //});
+
+        //$("#tblPersonas").html(row);
+    }
+</script>

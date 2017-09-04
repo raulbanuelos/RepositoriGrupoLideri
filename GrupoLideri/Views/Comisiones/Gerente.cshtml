@@ -1,8 +1,54 @@
-﻿
+﻿@using GrupoLideri.Models
 @{
     ViewBag.Title = "Gerente";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Gerente</h2>
-
+<div class="panel panel-default toggle panelMove panelClose panelRefresh">
+    <div class="panel-heading">
+        <h4 class="panel-title">Comisiones (Gerente)</h4>
+    </div>
+    <div class="panel-body">
+        <table id="responsive-datatables" class="table table-bordered table-striped table-hover dt-responsive non-responsive" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>FECHA CAPTURA</th>
+                    <th>PROMOTOR</th>
+                    <th>FOLIO SIAC</th>
+                    <th>ESTATUS SIAC</th>
+                    <th>TIPO LINEA</th>
+                    <th>LINEA CONTRATADA</th>
+                    <th>PAQUETE</th>
+                    <th>TELEFONO ASIGNADO</th>
+                    <th>ESTATUS MULTIORDEN</th>
+                    @*<th>ORDEN DE SERVICIO</th>*@
+                    <th>COMISION</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (((List<N_Folio_SIAC>)ViewBag.ListaFoliosPosteados).Count > 0)
+                    {
+                        foreach (N_Folio_SIAC folio in ViewBag.ListaFoliosPosteados)
+                        {
+                            <tr>
+                                <td>@folio.FECHA_CAPTURA</td>
+                                <td>@folio.NombrePromotor</td>
+                                <td>@folio.FOLIO_SIAC</td>
+                                <td>@folio.ESTATUS_SIAC</td>
+                                <td>@folio.TIPO_LINEA</td>
+                                <td>@folio.LINEA_CONTRATADA</td>
+                                <td>@folio.PAQUETE</td>
+                                <td>@folio.TELEFONO_ASIGNADO</td>
+                                <td>@folio.ESTATUS_PISA_MULTIORDEN</td>
+                                @*<td>@folio.ORDEN_SERVICIO_TV</td>*@
+                                <td>@folio.COMISION_TOTAL</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

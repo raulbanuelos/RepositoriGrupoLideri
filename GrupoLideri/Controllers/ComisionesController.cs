@@ -13,46 +13,38 @@ namespace GrupoLideri.Controllers
         // GET: Comisiones
         public ActionResult Promotor()
         {
-            return View();
-        }
-
-        public JsonResult GetComicionPromotor(string fechaIncial, string fechaFinal)
-        {
-            DO_Persona usuarioConectado = (DO_Persona)Session["UsuarioConectado"];
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
 
             List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
 
-            listaResultante = DataManagerLideri.GetComisionPromotor(usuarioConectado.idPersona, fechaIncial, fechaFinal);
+            string fechaInicial = "01/01/2017";
+            string fechaFinal = "30/08/2017";
 
-            var jsonResult = Json(listaResultante, JsonRequestBehavior.AllowGet);
+            listaResultante = DataManagerLideri.GetComisionPromotor(usuarioConectado.idPersona, fechaInicial, fechaFinal);
 
-            jsonResult.MaxJsonLength = int.MaxValue;
+            ViewBag.ListaFoliosPromotorPosteados = listaResultante;
 
-            return jsonResult;
+            return View();
         }
-
         #endregion
 
         #region Gerente
         public ActionResult Gerente()
         {
-            return View();
-        } 
-
-        public JsonResult GetComicionGerente(string fechaIncial, string fechaFinal)
-        {
             DO_Persona usuarioConectado = (DO_Persona)Session["UsuarioConectado"];
 
             List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
 
-            listaResultante = DataManagerLideri.GetComisionGerente(usuarioConectado.idPersona, fechaIncial, fechaFinal);
+            string fechaInicial = "01/01/2017";
+            string fechaFinal = "30/08/2017";
 
-            var jsonResult = Json(listaResultante, JsonRequestBehavior.AllowGet);
+            listaResultante = DataManagerLideri.GetComisionGerente(usuarioConectado.idPersona, fechaInicial, fechaFinal);
 
-            jsonResult.MaxJsonLength = int.MaxValue;
+            ViewBag.ListaFoliosPosteados = listaResultante;
 
-            return jsonResult;
-        }
+            return View();
+        } 
+        
         #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using GrupoLideri.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -105,59 +106,85 @@
                                 <span class="nav-item-text">Inicio</span>
                             </a>
                         </li>
-                        <li class="nav-section-header">
+                        @*<li class="nav-section-header">
                             <h5>Mi oficina</h5>
                         </li>
+
                         <li>
                             <a href="@Url.Action("Index","MisFolios")">
                                 <i class="fa fa-cc"></i>
                                 <span class="nav-item-text">Mis Folios</span>
                             </a>
-                        </li>
-                        @*<li>
-                                <a href="@Url.Action("Index","MiOrganizacion")">
-                                    <i class="fa fa-building"></i>
-                                    <span class="nav-item-text">Mi Organización</span>
+                        </li>*@
+
+                        
+                        @if ((bool)Session["PROMOTOR"] || (bool)Session["PROMOTORENTRENADOR"] || (bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
+                        {
+                            <li class="nav-section-header">
+                                <h5>Mis Comisiones</h5>
+                            </li>
+                        }
+
+                        @if ((bool)Session["PROMOTOR"] || (bool)Session["PROMOTORENTRENADOR"])
+                        {
+                            <li>
+                                <a href="@Url.Action("Promotor","Comisiones")">
+                                    <i class="fa fa-money"></i>
+                                    <span class="nav-item-text">Mis comisiones</span>
                                 </a>
-                            </li>*@
-                        <li>
-                            <a href="@Url.Action("Index","MiOrganigrama")">
-                                <i class="fa fa-sitemap"></i>
-                                <span class="nav-item-text">Mi Organigrama</span>
-                            </a>
-                        </li>
-                        <li class="nav-section-header">
-                            <h5>Mis Ganancias</h5>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","MisComisiones")">
-                                <i class="fa fa-money"></i>
-                                <span class="nav-item-text">Mis comisiones</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Over") ">
-                                <i class="fa fa-credit-card"></i>
-                                <span class="nav-item-text">Over</span>
-                            </a>
-                        </li>
-                        <li class="nav-section-header">
-                            <h5>Administración</h5>
-                        </li>
+                            </li>
+                        }
 
-                        <li>
-                            <a href="@Url.Action("Index","Persona")">
-                                <i class="fa fa-users"></i>
-                                <span class="nav-item-text">Agregar promotor</span>
-                            </a>
-                        </li>
+                        @if ((bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
+                        {
+                            <li>
+                                <a href="@Url.Action("Gerente","Comisiones")">
+                                    <i class="fa fa-money"></i>
+                                    <span class="nav-item-text">Mis comisiones</span>
+                                </a>
+                            </li>
+                        }
 
-                        <li>
-                            <a href="@Url.Action("Index","FolioSIAC")">
-                                <i class="fa fa-barcode"></i>
-                                <span class="nav-item-text">Subir folios</span>
-                            </a>
-                        </li>
+                        @if ((bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
+                        {
+                            <li class="nav-section-header">
+                                <h5>Mi equipo</h5>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Persona")">
+                                    <i class="fa fa-users"></i>
+                                    <span class="nav-item-text">Agregar promotor</span>
+                                </a>
+                            </li>
+                        }
+
+                        @if ((bool)Session["ADMINISTRACION"])
+                        {
+                            <li class="nav-section-header">
+                                <h5>Administración</h5>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","FolioSIAC")">
+                                    <i class="fa fa-barcode"></i>
+                                    <span class="nav-item-text">Subir folios</span>
+                                </a>
+                            </li>
+                        }
+                        
+                        @if ((bool)Session["RECURSOSHUMANOS"])
+                        {
+                            <li class="nav-section-header">
+                                <h5>Recursos humanos</h5>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("AsignarClavePromotor", "RecursosHumanos")">
+                                    <i class="fa fa-barcode"></i>
+                                    <span class="nav-item-text">Asignar cve promotor</span>
+                                </a>
+                            </li>
+                        }
+
+
                     </ul>
                     <!-- End / .sidebar-nav  -->
                 </div>
@@ -489,6 +516,11 @@
 
     <script src="@Url.Content("~/assets/dash/plugins/forms/fancyselect/fancySelect.js")"></script>
     <script src="@Url.Content("~/assets/dash/plugins/forms/select2/select2.full.js")"></script>
+
+    <script src="@Url.Content("~/assets/dash/plugins/tables/datatables/jquery.datatables.js")"></script>
+    <script src="@Url.Content("~/assets/dash/plugins/tables/datatables/dataTables.bootstrap.js")"></script>
+    <script src="@Url.Content("~/assets/dash/plugins/tables/datatables/dataTables.responsive.js")"></script>
+    <script src="@Url.Content("~/assets/dash/js/pages/tables-data.js")"></script>
 
 </body>
 

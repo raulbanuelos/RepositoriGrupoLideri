@@ -34,7 +34,7 @@ namespace ModeloPRD
             }
         }
 
-        public DataSet GetComosionesGerente(int idPersona, string fechaIncial = "", string fechaFinal = "")
+        public DataSet GetComosionesGerente(int idPersona, string fechaIncial, string fechaFinal)
         {
             try
             {

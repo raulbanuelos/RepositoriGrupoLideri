@@ -31,6 +31,7 @@ namespace GrupoLideri.Models
                 persona.ApellidoPaterno = informacionBD.APELLIDO_PATERNO;
                 persona.ApellidoMaterno = informacionBD.APELLIDO_MATERNO;
                 persona.idJerarquia = informacionBD.ID_JERARQUIA;
+                
             }
 
             return persona;
@@ -107,11 +108,11 @@ namespace GrupoLideri.Models
             return persona;
         }
 
-        public static int InsertUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,string CURP)
+        public static int InsertUsuario(string materno, string paterno, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono,string CURP)
         {
             SO_Persona ServicioPersona = new SO_Persona();
 
-            return ServicioPersona.Insert(materno, paterno, contrasena, email, fechaNacimiento, idJefe, idJerarquia, nombre, rfc, telefono, usuario,CURP);
+            return ServicioPersona.Insert(materno, paterno, email, fechaNacimiento, idJefe, idJerarquia, nombre, rfc, telefono,CURP);
         }
 
         public static int UpdateUsuario(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,int idUsuario,string CURP, bool checkRH)
@@ -266,13 +267,13 @@ namespace GrupoLideri.Models
         #endregion
 
         #region Jerarquias
-        public static List<FO_Item_Combo> GetJearaquias()
+        public static List<FO_Item_Combo> GetJearaquias(int valor)
         {
             SO_Jerarquia ServicioJerarquia = new SO_Jerarquia();
 
             List<FO_Item_Combo> ListaResultante = new List<FO_Item_Combo>();
 
-            IList informacionBD = ServicioJerarquia.GetJerarquias();
+            IList informacionBD = ServicioJerarquia.GetJerarquias(valor);
 
             if (informacionBD != null)
             {
@@ -292,9 +293,15 @@ namespace GrupoLideri.Models
 
             return ListaResultante;
         }
+
+        public static int GetValorJerarquia(int idJerarquia)
+        {
+            SO_Jerarquia ServicioJerarquia = new SO_Jerarquia();
+
+            return ServicioJerarquia.GetValor(idJerarquia);
+        }
         #endregion
-
-
+        
         #region Comisiones
         public static List<N_Folio_SIAC> GetComisionGerente(int idUsuario, string fechaInicial, string fechaFinal)
         {
@@ -337,10 +344,7 @@ namespace GrupoLideri.Models
 
             return listaResultante;
         }
-
-
-                
-            
+        
         public static List<N_Folio_SIAC> GetComisionPromotor(int idUsuario, string fechaInicial, string fechaFinal)
         {
             SO_Comisiones ServiceComisiones = new SO_Comisiones();
@@ -388,6 +392,15 @@ namespace GrupoLideri.Models
         }
         #endregion
 
+        #region ArchivosUsuarios
+        public static int InsertArchivoUsuario(byte[] archivo, int idUsuario)
+        {
+            SO_ArchivoUsuario ServiceArhivoUsuario = new SO_ArchivoUsuario();
+
+            return ServiceArhivoUsuario.Insert(archivo, idUsuario);
+        }
+        #endregion
+
         #region Genericos
         public static List<SelectListItem> ToDropdownListFromItemCombo(List<FO_Item_Combo> lista)
         {
@@ -401,5 +414,7 @@ namespace GrupoLideri.Models
             return DropDownList;
         } 
         #endregion
+
+
     }
 }

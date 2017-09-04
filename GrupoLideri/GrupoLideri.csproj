@@ -173,10 +173,9 @@
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\MiOrganigramaController.cs" />
     <Compile Include="Controllers\MiOrganizacionController.cs" />
-    <Compile Include="Controllers\MisComisionesController.cs" />
     <Compile Include="Controllers\MisFoliosController.cs" />
-    <Compile Include="Controllers\OverController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\RecursosHumanosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1162,12 +1161,10 @@
     <Content Include="Views\MisFolios\Index.cshtml" />
     <Content Include="Views\MiOrganizacion\Index.cshtml" />
     <Content Include="Views\MiOrganigrama\Index.cshtml" />
-    <Content Include="Views\MisComisiones\Index.cshtml" />
-    <Content Include="Views\Over\Index.cshtml" />
     <Content Include="Views\Persona\Index.cshtml" />
-    <Content Include="Views\Persona\AsignarMatricula.cshtml" />
     <Content Include="Views\Comisiones\Promotor.cshtml" />
     <Content Include="Views\Comisiones\Gerente.cshtml" />
+    <Content Include="Views\RecursosHumanos\AsignarClavePromotor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

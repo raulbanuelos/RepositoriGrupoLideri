@@ -36,13 +36,6 @@ var formsWizard = function () {
                     CURP: {
                         required: true
                     },
-                    Usuario: {
-                        required: true
-                    },
-                    Contrasena: {
-                        required: true,
-                        minlength: 8
-                    },
                     email: {
                         required: true,
                         email: true
@@ -63,12 +56,6 @@ var formsWizard = function () {
                     },
                     CURP: {
                         required: "La CURP es requerida"
-                    },
-                    Usuario: {
-                        required: "El usuario es requerido"
-                    },
-                    Contrasena: {
-                        required: "La contraseña debe ser mínimo 8 caracteres"
                     },
                     email: {
                         required: "El email es requerido"
@@ -143,7 +130,7 @@ var formsWizard = function () {
                 //});  
 
                 Guardar();
-
+                
             });
         },
 

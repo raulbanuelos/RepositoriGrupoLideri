@@ -31,7 +31,7 @@ namespace ModeloPRD.ServiceObject
             }
         }
         
-        public int Insert(string materno, string paterno, string contrasena, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string usuario,string CURP)
+        public int Insert(string materno, string paterno, string email, DateTime fechaNacimiento, int idJefe, int idJerarquia, string nombre, string rfc, string telefono, string CURP)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace ModeloPRD.ServiceObject
 
                     persona.APELLIDO_MATERNO = materno;
                     persona.APELLIDO_PATERNO = paterno;
-                    persona.CONTRASENA = contrasena;
+                    persona.CONTRASENA = String.Empty;
                     persona.EMAIL = email;
                     persona.FECHA_NACIMIENTO = fechaNacimiento;
                     persona.ID_JEFE = idJefe;
@@ -50,7 +50,7 @@ namespace ModeloPRD.ServiceObject
                     persona.RFC = rfc;
                     persona.CURP = CURP;
                     persona.TELEFONO = telefono;
-                    persona.USUARIO = usuario;
+                    persona.USUARIO = String.Empty;
                     persona.FECHA_CREACION = DateTime.Now;
                     persona.FECHA_ACTUALIZACION = DateTime.Now;
                     persona.CHECK_RH = false;
