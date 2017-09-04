@@ -55,7 +55,9 @@ namespace ModeloPRD.ServiceObject
                     persona.FECHA_ACTUALIZACION = DateTime.Now;
                     persona.CHECK_RH = false;
                     Contexto.TBL_USUARIO.Add(persona);
-                    return Contexto.SaveChanges();
+                    Contexto.SaveChanges();
+
+                    return persona.ID_USUARIO;
                 }
             }
             catch (Exception er)

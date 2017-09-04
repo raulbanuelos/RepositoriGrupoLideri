@@ -4,147 +4,192 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="main-content">
+    <div class="content">
         <div class="row">
-            <div class="col">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title"><i class="fa fa-magic"></i> Alta de personal</h4>
-                    </div>
-                    <div class="panel-body p0">
-                        <div id="wizard" class="bwizard">
-                            <ul class="bwizard-steps">
-                                <li class="active">
-                                    <a href="#tab1" data-toggle="tab">
-                                        <span class="step-number">1</span>
-                                        <span class="step-text">Información personal</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#tab2" data-toggle="tab">
-                                        <span class="step-number">2</span>
-                                        <span class="step-text">Información del grupo</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#tab3" data-toggle="tab">
-                                        <span class="step-number">3</span>
-                                        <span class="step-text">Contacto</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <form class="form-horizontal" role="form">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab1">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Nombre</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="Nombre" id="Nombre" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Apellido Paterno</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="ApellidoPaterno" id="ApellidoPaterno" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Apellido Materno</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="ApellidoMaterno" id="ApellidoMaterno" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">CURP</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="CURP" id="CURP" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">RFC</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="RFC" id="RFC" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label" for="">Fecha de nacimiento</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input id="basic-datepicker" type="text" class="form-control">
-                                                </div>
-                                            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><i class="fa fa-magic"></i> Alta de personal</h4>
+                </div>
+                <div class="panel-body p0">
+                    <div id="wizard" class="bwizard">
+                        <ul class="bwizard-steps">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">
+                                    <span class="step-number">1</span>
+                                    <span class="step-text">Información personal</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab">
+                                    <span class="step-number">2</span>
+                                    <span class="step-text">Información del grupo</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab3" data-toggle="tab">
+                                    <span class="step-number">3</span>
+                                    <span class="step-text">Contacto</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <form class="form-horizontal" role="form">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">Nombre</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input class="form-control" name="Nombre" id="Nombre" type="text">
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="tab2">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Jerarquia</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <select class="form-control select2" id="ddlJerarquia">
-                                                    
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Gerente promotor</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <select class="form-control select2" id="ddlJefe">
-                                                    
-                                                </select>
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">Apellido Paterno</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input class="form-control" name="ApellidoPaterno" id="ApellidoPaterno" type="text">
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="tab3">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">email</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="email" id="email" type="text">
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">Apellido Materno</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input class="form-control" name="ApellidoMaterno" id="ApellidoMaterno" type="text">
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 control-label">Teléfono</label>
-                                            <div class="col-lg-10 col-md-9">
-                                                <input class="form-control" name="Telefono" id="Telefono" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">CURP</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input class="form-control" name="CURP" id="CURP" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">RFC</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input class="form-control" name="RFC" id="RFC" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label" for="">Fecha de nacimiento</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input id="basic-datepicker" type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <ul class="pager">
-                                <li class="previous">
-                                    <a href="#">&larr; Atras</a>
-                                </li>
-                                <li class="next">
-                                    <a href="#">Siguiente &rarr;</a>
-                                </li>
-                                <li class="next finish" style="display:none;">
-                                    <a href="#">Guardar</a>
-                                </li>
-                            </ul>
-                        </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">Jerarquia</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <select class="form-control select2" id="ddlJerarquia"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">Gerente promotor</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <select class="form-control select2" id="ddlJefe"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab3">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">email</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input class="form-control" name="email" id="email" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-3 control-label">Teléfono</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input class="form-control" name="Telefono" id="Telefono" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="#">&larr; Atras</a>
+                            </li>
+                            <li class="next">
+                                <a href="#">Siguiente &rarr;</a>
+                            </li>
+                            <li class="next finish" style="display:none;">
+                                <a href="#">Guardar</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
-                <div class="panel panel-default toggle panelMove panelClose panelRefresh">
-
-                </div>
-
-                <div class="panel panel-default toggle panelMove panelClose panelRefresh">
-
-                </div>
+            <div class="panel panel-default toggle panelMove panelClose panelRefresh">
 
             </div>
+
+            <div class="panel panel-default toggle panelMove panelClose panelRefresh">
+
+            </div>
+
+
         </div>
     </div>
 
+    <div class="row">
+        <input type="file" id="FileUpload1" multiple />
+        <input type="button" id="btnUpload" value="Upload Files" />
+    </div>
+</div>
+
 <script>
+
+    $(function () {
+        $("#btnUpload").click(function () {
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#FileUpload1").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                // Adding one more key to FormData object
+                fileData.append("username", "Manas");
+                var urlSave = '@Url.Action("UploadFiles", "Persona")';
+
+                $.ajax({
+                    url: urlSave,
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result) {
+                        alert(result);
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        });
+
+
+    });
     $(function () {
         $("#basic-datepicker").datepicker({
             format: 'dd/mm/yyyy',
             autoclose: true
         });
     });
-    
+
 
     $(function () {
         var urlSave = '@Url.Action("CargarJerarquias", "Persona")';
@@ -189,58 +234,79 @@
         placeholder: "Promotor"
     });
 
-    function Guardar()
-    {
+    function Guardar() {
         //alert("Guardar");
         var urlSave = '@Url.Action("InsertPersona", "Persona")';
-        
-        var _amaterno = $("#ApellidoMaterno").val();
-        var _apaterno = $("#ApellidoPaterno").val();
-        var _email = $("#email").val();
-        var _fechaNacimiento = $("#basic-datepicker").val();
-        var _idJefe = $("#ddlJefe").val();
-        var _idJerarquia = $("#ddlJerarquia").val();
-        var _nombre = $("#Nombre").val();
-        var _rfc = $("#RFC").val();
-        var _telefono = $("#Telefono").val();
-        var _CURP = $("#CURP").val();
-        
-        $.ajax({
-            type: "POST",
-            url: urlSave,
-            data: JSON.stringify({
-                aMaterno: _amaterno, aPaterno: _apaterno, email: _email, fechaNacimiento: _fechaNacimiento, idJefe: _idJefe,
-                idJerarquia: _idJerarquia, nombre: _nombre, rfc: _rfc, telefono: _telefono, CURP: _CURP
-            }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                //alert("Persona guardada!");
-                var textoRespuesta = "<i class=\"fa fa-check\"></i> " + response + "";
-                var n = noty({
-                    text: textoRespuesta,
-                    type: 'success',
-                    layout: 'topRight',
-                    theme: 'bootstrapTheme',//Current theme
-                    closeWith: ['button'],
-                    timeout: 5000, // MiliSeconds before notification close
-                    animation: {
-                        open: 'animated bounceInRight', // Animate.css class names
-                        close: 'animated bounceOutRight', // Animate.css class names
-                        easing: 'swing', // unavailable - no need
-                        speed: 500 // unavailable - no need
-                    }
-                });
-                limpiarCampos();
-            },
-            error: function (error) {
-                alert("Upps! Ocurrio un error!");
+
+        if (window.FormData !== undefined)
+        {
+            var fileUpload = $("#FileUpload1").get(0);
+            var files = fileUpload.files;
+
+            // Create FormData object
+            var fileData = new FormData();
+
+            // Looping over all files and add it to FormData object
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
             }
-        });
+
+            var _amaterno = $("#ApellidoMaterno").val();
+            var _apaterno = $("#ApellidoPaterno").val();
+            var _email = $("#email").val();
+            var _fechaNacimiento = $("#basic-datepicker").val();
+            var _idJefe = $("#ddlJefe").val();
+            var _idJerarquia = $("#ddlJerarquia").val();
+            var _nombre = $("#Nombre").val();
+            var _rfc = $("#RFC").val();
+            var _telefono = $("#Telefono").val();
+            var _CURP = $("#CURP").val();
+
+            fileData.append("_aMaterno", _amaterno);
+            fileData.append("_aPaterno", _apaterno);
+            fileData.append("_email", _email);
+            fileData.append("_fechaNacimiento", _fechaNacimiento);
+            fileData.append("_idJefe", _idJefe);
+            fileData.append("_idJerarquia", _idJerarquia);
+            fileData.append("_nombre", _nombre);
+            fileData.append("_rfc", _rfc);
+            fileData.append("_telefono", _telefono);
+            fileData.append("_curp",_CURP);
+
+            $.ajax({
+                type: "POST",
+                url: urlSave,
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (response) {
+                    //alert("Persona guardada!");
+                    var textoRespuesta = "<i class=\"fa fa-check\"></i> " + response + "";
+                    var n = noty({
+                        text: textoRespuesta,
+                        type: 'success',
+                        layout: 'topRight',
+                        theme: 'bootstrapTheme',//Current theme
+                        closeWith: ['button'],
+                        timeout: 5000, // MiliSeconds before notification close
+                        animation: {
+                            open: 'animated bounceInRight', // Animate.css class names
+                            close: 'animated bounceOutRight', // Animate.css class names
+                            easing: 'swing', // unavailable - no need
+                            speed: 500 // unavailable - no need
+                        }
+                    });
+                    limpiarCampos();
+                },
+                error: function (error) {
+                    alert("Upps! Ocurrio un error!");
+                }
+            });
+        }
+       
     }
 
-    function limpiarCampos()
-    {
+    function limpiarCampos() {
         $("#ApellidoMaterno").val("");
         $("#ApellidoPaterno").val("");
         $("#email").val("");
