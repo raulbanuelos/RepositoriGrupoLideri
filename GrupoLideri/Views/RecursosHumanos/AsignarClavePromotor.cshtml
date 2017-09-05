@@ -20,6 +20,7 @@
                     <th>Telefono</th>
                     <th>Fecha de nacimiento</th>
                     <th>Correo</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody id="tblPersonas">
@@ -37,60 +38,67 @@
                                 <td>@item.Telefono</td>
                                 <td>@item.fechaNacimiento</td>
                                 <td>@item.Email</td>
+                                @{
+                                    using (Html.BeginForm("Actualizar", "Persona", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <td>
+                                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdlCambiarDatos" onclick="CargarIdPersona('@item.idPersona')" value="Ver" />
+
+                                            <div class="modal fade" data-backdrop="static" data-keyboard="false" id="mdlCambiarDatos" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document" data-backdrop="static" data-keyboard="false">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" onclick="BorrarFecha()">&times;</button>
+                                                            <h3 class="modal-title" id="modalLabel">Actualizar Datos</h3>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table>
+                                                                <tr>
+                                                                    <td><label class="col-lg-2 col-md-3 control-label">NOMBRE</label></td>
+                                                                    <td><input class="form-control" name="Nombre" id="Nombre" type="text" value="@item.Nombre"></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td><label class="col-lg-2 col-md-3 control-label">APELLIDO PATERNO</label></td>
+                                                                    <td><input class="form-control" name="Nombre" id="Nombre" type="text" value="@item.ApellidoPaterno"></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td><label class="col-lg-2 col-md-3 control-label">APELLIDO MATERNO</label></td>
+                                                                    <td><input class="form-control" name="Nombre" id="Nombre" type="text" value="@item.ApellidoMaterno"></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td><label class="col-lg-2 col-md-3 control-label">CURP</label></td>
+                                                                    <td><input class="form-control" name="Nombre" id="Nombre" type="text" value="@item.CURP"></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td><label class="col-lg-2 col-md-3 control-label">USUARIO</label></td>
+                                                                    <td><input class="form-control" name="Nombre" id="Nombre" type="text"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label class="col-lg-2 col-md-3 control-label">CLAVE PROMOTOR</label></td>
+                                                                    <td><input class="form-control" name="Nombre" id="Nombre" type="text"></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    }
+                                }
+
                             </tr>
-                        }
-                    }
+                                        }
+                                    }
                 }
             </tbody>
         </table>
     </div>
 </div>
-
-
-
-<script>
-    $(function () {
-        @*var urlSave = '@Url.Action("GetPersonasPendienteClavePromotor", "RecursosHumanos")';
-        var _parametro = "";
-        $.ajax({
-            type: "POST",
-            url: urlSave,
-            dataType: "json",
-            data: JSON.stringify({ parametro: _parametro }),
-            success: function (personas) {
-                llenarTabla(personas);
-            },
-            error: function (ex) {
-                alert("Error");
-            }
-        });*@
-
-
-    });
-
-    function llenarTabla(data) {
-        //<th>Nombre</th>
-        //<th>Apellido paterno</th>
-        //<th>Apellido materno</th>
-        //<th>RFC</th>
-        //<th>CURP</th>
-        //<th>Telefono</th>
-        //<th>Fecha de nacimiento</th>
-        //<th>Correo</th>
-        //var row = "";
-        //$.each(data, function (index, item) {
-        //    row += "<tr>";
-        //    row += "<td>" + item.Nombre + "</td>";
-        //    row += "<td>" + item.ApellidoPaterno + "</td>";
-        //    row += "<td>" + item.ApellidoMaterno + "</td>";
-        //    row += "<td>" + item.RFC + "</td>";
-        //    row += "<td>" + item.CURP + "</td>";
-        //    row += "<td>" + item.Telefono + "</td>";
-        //    row += "<td>" + item.fechaNacimiento + "</td>";
-        //    row += "<td>" + item.Email + "</td>";
-        //    row += "</tr>";
-        //});
-
-        //$("#tblPersonas").html(row);
-    }
-</script>
