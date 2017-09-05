@@ -21,6 +21,8 @@ namespace GrupoLideri.Models
         public string Email { get; set; }
         public DateTime fechaNacimiento { get; set; }
 
+        public List<DO_Archivo> ArchivosPersonales { get; set; }
+
         //JefeId
         public int parentId { get; set; }
         public int Id { get; set; }

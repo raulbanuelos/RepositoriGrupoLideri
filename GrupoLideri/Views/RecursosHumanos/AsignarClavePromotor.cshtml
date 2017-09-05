@@ -38,9 +38,7 @@
                                 <td>@item.Telefono</td>
                                 <td>@item.fechaNacimiento</td>
                                 <td>@item.Email</td>
-                                @{
-                                    using (Html.BeginForm("Actualizar", "Persona", FormMethod.Post))
-                                    {
+                                
                                         @Html.AntiForgeryToken()
                                         <td>
                                             <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdlCambiarDatos" onclick="CargarIdPersona('@item.idPersona')" value="Ver" />
@@ -82,23 +80,56 @@
                                                                     <td><label class="col-lg-2 col-md-3 control-label">CLAVE PROMOTOR</label></td>
                                                                     <td><input class="form-control" name="Nombre" id="Nombre" type="text"></td>
                                                                 </tr>
+                                                                <tr>
+                                                                    @{
+                                                                        foreach (DO_Archivo archivo in item.ArchivosPersonales)
+                                                                        {
+                                                                            using (Html.BeginForm("DescargarArchivo","RecursosHumanos",new { idArchivo = archivo.idArchivo},FormMethod.Post))
+                                                                            {
+                                                                                @Html.AntiForgeryToken()
+                                                                                <td>
+                                                                                    <label class="col-lg-2 col-md-3 control-label">@archivo.idArchivo</label>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="submit" value="Descargar" class="btn btn-default"  />
+                                                                                </td>
+                                                                            }
+
+                                                                        }
+                                                                    }
+
+                                                                </tr>
                                                             </table>
                                                         </div>
                                                         <div class="modal-footer">
 
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </td>
-                                    }
-                                }
+                                     
 
                             </tr>
-                                        }
-                                    }
+                          }
+                      }
                 }
             </tbody>
         </table>
     </div>
 </div>
+<script>
+    function descargarArchivo(_idArchivo)
+    {
+        var urlSave = '@Url.Action("DescargarArchivo","RecursosHumanos")';
+        $.ajax({
+            type: "POST",
+            url: urlSave,
+            data: JSON.stringify({ idArchivo: _idArchivo }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+
+    }
+</script>

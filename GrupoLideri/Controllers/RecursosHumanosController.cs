@@ -22,6 +22,11 @@ namespace GrupoLideri.Controllers
 
             return View();
         }
+        [HttpPost]
+        public void DescargarArchivo(int idArchivo)
+        {
+            DataManagerLideri.DescargarArchivo(idArchivo);
+        }
 
         public JsonResult AsignarClave(int idUsuario, string cvePromotor)
         {

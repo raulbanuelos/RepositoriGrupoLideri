@@ -37,5 +37,42 @@ namespace ModeloPRD.ServiceObject
                 return 0;
             }
         }
+
+        public byte[] GetArchivo(int idArchivo)
+        {
+            try
+            {
+                using (var Conexion = new JudaPRDEntities())
+                {
+                    byte[] Lista = (from a in Conexion.TBL_ARCHIVO_USUARIO
+                                 where a.ID_ARCHIVO_USUARIO == idArchivo
+                                 select a.ARCHIVO).FirstOrDefault();
+                    return Lista;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public IList GetArchivosUsuario(int idPersona)
+        {
+            try
+            {
+                using (var Conexion = new JudaPRDEntities())
+                {
+                    var ListaArchivos = (from a in Conexion.TBL_ARCHIVO_USUARIO
+                                         where a.ID_USUARIO == idPersona
+                                         select a).ToList();
+
+                    return ListaArchivos;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

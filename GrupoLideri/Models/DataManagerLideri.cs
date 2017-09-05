@@ -36,7 +36,7 @@ namespace GrupoLideri.Models
 
             return persona;
         }
-
+        
         public static int AsignarCvePromotor(int idUsuario, string cvePromotor)
         {
             SO_Persona ServicioPersona = new SO_Persona();
@@ -157,6 +157,7 @@ namespace GrupoLideri.Models
         public static List<DO_Persona> GetPersonaPendienteClavePromotor()
         {
             SO_Persona ServicioPersona = new SO_Persona();
+            SO_ArchivoUsuario ServicioArvhivo = new SO_ArchivoUsuario();
 
             List<DO_Persona> ListaPersona = new List<DO_Persona>();
 
@@ -169,6 +170,7 @@ namespace GrupoLideri.Models
                     Type tipo = item.GetType();
 
                     DO_Persona persona = new DO_Persona();
+                    persona.ArchivosPersonales = new List<DO_Archivo>();
 
                     persona.idPersona = (int)tipo.GetProperty("ID_USUARIO").GetValue(item, null);
                     persona.ApellidoMaterno = (string)tipo.GetProperty("APELLIDO_MATERNO").GetValue(item, null);
@@ -182,6 +184,24 @@ namespace GrupoLideri.Models
                     persona.Telefono = (string)tipo.GetProperty("TELEFONO").GetValue(item, null);
                     persona.fechaNacimiento = (DateTime)tipo.GetProperty("FECHA_NACIMIENTO").GetValue(item, null);
                     persona.Email = (string)tipo.GetProperty("EMAIL").GetValue(item, null);
+
+                    IList informacionArchivosBD = ServicioArvhivo.GetArchivosUsuario(persona.idPersona);
+
+                    if (informacionArchivosBD != null)
+                    {
+                        foreach (var archivo in informacionArchivosBD)
+                        {
+                            Type tipoArchivo = archivo.GetType();
+                            DO_Archivo archivoFisico = new DO_Archivo();
+
+                            archivoFisico.idArchivo = (int)tipoArchivo.GetProperty("ID_ARCHIVO_USUARIO").GetValue(archivo, null);
+                            archivoFisico.ArchivoFisico = (byte[])tipoArchivo.GetProperty("ARCHIVO").GetValue(archivo, null);
+                            archivoFisico.FechaCreacion = (DateTime)tipoArchivo.GetProperty("FECHA_CREACION").GetValue(archivo, null);
+                            archivoFisico.NombreArchivo = "Archivo.pdf";
+                            persona.ArchivosPersonales.Add(archivoFisico);
+
+                        }
+                    }
 
                     ListaPersona.Add(persona);
                 }
@@ -398,6 +418,20 @@ namespace GrupoLideri.Models
             SO_ArchivoUsuario ServiceArhivoUsuario = new SO_ArchivoUsuario();
 
             return ServiceArhivoUsuario.Insert(archivo, idUsuario);
+        }
+
+        public static void DescargarArchivo(int idArchivo)
+        {
+            SO_ArchivoUsuario ServicioArchivo = new SO_ArchivoUsuario();
+
+            byte[] archivo = ServicioArchivo.GetArchivo(idArchivo);
+
+            string tipoContenido = MimeMapping.GetMimeMapping("BADE880101HASXZD05.pdf");
+            HttpContext.Current.Response.ContentType = tipoContenido;
+            HttpContext.Current.Response.AppendHeader("Content-Type", tipoContenido);
+            HttpContext.Current.Response.AppendHeader("Content-Length", archivo.Length.ToString());
+            HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment;filename=" + "BADE880101HASXZD05.pdf");
+            HttpContext.Current.Response.BinaryWrite(archivo);
         }
         #endregion
 
