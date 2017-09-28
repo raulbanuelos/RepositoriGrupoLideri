@@ -449,6 +449,85 @@ namespace GrupoLideri.Models
         } 
         #endregion
 
+        public static List<N_Folio_SIAC> GetProduccionPromotor(int idUsuario, string fechaInicial, string fechaFinal)
+        {
+            SO_Produccion ServicioProduccion = new SO_Produccion();
+
+            List<N_Folio_SIAC> ListaResultante = new List<N_Folio_SIAC>();
+
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServicioProduccion.GetProduccionPromotor(idUsuario, fechaInicial, fechaFinal);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow element in informacionBD.Tables[0].Rows)
+                    {
+                        N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                        folio.FECHA_CAPTURA = element["FECHA_CAPTURA"].ToString();
+                        folio.PROMOTOR = element["PROMOTOR"].ToString();
+                        folio.ESTRATEGIA = element["ESTRATEGIA"].ToString();
+                        folio.AREA = element["AREA"].ToString();
+                        folio.FOLIO_SIAC = element["FOLIO_SIAC"].ToString();
+                        folio.ESTATUS_SIAC = element["ESTATUS_SIAC"].ToString();
+                        folio.TIPO_LINEA = element["TIPO_LINEA"].ToString();
+                        folio.LINEA_CONTRATADA = element["LINEA_CONTRATADA"].ToString();
+                        folio.PAQUETE = element["PAQUETE"].ToString();
+                        folio.TELEFONO_ASIGNADO = element["TELEFONO_ASIGNADO"].ToString();
+                        folio.ESTATUS_PISA_MULTIORDEN = element["ESTATUS_PISA_MULTIORDEN"].ToString();
+                        folio.ORDEN_SERVICIO_TV = element["ORDEN_SERVICIO_TV"].ToString();
+
+                        ListaResultante.Add(folio);
+                    }
+                }
+            }
+
+            return ListaResultante;
+        }
+
+        public static List<N_Folio_SIAC> GetProduccionGerente(int idUsuario, string fechaInicial, string fechaFinal)
+        {
+            SO_Produccion ServicioProduccion = new SO_Produccion();
+
+            List<N_Folio_SIAC> ListaResultante = new List<N_Folio_SIAC>();
+
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServicioProduccion.getProduccionGerente(idUsuario, fechaInicial, fechaFinal);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow element in informacionBD.Tables[0].Rows)
+                    {
+                        N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                        folio.FECHA_CAPTURA = element["FECHA_CAPTURA"].ToString();
+                        folio.PROMOTOR = element["PROMOTOR"].ToString();
+                        folio.ESTRATEGIA = element["ESTRATEGIA"].ToString();
+                        folio.AREA = element["AREA"].ToString();
+                        folio.FOLIO_SIAC = element["FOLIO_SIAC"].ToString();
+                        folio.ESTATUS_SIAC = element["ESTATUS_SIAC"].ToString();
+                        folio.TIPO_LINEA = element["TIPO_LINEA"].ToString();
+                        folio.LINEA_CONTRATADA = element["LINEA_CONTRATADA"].ToString();
+                        folio.PAQUETE = element["PAQUETE"].ToString();
+                        folio.TELEFONO_ASIGNADO = element["TELEFONO_ASIGNADO"].ToString();
+                        folio.ESTATUS_PISA_MULTIORDEN = element["ESTATUS_PISA_MULTIORDEN"].ToString();
+                        folio.ORDEN_SERVICIO_TV = element["ORDEN_SERVICIO_TV"].ToString();
+                        folio.NombrePromotor = element["NOMBRE_PROMOTOR"].ToString();
+
+                        ListaResultante.Add(folio);
+                    }
+                }
+            }
+
+            return ListaResultante;
+        }
+
 
     }
 }

@@ -121,7 +121,7 @@
                         @if ((bool)Session["PROMOTOR"] || (bool)Session["PROMOTORENTRENADOR"] || (bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
                         {
                             <li class="nav-section-header">
-                                <h5>Mis Comisiones</h5>
+                                <h5>Mis Ganancias</h5>
                             </li>
                         }
 
@@ -141,6 +141,33 @@
                                 <a href="@Url.Action("Gerente","Comisiones")">
                                     <i class="fa fa-money"></i>
                                     <span class="nav-item-text">Mis comisiones</span>
+                                </a>
+                            </li>
+                        }
+
+                        @if ((bool)Session["PROMOTOR"] || (bool)Session["PROMOTORENTRENADOR"] || (bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
+                        {
+                            <li class="nav-section-header">
+                                <h5>Producción</h5>
+                            </li>
+                        }
+
+                        @if ((bool)Session["PROMOTOR"] || (bool)Session["PROMOTORENTRENADOR"])
+                        {
+                            <li>
+                                <a href="@Url.Action("Promotor","Produccion")">
+                                    <i class="fa fa-money"></i>
+                                    <span class="nav-item-text">Mis folios</span>
+                                </a>
+                            </li>
+                        }
+
+                        @if ((bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
+                        {
+                            <li>
+                                <a href="@Url.Action("Gerente","Produccion")">
+                                    <i class="fa fa-money"></i>
+                                    <span class="nav-item-text">Mis folios</span>
                                 </a>
                             </li>
                         }

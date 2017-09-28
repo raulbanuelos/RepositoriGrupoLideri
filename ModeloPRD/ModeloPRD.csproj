@@ -72,7 +72,8 @@
     <Compile Include="ServiceObject\SO_Folio.cs" />
     <Compile Include="ServiceObject\SO_Jerarquia.cs" />
     <Compile Include="ServiceObject\SO_Persona.cs" />
-    <Compile Include="SO_Comisiones.cs" />
+    <Compile Include="ServiceObject\SO_Comisiones.cs" />
+    <Compile Include="ServiceObject\SO_Produccion.cs" />
     <Compile Include="SQLServer\GrupoLideri_SQL.cs" />
     <Compile Include="TBL_ARCHIVO_USUARIO.cs">
       <DependentUpon>Model.tt</DependentUpon>

@@ -6,27 +6,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModeloPRD
+namespace ModeloPRD.ServiceObject
 {
-    public class SO_Comisiones
+    public class SO_Produccion
     {
-        public DataSet GetComosionesPromotor(int idPersona, string fechaIncial = "", string fechaFinal = "")
+        #region Attributes
+        private string SP_PROD_GET_PRODUCCION_FOLIOS_PROMOTOR = "SP_PROD_GET_PRODUCCION_FOLIOS_PROMOTOR";
+        private string SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE = "SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE"; 
+        #endregion
+
+        public DataSet GetProduccionPromotor(int idPersona, string fechaInicial, string fechaFinal)
         {
             try
             {
                 DataSet datos = null;
-
                 GrupoLideri_SQL conexion = new GrupoLideri_SQL();
-
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
-                
-                parametros.Add("fechaInicial", fechaIncial);
-                parametros.Add("fechaFinal", fechaFinal);
-                parametros.Add("idUsuario", idPersona);
 
-                datos = conexion.EjecutarStoredProcedure("SP_PROD_GET_COMISION_FOLIOS_PROMOTOR", parametros);
+                parametros.Add("idUsuario", idPersona);
+                parametros.Add("fechaInicial", fechaInicial);
+                parametros.Add("fechaFinal",fechaFinal);
+
+                datos = conexion.EjecutarStoredProcedure(SP_PROD_GET_PRODUCCION_FOLIOS_PROMOTOR, parametros);
 
                 return datos;
+
+
             }
             catch (Exception)
             {
@@ -34,21 +39,19 @@ namespace ModeloPRD
             }
         }
 
-        public DataSet GetComosionesGerente(int idPersona, string fechaIncial, string fechaFinal)
+        public DataSet getProduccionGerente(int idPersona, string fechaInicial, string fechaFinal)
         {
             try
             {
                 DataSet datos = null;
-
                 GrupoLideri_SQL conexion = new GrupoLideri_SQL();
-
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
 
-                parametros.Add("fechaInicial", fechaIncial);
-                parametros.Add("fechaFinal", fechaFinal);
                 parametros.Add("idUsuario", idPersona);
+                parametros.Add("fechaInicial", fechaInicial);
+                parametros.Add("fechaFinal", fechaFinal);
 
-                datos = conexion.EjecutarStoredProcedure("SP_PROD_GET_COMISION_FOLIOS_GERENTE", parametros);
+                datos = conexion.EjecutarStoredProcedure(SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE, parametros);
 
                 return datos;
             }

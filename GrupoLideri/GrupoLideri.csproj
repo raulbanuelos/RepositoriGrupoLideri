@@ -175,6 +175,7 @@
     <Compile Include="Controllers\MiOrganizacionController.cs" />
     <Compile Include="Controllers\MisFoliosController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\ProduccionController.cs" />
     <Compile Include="Controllers\RecursosHumanosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1166,6 +1167,8 @@
     <Content Include="Views\Comisiones\Promotor.cshtml" />
     <Content Include="Views\Comisiones\Gerente.cshtml" />
     <Content Include="Views\RecursosHumanos\AsignarClavePromotor.cshtml" />
+    <Content Include="Views\Produccion\Gerente.cshtml" />
+    <Content Include="Views\Produccion\Promotor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
