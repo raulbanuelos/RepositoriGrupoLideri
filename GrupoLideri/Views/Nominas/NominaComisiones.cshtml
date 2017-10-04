@@ -1,0 +1,40 @@
+﻿@using GrupoLideri.Models
+@{
+    ViewBag.Title = "NominaComisiones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte de nómina</h2>
+<div class="panel panel-default toggle panelMove panelClose panelRefresh">
+    <div class="panel-heading">
+        <h4 class="panel-title">Nominas</h4>
+    </div>
+    <div class="panel-body">
+        <table id="responsive-datatables" class="table table-bordered table-striped table-hover dt-responsive non-responsive" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>No de folios</th>
+                    <th>Comisión total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (((List<N_Folio_SIAC>)ViewBag.ListaNominaComision).Count > 0)
+                    {
+                        foreach (N_Folio_SIAC folio in ViewBag.ListaNominaComision)
+                        {
+                            <tr>
+                                <td>@folio.NombrePromotor</td>
+                                <td>@folio.NoFolios</td>
+                                <td>@folio.COMISION_TOTAL</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

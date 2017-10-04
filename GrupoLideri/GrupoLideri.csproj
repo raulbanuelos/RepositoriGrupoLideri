@@ -174,6 +174,7 @@
     <Compile Include="Controllers\MiOrganigramaController.cs" />
     <Compile Include="Controllers\MiOrganizacionController.cs" />
     <Compile Include="Controllers\MisFoliosController.cs" />
+    <Compile Include="Controllers\NominasController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\ProduccionController.cs" />
     <Compile Include="Controllers\RecursosHumanosController.cs" />
@@ -1169,6 +1170,7 @@
     <Content Include="Views\RecursosHumanos\AsignarClavePromotor.cshtml" />
     <Content Include="Views\Produccion\Gerente.cshtml" />
     <Content Include="Views\Produccion\Promotor.cshtml" />
+    <Content Include="Views\Nominas\NominaComisiones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

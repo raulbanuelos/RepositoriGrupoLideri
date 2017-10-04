@@ -107,17 +107,17 @@
                             </a>
                         </li>
                         @*<li class="nav-section-header">
-                            <h5>Mi oficina</h5>
-                        </li>
+                <h5>Mi oficina</h5>
+            </li>
 
-                        <li>
-                            <a href="@Url.Action("Index","MisFolios")">
-                                <i class="fa fa-cc"></i>
-                                <span class="nav-item-text">Mis Folios</span>
-                            </a>
-                        </li>*@
+            <li>
+                <a href="@Url.Action("Index","MisFolios")">
+                    <i class="fa fa-cc"></i>
+                    <span class="nav-item-text">Mis Folios</span>
+                </a>
+            </li>*@
 
-                        
+
                         @if ((bool)Session["PROMOTOR"] || (bool)Session["PROMOTORENTRENADOR"] || (bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
                         {
                             <li class="nav-section-header">
@@ -197,7 +197,7 @@
                                 </a>
                             </li>
                         }
-                        
+
                         @if ((bool)Session["RECURSOSHUMANOS"])
                         {
                             <li class="nav-section-header">
@@ -207,6 +207,19 @@
                                 <a href="@Url.Action("AsignarClavePromotor", "RecursosHumanos")">
                                     <i class="fa fa-barcode"></i>
                                     <span class="nav-item-text">Asignar cve promotor</span>
+                                </a>
+                            </li>
+                        }
+
+                        @if ((bool)Session["NOMINAS"])
+                        {
+                            <li class="nav-section-header">
+                                <h5>Nominas</h5>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("NominaComisiones", "Nominas")">
+                                    <i class="fa fa-barcode"></i>
+                                    <span class="nav-item-text">Generar nomina comisión</span>
                                 </a>
                             </li>
                         }

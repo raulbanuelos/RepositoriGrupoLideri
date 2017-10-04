@@ -71,6 +71,7 @@
     <Compile Include="ServiceObject\SO_ClavePromotor.cs" />
     <Compile Include="ServiceObject\SO_Folio.cs" />
     <Compile Include="ServiceObject\SO_Jerarquia.cs" />
+    <Compile Include="ServiceObject\SO_Nominas.cs" />
     <Compile Include="ServiceObject\SO_Persona.cs" />
     <Compile Include="ServiceObject\SO_Comisiones.cs" />
     <Compile Include="ServiceObject\SO_Produccion.cs" />

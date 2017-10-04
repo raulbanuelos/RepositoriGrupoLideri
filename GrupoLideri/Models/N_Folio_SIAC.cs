@@ -60,5 +60,6 @@ namespace GrupoLideri.Models
         public double PORCENTAJE_COMISION { get; set; }
         public double COMISION_TOTAL { get; set; }
         public string NombrePromotor { get; set; }
+        public int NoFolios { get; set; }
     }
 }

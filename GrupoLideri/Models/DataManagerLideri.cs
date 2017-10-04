@@ -528,6 +528,34 @@ namespace GrupoLideri.Models
             return ListaResultante;
         }
 
+        public static List<N_Folio_SIAC> GetNominaComisiones()
+        {
+            SO_Nominas ServicioNominas = new SO_Nominas();
+
+            List<N_Folio_SIAC> ListaResultante = new List<N_Folio_SIAC>();
+
+            DataSet informacionBD = ServicioNominas.GetNominasComision();
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                        folio.NombrePromotor = item["NOMBRE_USUARIO"].ToString();
+                        folio.NoFolios = Convert.ToInt32(item["TOTAL_FOLIOS"].ToString());
+                        folio.COMISION_TOTAL = Convert.ToDouble(item["PAGO"].ToString());
+
+                        ListaResultante.Add(folio);
+                    }
+                }
+            }
+
+            return ListaResultante;
+        }
+
 
     }
 }
