@@ -157,10 +157,18 @@ var Dashboard = function () {
             Morris.Donut({
                 element: 'morris-donut',
                 data: [
-                    {value: 70, label: 'Facebook'},
-                    {value: 15, label: 'Twitter'},
-                    {value: 10, label: 'Pinterest'},
-                    {value: 5, label: 'Google'}
+                    { value: 4.6, label: 'INFINITUM HASTA 10 MBPS (SOLO INTERNET)' },
+                    { value: 0.2, label: 'INFINITUM HASTA 50 MBPS (SOLO INTERNET)' },
+                    { value: 0.9, label: 'LINEA SIN PAQUETE' },
+                    { value: 83.8, label: 'PAQUETE  $389' },
+                    { value: 1.4, label: 'PAQUETE  $499' },
+                    { value: 0.3, label: 'PAQUETE $333' },
+                    { value: 2.4, label: 'PAQUETE $599' },
+                    { value: 0.2, label: 'PAQUETE INFINITUM NEGOCIO $1,499' },
+                    { value: 4.3, label: 'PAQUETE INFINITUM NEGOCIO $399' },
+                    { value: 0.7, label: 'PAQUETE INFINITUM NEGOCIO $549' },
+                    { value: 1.4, label: 'VELOCIDAD ADICIONAL 10' }
+
                 ],
                 formatter: function (x) { return x + "%"},
                 colors: [chartColours.blue_dark, chartColours.blue_light, chartColours.red_dark, chartColours.red],
@@ -641,7 +649,7 @@ var Dashboard = function () {
 }();
 
 $(document).ready(function() {    
-
+    
     Dashboard.matchHeight(); //Match height for some elements
     Dashboard.visitorsChart(Dashboard.chartColours()); //Visitors chart
     Dashboard.donutChartSocial(Dashboard.chartColours()); //Social donut chart
