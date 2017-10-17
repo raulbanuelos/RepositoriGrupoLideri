@@ -12,8 +12,32 @@ namespace ModeloPRD.ServiceObject
     {
         #region Attributes
         private string SP_PROD_GET_PRODUCCION_FOLIOS_PROMOTOR = "SP_PROD_GET_PRODUCCION_FOLIOS_PROMOTOR";
-        private string SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE = "SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE"; 
+        private string SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE = "SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE";
+        private string SP_PROD_GET_PAQUETES_GERENTE = "SP_PROD_GET_PAQUETES_GERENTE";
         #endregion
+
+        public DataSet GetProduccionPaquetesGerente(int idPersona, string fechaInicial, string fechaFinal)
+        {
+            try
+            {
+                DataSet datos = null;
+
+                GrupoLideri_SQL conexion = new GrupoLideri_SQL();
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("idUsuario", idPersona);
+                parametros.Add("fechaInicial", fechaInicial);
+                parametros.Add("fechaFinal", fechaFinal);
+
+                datos = conexion.EjecutarStoredProcedure(SP_PROD_GET_PAQUETES_GERENTE, parametros);
+
+                return datos;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
         public DataSet GetProduccionPromotor(int idPersona, string fechaInicial, string fechaFinal)
         {

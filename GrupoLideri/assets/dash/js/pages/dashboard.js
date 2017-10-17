@@ -152,11 +152,11 @@ var Dashboard = function () {
         },
 
         //Donut chart for social stats
-        donutChartSocial : function (chartColours) {
+        donutChartSocial : function (chartColours,dataa) {
 
             Morris.Donut({
                 element: 'morris-donut',
-                data: [
+                /*data: [
                     { value: 4.6, label: 'INFINITUM HASTA 10 MBPS (SOLO INTERNET)' },
                     { value: 0.2, label: 'INFINITUM HASTA 50 MBPS (SOLO INTERNET)' },
                     { value: 0.9, label: 'LINEA SIN PAQUETE' },
@@ -169,7 +169,8 @@ var Dashboard = function () {
                     { value: 0.7, label: 'PAQUETE INFINITUM NEGOCIO $549' },
                     { value: 1.4, label: 'VELOCIDAD ADICIONAL 10' }
 
-                ],
+                ],*/
+                data: dataa,
                 formatter: function (x) { return x + "%"},
                 colors: [chartColours.blue_dark, chartColours.blue_light, chartColours.red_dark, chartColours.red],
                 resize: true
@@ -648,13 +649,28 @@ var Dashboard = function () {
 
 }();
 
-$(document).ready(function() {    
-    
+$(document).ready(function() {
+    var urlSave = '@Url.Action("CargarPaquetesVendidos","Home")';
+    $.ajax({
+        type: "POST",
+        url: urlSave,
+        data: JSON.stringify({ fechaInicial: "01/01/2017", fechaFinal: "30/10/2017" }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger;
+            Dashboard.donutChartSocial(Dashboard.chartColours(), data);
+        },
+        error: function (err) {
+            alert("Error");
+        }
+    });
+
     Dashboard.matchHeight(); //Match height for some elements
     Dashboard.visitorsChart(Dashboard.chartColours()); //Visitors chart
-    Dashboard.donutChartSocial(Dashboard.chartColours()); //Social donut chart
+    //Dashboard.donutChartSocial(Dashboard.chartColours()); //Social donut chart
     Dashboard.countTo(); //Count numbers
-    Dashboard.WeatherApp('Barcelona'); //Weather app specify your city 
+    Dashboard.WeatherApp('Aguascalientes'); //Weather app specify your city 
     Dashboard.showCalendar(); //Show calendar
     Dashboard.userNotification(); //Show new user notification
     Dashboard.latestSalesMap(Dashboard.chartColours());//init vector map

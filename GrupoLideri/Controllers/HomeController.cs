@@ -28,5 +28,20 @@ namespace GrupoLideri.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public JsonResult CargarPaquetesVendidos(string fechaInicial,string fechaFinal)
+        {
+            List<FO_Item_Paquete> paquetes = new List<FO_Item_Paquete>();
+
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            paquetes = DataManagerLideri.GetPaquetesGerente(usuarioConectado.idPersona,fechaInicial, fechaFinal);
+
+            var jsonResult = Json(paquetes, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+
+            return Json(new SelectList(paquetes, "value", "label"));
+        }
     }
 }
