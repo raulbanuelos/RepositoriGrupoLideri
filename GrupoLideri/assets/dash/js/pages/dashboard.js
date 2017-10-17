@@ -650,10 +650,10 @@ var Dashboard = function () {
 }();
 
 $(document).ready(function() {
-    var urlSave = '@Url.Action("CargarPaquetesVendidos","Home")';
+    debugger;
     $.ajax({
         type: "POST",
-        url: urlSave,
+        url: HomeURL.urlCargarPaquetesVendidos,
         data: JSON.stringify({ fechaInicial: "01/01/2017", fechaFinal: "30/10/2017" }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",

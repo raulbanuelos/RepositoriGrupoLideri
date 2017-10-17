@@ -25,7 +25,7 @@ namespace ModeloPRD.ServiceObject
                 GrupoLideri_SQL conexion = new GrupoLideri_SQL();
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
 
-                parametros.Add("idUsuario", idPersona);
+                parametros.Add("idPersona", idPersona);
                 parametros.Add("fechaInicial", fechaInicial);
                 parametros.Add("fechaFinal", fechaFinal);
 
