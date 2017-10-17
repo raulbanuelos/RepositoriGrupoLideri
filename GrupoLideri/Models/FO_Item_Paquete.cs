@@ -7,7 +7,7 @@ namespace GrupoLideri.Models
 {
     public class FO_Item_Paquete
     {
-        public double Value { get; set; }
-        public string Text { get; set; }
+        public double value { get; set; }
+        public string label { get; set; }
     }
 }

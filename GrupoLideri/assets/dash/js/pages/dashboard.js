@@ -662,6 +662,7 @@ $(document).ready(function() {
             Dashboard.donutChartSocial(Dashboard.chartColours(), data);
         },
         error: function (err) {
+            debugger;
             alert("Error");
         }
     });

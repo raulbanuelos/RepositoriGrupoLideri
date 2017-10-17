@@ -41,7 +41,8 @@ namespace GrupoLideri.Controllers
             var jsonResult = Json(paquetes, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
 
-            return Json(new SelectList(paquetes, "value", "label"));
+            //return Json(new SelectList(paquetes, "value", "label"));
+            return Json(paquetes);
         }
     }
 }

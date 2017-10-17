@@ -53,8 +53,8 @@ namespace GrupoLideri.Models
                     {
                         FO_Item_Paquete g = new FO_Item_Paquete();
 
-                        g.Text = item["PAQUETE"].ToString();
-                        g.Value = Convert.ToDouble(item["PORCENTAJE"]);
+                        g.label = item["PAQUETE"].ToString();
+                        g.value = Convert.ToDouble(item["PORCENTAJE"]);
 
                         lista.Add(g);
                     }
