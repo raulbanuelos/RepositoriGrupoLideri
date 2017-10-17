@@ -27,8 +27,8 @@ namespace GrupoLideri.Controllers
 
             DO_Persona usuario = (DO_Persona)Session["UsuarioConectado"];
 
-            List<N_Folio_SIAC> ListaFolios = DataManager.GetFoliosPromotor(fechaIncial, fechaFinal, usuario.idPersona, IsPosteada);
-
+            //List<N_Folio_SIAC> ListaFolios = DataManager.GetFoliosPromotor(fechaIncial, fechaFinal, usuario.idPersona, IsPosteada);
+            List<N_Folio_SIAC> ListaFolios = new List<N_Folio_SIAC>();
             var jsonResult = Json(ListaFolios, JsonRequestBehavior.AllowGet);
 
             jsonResult.MaxJsonLength = int.MaxValue;

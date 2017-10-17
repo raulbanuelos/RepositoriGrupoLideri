@@ -36,7 +36,34 @@ namespace GrupoLideri.Models
 
             return persona;
         }
-        
+
+        internal static List<FO_Item_Paquete> GetPaquetesGerente(int idPersona,string fechaInicial, string fechaFinal)
+        {
+            SO_Produccion servicioProduccion = new SO_Produccion();
+
+            List<FO_Item_Paquete> lista = new List<FO_Item_Paquete>();
+
+            DataSet datos = servicioProduccion.GetProduccionPaquetesGerente(idPersona, fechaInicial, fechaFinal);
+
+            if (datos != null)
+            {
+                if (datos.Tables.Count > 0 && datos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in datos.Tables[0].Rows)
+                    {
+                        FO_Item_Paquete g = new FO_Item_Paquete();
+
+                        g.Text = item["PAQUETE"].ToString();
+                        g.Value = Convert.ToDouble(item["PORCENTAJE"]);
+
+                        lista.Add(g);
+                    }
+                }
+            }
+
+            return lista;
+        }
+
         public static int AsignarCvePromotor(int idUsuario, string cvePromotor)
         {
             SO_Persona ServicioPersona = new SO_Persona();

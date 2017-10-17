@@ -23,7 +23,7 @@ namespace GrupoLideri.Controllers
 
             DO_Persona usuario = (DO_Persona)Session["UsuarioConectado"];
 
-            Lista = DataManager.GetOrganigrama(usuario.idPersona);
+            //Lista = DataManager.GetOrganigrama(usuario.idPersona);
 
             var jsonResult = Json(Lista, JsonRequestBehavior.AllowGet);
 
