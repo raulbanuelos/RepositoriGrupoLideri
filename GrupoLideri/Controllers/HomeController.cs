@@ -44,5 +44,12 @@ namespace GrupoLideri.Controllers
             //return Json(new SelectList(paquetes, "value", "label"));
             return Json(paquetes);
         }
+
+        public ActionResult CerrarSession()
+        {
+            Session.Abandon();
+
+            return RedirectToAction("Index", "LogIn");
+        }
     }
 }
