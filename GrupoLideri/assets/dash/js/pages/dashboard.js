@@ -568,7 +568,7 @@ var Dashboard = function () {
         },
 
         // Sparklines
-        sparklines : function (chartColours) {
+        sparklines : function (chartColours,dataa) {
             //members
             $("#sparkline-members").sparkline([1,4,2,3,5,7,3,1,4,6,6,9], {
                 type: 'line',
@@ -580,7 +580,7 @@ var Dashboard = function () {
                 spotRadius: 0, //remove spots
             }); 
             //sales
-            $("#sparkline-sales").sparkline([1,3,2,4,6,7,4,1,3,5,6,7], {
+            $("#sparkline-sales").sparkline(dataa, {
                 type: 'line',
                 width: '80%',
                 height: '30px',
@@ -667,6 +667,23 @@ $(document).ready(function() {
         }
     });
 
+    $.ajax({
+        type: "POST",
+        url: HomeURL.urlCargarHistorialNomina,
+        data: JSON.stringify({ parametro: "" }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger;
+            //Dashboard.donutChartSocial(Dashboard.chartColours(), data);
+            Dashboard.sparklines(Dashboard.chartColours(),data);
+        },
+        error: function (err) {
+            debugger;
+            alert("Error al cargar el historial de nomina");
+        }
+    });
+
     Dashboard.matchHeight(); //Match height for some elements
     Dashboard.visitorsChart(Dashboard.chartColours()); //Visitors chart
     //Dashboard.donutChartSocial(Dashboard.chartColours()); //Social donut chart
@@ -675,7 +692,7 @@ $(document).ready(function() {
     Dashboard.showCalendar(); //Show calendar
     Dashboard.userNotification(); //Show new user notification
     Dashboard.latestSalesMap(Dashboard.chartColours());//init vector map
-    Dashboard.sparklines(Dashboard.chartColours()); //init sparklines
+    //Dashboard.sparklines(Dashboard.chartColours()); //init sparklines
     Dashboard.easyPieCharts(Dashboard.chartColours());//init easy pie charts
     Dashboard.animateProgressBars();//Animate progress bars
 

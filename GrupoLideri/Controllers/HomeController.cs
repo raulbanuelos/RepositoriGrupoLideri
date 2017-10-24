@@ -45,6 +45,21 @@ namespace GrupoLideri.Controllers
             return Json(paquetes);
         }
 
+        [HttpPost]
+        public JsonResult CargarHistorialNominas(string parametro)
+        {
+            List<double> historialComision = new List<double>();
+
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            historialComision = DataManagerLideri.GetHistorialNominaPersona(usuarioConectado.idPersona);
+
+            var jsonResult = Json(historialComision, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+
+            return Json(historialComision);
+        }
+
         public ActionResult CerrarSession()
         {
             Session.Abandon();
