@@ -16,7 +16,7 @@ namespace ModeloPRD.ServiceObject
         private string SP_PROD_GET_PAQUETES_GERENTE = "SP_PROD_GET_PAQUETES_GERENTE";
         #endregion
 
-        public DataSet GetProduccionPaquetesGerente(int idPersona, string fechaInicial, string fechaFinal)
+        public DataSet GetProduccionPaquetesGerente(int idPersona)
         {
             try
             {
@@ -26,8 +26,6 @@ namespace ModeloPRD.ServiceObject
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
 
                 parametros.Add("idPersona", idPersona);
-                parametros.Add("fechaInicial", fechaInicial);
-                parametros.Add("fechaFinal", fechaFinal);
 
                 datos = conexion.EjecutarStoredProcedure(SP_PROD_GET_PAQUETES_GERENTE, parametros);
 

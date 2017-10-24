@@ -37,13 +37,13 @@ namespace GrupoLideri.Models
             return persona;
         }
 
-        internal static List<FO_Item_Paquete> GetPaquetesGerente(int idPersona,string fechaInicial, string fechaFinal)
+        internal static List<FO_Item_Paquete> GetPaquetesGerente(int idPersona)
         {
             SO_Produccion servicioProduccion = new SO_Produccion();
 
             List<FO_Item_Paquete> lista = new List<FO_Item_Paquete>();
 
-            DataSet datos = servicioProduccion.GetProduccionPaquetesGerente(idPersona, fechaInicial, fechaFinal);
+            DataSet datos = servicioProduccion.GetProduccionPaquetesGerente(idPersona);
 
             if (datos != null)
             {

@@ -588,7 +588,7 @@ var Dashboard = function () {
                 lineColor: chartColours.blue,
                 fillColor: false,
                 spotRadius: 0, //remove spots
-            });   
+            });
             //advert
             $("#sparkline-advert").sparkline([2,4,3,2,5,1,5,3,8,6,5,2], {
                 type: 'line',
@@ -654,7 +654,7 @@ $(document).ready(function() {
     $.ajax({
         type: "POST",
         url: HomeURL.urlCargarPaquetesVendidos,
-        data: JSON.stringify({ fechaInicial: "01/01/2017", fechaFinal: "30/10/2017" }),
+        data: JSON.stringify({ parametro: "" }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {

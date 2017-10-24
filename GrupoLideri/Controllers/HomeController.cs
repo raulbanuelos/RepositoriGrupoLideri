@@ -30,13 +30,13 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
-        public JsonResult CargarPaquetesVendidos(string fechaInicial,string fechaFinal)
+        public JsonResult CargarPaquetesVendidos(string parametro)
         {
             List<FO_Item_Paquete> paquetes = new List<FO_Item_Paquete>();
 
             DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
 
-            paquetes = DataManagerLideri.GetPaquetesGerente(usuarioConectado.idPersona,fechaInicial, fechaFinal);
+            paquetes = DataManagerLideri.GetPaquetesGerente(usuarioConectado.idPersona);
 
             var jsonResult = Json(paquetes, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
