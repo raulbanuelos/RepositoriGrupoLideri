@@ -583,6 +583,28 @@ namespace GrupoLideri.Models
             return ListaResultante;
         }
 
+        public static List<double> GetHistorialNominaPersona(int idPersona)
+        {
+            SO_Nominas ServicioNomina = new SO_Nominas();
+
+            List<double> Lista = new List<double>();
+
+            DataSet informacionBD = ServicioNomina.GetHistorialNominaPersona(idPersona);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count >= 1 && informacionBD.Tables[0].Rows.Count >= 1)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        Lista.Add(Convert.ToDouble(item["COMISION_TOTAL"].ToString()));
+                    }
+                }
+            }
+
+            return Lista;
+        }
+
 
     }
 }
