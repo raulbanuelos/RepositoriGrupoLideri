@@ -1,264 +1,268 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="col-md-8">
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-xs-6 col-small-enlarge">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a class="lead-stats" href="#">
-                        <span class="stats-number dolar" data-from="0" data-to="37926.750">0</span>
-                        <span class="stats-icon">
-                            <i class="fa fa-money color-green"></i>
-                        </span>
-                        <h5>Ganacias hasta hoy</h5>
-                    </a>
+@if ((bool)Session["PROMOTOR"] || (bool)Session["PROMOTORENTRENADOR"] || (bool)Session["GERENTE"] || (bool)Session["GERENTEPROMOTOR"])
+{
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-xs-6 col-small-enlarge">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a class="lead-stats" href="#">
+                            <span class="stats-number dolar" data-from="0" data-to="37926.750">0</span>
+                            <span class="stats-icon">
+                                <i class="fa fa-money color-green"></i>
+                            </span>
+                            <h5>Ganacias hasta hoy</h5>
+                        </a>
+                    </div>
                 </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-xs-6 col-small-enlarge">
+                <!-- col-md-6 start here -->
+                <div class="panel panel-default">
+                    <!-- Start .panel -->
+                    <div class="panel-body">
+                        <a class="lead-stats" href="#">
+                            <span class="stats-number" data-from="0" data-to="231">0</span>
+                            <span class="stats-icon">
+                                <i class="fa fa-shopping-cart color-yellow-dark"></i>
+                            </span>
+                            <h5>Ventas totales</h5>
+                        </a>
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-xs-6 col-small-enlarge">
+                <!-- col-md-4 start here -->
+                <div class="panel panel-default">
+                    <!-- Start .panel -->
+                    <div class="panel-body">
+                        <a class="lead-stats" href="#">
+                            <span class="stats-number" data-from="0" data-to="0">0</span>
+                            <span class="stats-icon">
+                                <i class="fa fa-comments color-blue"></i>
+                            </span>
+                            <h5>Mensajes sin leer</h5>
+                        </a>
+                    </div>
+                </div>
+                <!-- End .panel -->
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 col-xs-6 col-small-enlarge">
-            <!-- col-md-6 start here -->
-            <div class="panel panel-default">
-                <!-- Start .panel -->
-                <div class="panel-body">
-                    <a class="lead-stats" href="#">
-                        <span class="stats-number" data-from="0" data-to="231">0</span>
-                        <span class="stats-icon">
-                            <i class="fa fa-shopping-cart color-yellow-dark"></i>
-                        </span>
-                        <h5>Ventas totales</h5>
-                    </a>
+        <div class="row">
+            <!-- .row start -->
+            <div class="col-md-6 col-sm-6">
+                <!-- col-md-6 start here -->
+                <div class="panel panel-default plain panelRefresh panelMove panelToggle matchSocial">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><i class="fa fa-location-arrow"></i> Visitors</h4>
+                        <div class="panel-controls">
+                            <div id="visitors-chart-select" class="btn-group mr5" data-toggle="buttons">
+                                <label class="btn btn-default btn-xs active">
+                                    <input type="radio" name="period" id="week" class="unstyled" autocomplete="off" checked>Week
+                                </label>
+                                <label class="btn btn-default btn-xs">
+                                    <input type="radio" name="period" id="month" class="unstyled" autocomplete="off">Month
+                                </label>
+                                <label class="btn btn-default btn-xs">
+                                    <input type="radio" name="period" id="year" class="unstyled" autocomplete="off">Year
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body p0">
+                        <div class="chart-holder">
+                            <div class="chart-stats">
+                                <div class="number"><i class="fa fa-arrow-circle-o-up mr5 color-green"></i>15%</div>
+                                <div class="description text-muted small">New Visits</div>
+                            </div>
+                            <div id="visitors-chart" style="width: 100%; height:250px;"></div>
+                        </div>
+                    </div>
                 </div>
+                <!-- End .panel -->
             </div>
-            <!-- End .panel -->
+            <!-- col-md-6 end here -->
+            <div class="col-md-6 col-sm-6">
+                <!-- col-md-6 start here -->
+                <div class="panel panel-default plain matchSocial">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><i class="fa fa-gratipay"></i> Resumen de ventas</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-donut" style="width: 100%; height:225px;"></div>
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+            <!-- col-md-6 end here -->
         </div>
 
-        <div class="col-lg-4 col-md-6 col-xs-6 col-small-enlarge">
-            <!-- col-md-4 start here -->
-            <div class="panel panel-default">
-                <!-- Start .panel -->
-                <div class="panel-body">
-                    <a class="lead-stats" href="#">
-                        <span class="stats-number" data-from="0" data-to="0">0</span>
-                        <span class="stats-icon">
-                            <i class="fa fa-comments color-blue"></i>
-                        </span>
-                        <h5>Mensajes sin leer</h5>
-                    </a>
+        <div class="row no-padding">
+            <!-- .row start -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <!-- col-md-3 start here -->
+                <div class="panel panel-default plain brad0 matchSparkStats">
+                    <!-- Start .panel -->
+                    <div class="panel-body">
+                        <div class="sparkline-stats">
+                            <div class="row padding">
+                                <!-- .row start -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <h5 class="uppercase text-muted sparkline-title mb5">Colaboradores</h5>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-4">
+                                    <!-- col-md-4 start here -->
+                                    <div class="stats-number s24 strong" data-from="0" data-to="12750">0</div>
+                                </div>
+                                <!-- col-md-4 end here -->
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div id="sparkline-members" class="sparkline"></div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div class="change color-green strong s16">
+                                        +5% <i class="glyphicon glyphicon-circle-arrow-up"></i>
+                                    </div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                            </div>
+                            <!-- / .row -->
+                        </div>
+                    </div>
                 </div>
+                <!-- End .panel -->
             </div>
-            <!-- End .panel -->
+            <!-- col-md-3 end here -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <!-- col-md-3 start here -->
+                <div class="panel panel-default plain brad0 matchSparkStats">
+                    <!-- Start .panel -->
+                    <div class="panel-body">
+                        <div class="sparkline-stats">
+                            <div class="row padding">
+                                <!-- .row start -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <h5 class="uppercase text-muted sparkline-title mb5">Ventas</h5>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-4">
+                                    <!-- col-md-4 start here -->
+                                    <div class="stats-number dolar s24 strong" data-from="0" data-to="37927">0</div>
+                                </div>
+                                <!-- col-md-4 end here -->
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div id="sparkline-sales" class="sparkline"></div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div class="change color-green strong s16">
+                                        +2% <i class="glyphicon glyphicon-circle-arrow-up"></i>
+                                    </div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                            </div>
+                            <!-- / .row -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+            <!-- col-md-3 end here -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <!-- col-md-3 start here -->
+                <div class="panel panel-default plain brad0 matchSparkStats">
+                    <!-- Start .panel -->
+                    <div class="panel-body">
+                        <div class="sparkline-stats">
+                            <div class="row padding">
+                                <!-- .row start -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <h5 class="uppercase text-muted sparkline-title mb5">Cumplimento de metas</h5>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-4">
+                                    <!-- col-md-4 start here -->
+                                    <div class="stats-number dolar s24 strong" data-from="0" data-to="1250">0</div>
+                                </div>
+                                <!-- col-md-4 end here -->
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div id="sparkline-advert" class="sparkline"></div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div class="change color-red strong s16">
+                                        -17% <i class="glyphicon glyphicon-circle-arrow-down"></i>
+                                    </div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                            </div>
+                            <!-- / .row -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+            <!-- col-md-3 end here -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <!-- col-md-3 start here -->
+                <div class="panel panel-default panel-tile plain brad0 matchSparkStats">
+                    <!-- Start .panel -->
+                    <div class="panel-body">
+                        <div class="sparkline-stats">
+                            <div class="row padding">
+                                <!-- .row start -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <h5 class="uppercase text-muted sparkline-title mb5">bajas de promotores</h5>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-4">
+                                    <!-- col-md-4 start here -->
+                                    <div class="stats-number s24 strong" data-from="0" data-to="5.28" data-decimals="2">0</div>
+                                </div>
+                                <!-- col-md-4 end here -->
+                                <div class="col-lg-8 col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div id="sparkline-eng" class="sparkline"></div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                                <div class="col-md-12">
+                                    <!-- col-md-12 start here -->
+                                    <div class="change color-red strong s16">
+                                        -1% <i class="glyphicon glyphicon-circle-arrow-down"></i>
+                                    </div>
+                                </div>
+                                <!-- col-md-12 end here -->
+                            </div>
+                            <!-- / .row -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+            <!-- col-md-3 end here -->
         </div>
     </div>
 
-    <div class="row">
-        <!-- .row start -->
-        <div class="col-md-6 col-sm-6">
-            <!-- col-md-6 start here -->
-            <div class="panel panel-default plain panelRefresh panelMove panelToggle matchSocial">
-                <!-- Start .panel -->
-                <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fa fa-location-arrow"></i> Visitors</h4>
-                    <div class="panel-controls">
-                        <div id="visitors-chart-select" class="btn-group mr5" data-toggle="buttons">
-                            <label class="btn btn-default btn-xs active">
-                                <input type="radio" name="period" id="week" class="unstyled" autocomplete="off" checked>Week
-                            </label>
-                            <label class="btn btn-default btn-xs">
-                                <input type="radio" name="period" id="month" class="unstyled" autocomplete="off">Month
-                            </label>
-                            <label class="btn btn-default btn-xs">
-                                <input type="radio" name="period" id="year" class="unstyled" autocomplete="off">Year
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body p0">
-                    <div class="chart-holder">
-                        <div class="chart-stats">
-                            <div class="number"><i class="fa fa-arrow-circle-o-up mr5 color-green"></i>15%</div>
-                            <div class="description text-muted small">New Visits</div>
-                        </div>
-                        <div id="visitors-chart" style="width: 100%; height:250px;"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- End .panel -->
-        </div>
-        <!-- col-md-6 end here -->
-        <div class="col-md-6 col-sm-6">
-            <!-- col-md-6 start here -->
-            <div class="panel panel-default plain matchSocial">
-                <!-- Start .panel -->
-                <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fa fa-gratipay"></i> Resumen de ventas</h4>
-                </div>
-                <div class="panel-body">
-                    <div id="morris-donut" style="width: 100%; height:225px;"></div>
-                </div>
-            </div>
-            <!-- End .panel -->
-        </div>
-        <!-- col-md-6 end here -->
-    </div>
-
-    <div class="row no-padding">
-        <!-- .row start -->
-        <div class="col-md-3 col-sm-6 col-xs-6">
-            <!-- col-md-3 start here -->
-            <div class="panel panel-default plain brad0 matchSparkStats">
-                <!-- Start .panel -->
-                <div class="panel-body">
-                    <div class="sparkline-stats">
-                        <div class="row padding">
-                            <!-- .row start -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <h5 class="uppercase text-muted sparkline-title mb5">Colaboradores</h5>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-4">
-                                <!-- col-md-4 start here -->
-                                <div class="stats-number s24 strong" data-from="0" data-to="12750">0</div>
-                            </div>
-                            <!-- col-md-4 end here -->
-                            <div class="col-lg-8 col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div id="sparkline-members" class="sparkline"></div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div class="change color-green strong s16">
-                                    +5% <i class="glyphicon glyphicon-circle-arrow-up"></i>
-                                </div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                        </div>
-                        <!-- / .row -->
-                    </div>
-                </div>
-            </div>
-            <!-- End .panel -->
-        </div>
-        <!-- col-md-3 end here -->
-        <div class="col-md-3 col-sm-6 col-xs-6">
-            <!-- col-md-3 start here -->
-            <div class="panel panel-default plain brad0 matchSparkStats">
-                <!-- Start .panel -->
-                <div class="panel-body">
-                    <div class="sparkline-stats">
-                        <div class="row padding">
-                            <!-- .row start -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <h5 class="uppercase text-muted sparkline-title mb5">Ventas</h5>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-4">
-                                <!-- col-md-4 start here -->
-                                <div class="stats-number dolar s24 strong" data-from="0" data-to="37927">0</div>
-                            </div>
-                            <!-- col-md-4 end here -->
-                            <div class="col-lg-8 col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div id="sparkline-sales" class="sparkline"></div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div class="change color-green strong s16">
-                                    +2% <i class="glyphicon glyphicon-circle-arrow-up"></i>
-                                </div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                        </div>
-                        <!-- / .row -->
-                    </div>
-                </div>
-            </div>
-            <!-- End .panel -->
-        </div>
-        <!-- col-md-3 end here -->
-        <div class="col-md-3 col-sm-6 col-xs-6">
-            <!-- col-md-3 start here -->
-            <div class="panel panel-default plain brad0 matchSparkStats">
-                <!-- Start .panel -->
-                <div class="panel-body">
-                    <div class="sparkline-stats">
-                        <div class="row padding">
-                            <!-- .row start -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <h5 class="uppercase text-muted sparkline-title mb5">Cumplimento de metas</h5>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-4">
-                                <!-- col-md-4 start here -->
-                                <div class="stats-number dolar s24 strong" data-from="0" data-to="1250">0</div>
-                            </div>
-                            <!-- col-md-4 end here -->
-                            <div class="col-lg-8 col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div id="sparkline-advert" class="sparkline"></div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div class="change color-red strong s16">
-                                    -17% <i class="glyphicon glyphicon-circle-arrow-down"></i>
-                                </div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                        </div>
-                        <!-- / .row -->
-                    </div>
-                </div>
-            </div>
-            <!-- End .panel -->
-        </div>
-        <!-- col-md-3 end here -->
-        <div class="col-md-3 col-sm-6 col-xs-6">
-            <!-- col-md-3 start here -->
-            <div class="panel panel-default panel-tile plain brad0 matchSparkStats">
-                <!-- Start .panel -->
-                <div class="panel-body">
-                    <div class="sparkline-stats">
-                        <div class="row padding">
-                            <!-- .row start -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <h5 class="uppercase text-muted sparkline-title mb5">bajas de promotores</h5>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-4">
-                                <!-- col-md-4 start here -->
-                                <div class="stats-number s24 strong" data-from="0" data-to="5.28" data-decimals="2">0</div>
-                            </div>
-                            <!-- col-md-4 end here -->
-                            <div class="col-lg-8 col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div id="sparkline-eng" class="sparkline"></div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                            <div class="col-md-12">
-                                <!-- col-md-12 start here -->
-                                <div class="change color-red strong s16">
-                                    -1% <i class="glyphicon glyphicon-circle-arrow-down"></i>
-                                </div>
-                            </div>
-                            <!-- col-md-12 end here -->
-                        </div>
-                        <!-- / .row -->
-                    </div>
-                </div>
-            </div>
-            <!-- End .panel -->
-        </div>
-        <!-- col-md-3 end here -->
-    </div>
-</div>
+}
 
 <script type="text/javascript">
     var HomeURL = {
@@ -267,3 +271,5 @@
     }
 
 </script>
+
+

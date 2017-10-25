@@ -34,16 +34,28 @@ namespace GrupoLideri.Controllers
             else
                 return true;
 
+            
+            //1   PROMOTOR
+            //2   PROMOTOR ENTRENADOR
+            //3   GERENTE
+            //4   GERENTE PROMOTOR
+            //5   VICEPRESIDENTE
+            //6   RECURSOS HUMANOS
+            //7   NOMINAS
+            //8   SISTEMAS
+            //9   DIRECTIVO
+            //10  ADMINISTRACION
 
-            //int idJerarquia = usuario.idJerarquia;
 
-            //string nombreAccion = HttpContext.Current.Request.RequestContext.RouteData.GetRequiredString("action");
+            int idJerarquia = usuario.idJerarquia;
 
-            //string nombreControlador = HttpContext.Current.Request.RequestContext.RouteData.GetRequiredString("controller");
+            string nombreAccion = HttpContext.Current.Request.RequestContext.RouteData.GetRequiredString("action");
 
-            //List<int> JerarquiasPermitidas = new List<int>();
+            string nombreControlador = HttpContext.Current.Request.RequestContext.RouteData.GetRequiredString("controller");
 
-            //#region Subir PIPES
+            List<int> JerarquiasPermitidas = new List<int>();
+
+            #region Subir PIPES
             //if (nombreControlador.Equals("FolioSIAC"))
             //{
             //    JerarquiasPermitidas.Add(15);
@@ -56,9 +68,9 @@ namespace GrupoLideri.Controllers
 
             //    return JerarquiasPermitidas.Contains(idJerarquia);
             //}
-            //#endregion
+            #endregion
 
-            //#region Mi organigrama
+            #region Mi organigrama
             //if (nombreControlador.Equals("MiOrganigrama"))
             //{
             //    JerarquiasPermitidas.Add(10);
@@ -67,9 +79,9 @@ namespace GrupoLideri.Controllers
 
             //    return JerarquiasPermitidas.Contains(idJerarquia);
             //}
-            //#endregion
+            #endregion
 
-            //#region Mi organización
+            #region Mi organización
             //if (nombreControlador.Equals("MiOrganizacion"))
             //{
             //    JerarquiasPermitidas.Add(2019);
@@ -77,22 +89,21 @@ namespace GrupoLideri.Controllers
 
             //    return JerarquiasPermitidas.Contains(idJerarquia);
             //}
-            //#endregion
+            #endregion
 
-            //#region Mis comisiones
-            //if (nombreControlador.Equals("MisComisiones"))
-            //{
-            //    JerarquiasPermitidas.Add(1);
-            //    JerarquiasPermitidas.Add(10);
-            //    JerarquiasPermitidas.Add(14);
-            //    JerarquiasPermitidas.Add(2019);
-            //    JerarquiasPermitidas.Add(2018);
+            #region Mis comisiones
+            if (nombreControlador.Equals("MisComisiones"))
+            {
+                JerarquiasPermitidas.Add(1);
+                JerarquiasPermitidas.Add(2);
+                JerarquiasPermitidas.Add(3);
+                JerarquiasPermitidas.Add(4);
 
-            //    return JerarquiasPermitidas.Contains(idJerarquia);
-            //}
-            //#endregion
+                return JerarquiasPermitidas.Contains(idJerarquia);
+            }
+            #endregion
 
-            //#region Mis folios
+            #region Mis folios
             //if (nombreControlador.Equals("MisFolios"))
             //{
             //    JerarquiasPermitidas.Add(1);
@@ -103,9 +114,9 @@ namespace GrupoLideri.Controllers
 
             //    return JerarquiasPermitidas.Contains(idJerarquia);
             //}
-            //#endregion
+            #endregion
 
-            //#region Over
+            #region Over
             //if (nombreControlador.Equals("Over"))
             //{
             //    JerarquiasPermitidas.Add(1);
@@ -115,25 +126,27 @@ namespace GrupoLideri.Controllers
 
             //    return JerarquiasPermitidas.Contains(idJerarquia);
             //}
-            //#endregion
+            #endregion
 
-            //#region Home
-            //if (nombreControlador.Equals("Home"))
-            //{
-            //    JerarquiasPermitidas.Add(1);
-            //    JerarquiasPermitidas.Add(10);
-            //    JerarquiasPermitidas.Add(14);
-            //    JerarquiasPermitidas.Add(15);
-            //    JerarquiasPermitidas.Add(17);
-            //    JerarquiasPermitidas.Add(1018);
-            //    JerarquiasPermitidas.Add(1019);
-            //    JerarquiasPermitidas.Add(2018);
-            //    JerarquiasPermitidas.Add(2019);
-            //    return JerarquiasPermitidas.Contains(idJerarquia);
-            //}
-            //#endregion
+            #region Home
+            if (nombreControlador.Equals("Home"))
+            {
+                JerarquiasPermitidas.Add(1);
+                JerarquiasPermitidas.Add(2);
+                JerarquiasPermitidas.Add(3);
+                JerarquiasPermitidas.Add(4);
+                JerarquiasPermitidas.Add(5);
+                JerarquiasPermitidas.Add(6);
+                JerarquiasPermitidas.Add(7);
+                JerarquiasPermitidas.Add(8);
+                JerarquiasPermitidas.Add(9);
+                JerarquiasPermitidas.Add(10);
 
-            //#region Persona
+                return JerarquiasPermitidas.Contains(idJerarquia);
+            }
+            #endregion
+
+            #region Persona
             //if (nombreControlador.Equals("Persona"))
             //{
             //    JerarquiasPermitidas.Add(1);
@@ -143,9 +156,9 @@ namespace GrupoLideri.Controllers
             //    JerarquiasPermitidas.Add(2018);
             //    return JerarquiasPermitidas.Contains(idJerarquia);
             //}
-            //#endregion
+            #endregion
 
-            //return false;
+            return false;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)

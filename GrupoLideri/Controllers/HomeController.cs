@@ -36,12 +36,15 @@ namespace GrupoLideri.Controllers
 
             DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
 
-            paquetes = DataManagerLideri.GetPaquetesGerente(usuarioConectado.idPersona);
+            if (usuarioConectado.idJerarquia.Equals(1) || usuarioConectado.idJerarquia.Equals(2) || usuarioConectado.idJerarquia.Equals(3) || usuarioConectado.idJerarquia.Equals(4))
+            {
+                paquetes = DataManagerLideri.GetPaquetesGerente(usuarioConectado.idPersona);
 
-            var jsonResult = Json(paquetes, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
+                var jsonResult = Json(paquetes, JsonRequestBehavior.AllowGet);
 
-            //return Json(new SelectList(paquetes, "value", "label"));
+                jsonResult.MaxJsonLength = int.MaxValue;
+            }
+            
             return Json(paquetes);
         }
 
@@ -52,10 +55,14 @@ namespace GrupoLideri.Controllers
 
             DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
 
-            historialComision = DataManagerLideri.GetHistorialNominaPersona(usuarioConectado.idPersona);
+            if (usuarioConectado.idJerarquia.Equals(1) || usuarioConectado.idJerarquia.Equals(2) || usuarioConectado.idJerarquia.Equals(3) || usuarioConectado.idJerarquia.Equals(4))
+            {
+                historialComision = DataManagerLideri.GetHistorialNominaPersona(usuarioConectado.idPersona);
 
-            var jsonResult = Json(historialComision, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
+                var jsonResult = Json(historialComision, JsonRequestBehavior.AllowGet);
+
+                jsonResult.MaxJsonLength = int.MaxValue;
+            }
 
             return Json(historialComision);
         }

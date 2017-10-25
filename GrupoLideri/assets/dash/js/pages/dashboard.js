@@ -650,7 +650,6 @@ var Dashboard = function () {
 }();
 
 $(document).ready(function() {
-    debugger;
     $.ajax({
         type: "POST",
         url: HomeURL.urlCargarPaquetesVendidos,
@@ -658,11 +657,9 @@ $(document).ready(function() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            debugger;
             Dashboard.donutChartSocial(Dashboard.chartColours(), data);
         },
         error: function (err) {
-            debugger;
             alert("Error");
         }
     });
@@ -674,12 +671,10 @@ $(document).ready(function() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            debugger;
             //Dashboard.donutChartSocial(Dashboard.chartColours(), data);
             Dashboard.sparklines(Dashboard.chartColours(),data);
         },
         error: function (err) {
-            debugger;
             alert("Error al cargar el historial de nomina");
         }
     });
