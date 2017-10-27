@@ -605,6 +605,28 @@ namespace GrupoLideri.Models
             return Lista;
         }
 
+        public static double GetPosteadosVSProduccion(int idPersona, string fechaInicial, string fechaFinal)
+        {
+            double pct = 0;
+
+            SO_Produccion ServicioProduccion = new SO_Produccion();
+
+            DataSet informacionBD = ServicioProduccion.GetProduccionVSPosteados(idPersona, fechaInicial, fechaFinal);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        pct = Convert.ToDouble(item["PCT_POSTEADOS"].ToString());
+                    }
+                }
+            }
+
+            return pct;
+        }
+
 
     }
 }

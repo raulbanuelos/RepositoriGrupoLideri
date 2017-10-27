@@ -29,6 +29,7 @@ namespace GrupoLideri.Controllers
             return View();
         }
 
+        #region GERENTES-PROMOTORES
         [HttpPost]
         public JsonResult CargarPaquetesVendidos(string parametro)
         {
@@ -44,7 +45,7 @@ namespace GrupoLideri.Controllers
 
                 jsonResult.MaxJsonLength = int.MaxValue;
             }
-            
+
             return Json(paquetes);
         }
 
@@ -66,6 +67,25 @@ namespace GrupoLideri.Controllers
 
             return Json(historialComision);
         }
+        #endregion
+
+        #region NOMINAS
+
+        public JsonResult CargarPosteadosVSProduccion(string fechaInicial,string fechaFinal)
+        {
+            double pct = 0;
+
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            if (usuarioConectado.idJerarquia.Equals(7))
+            {
+                pct = DataManagerLideri.GetPosteadosVSProduccion(usuarioConectado.idPersona, fechaInicial, fechaFinal);
+            }
+
+            return Json(pct);
+        }
+
+        #endregion
 
         public ActionResult CerrarSession()
         {
