@@ -13,6 +13,25 @@ namespace ModeloPRD.ServiceObject
 
         private string SP_NOM_GET_COMISIONES = "SP_NOM_GET_COMISIONES";
         private string SP_NOM_GET_HISTORIAL_COMISION = "SP_NOM_GET_HISTORIAL_COMISION";
+        private string SP_NOM_GET_COMISIONES_RESUMEN = "SP_NOM_GET_COMISIONES_RESUMEN";
+
+        public DataSet GetNominaComisionResumen()
+        {
+            try
+            {
+                DataSet datos = null;
+                GrupoLideri_SQL conexion = new GrupoLideri_SQL();
+                Dictionary<string, object> paramentros = new Dictionary<string, object>();
+
+                datos = conexion.EjecutarStoredProcedure(SP_NOM_GET_COMISIONES_RESUMEN, paramentros);
+
+                return datos;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
         public DataSet GetNominasComision()
         {

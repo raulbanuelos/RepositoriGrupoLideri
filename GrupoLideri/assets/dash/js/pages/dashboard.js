@@ -649,7 +649,9 @@ var Dashboard = function () {
 
 }();
 
-$(document).ready(function() {
+$(document).ready(function () {
+
+    //Gerentes y promotores
     $.ajax({
         type: "POST",
         url: HomeURL.urlCargarPaquetesVendidos,
@@ -678,6 +680,24 @@ $(document).ready(function() {
             alert("Error al cargar el historial de nomina");
         }
     });
+
+
+    //Nominas
+    $.ajax({
+        type: "POST",
+        url: HomeURL.urlCargarResumenNomina,
+        data: JSON.stringify({ parametro: "" }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            debugger;
+            //Agregar la llamada al componete que lo va a mostrar.
+        },
+        error: function (err) {
+            alert("Error al cargar el resumen de nomina");
+        }
+    });
+
 
     Dashboard.matchHeight(); //Match height for some elements
     Dashboard.visitorsChart(Dashboard.chartColours()); //Visitors chart

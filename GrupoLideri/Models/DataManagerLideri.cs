@@ -473,9 +473,10 @@ namespace GrupoLideri.Models
             }
 
             return DropDownList;
-        } 
+        }
         #endregion
 
+        #region Producción
         public static List<N_Folio_SIAC> GetProduccionPromotor(int idUsuario, string fechaInicial, string fechaFinal)
         {
             SO_Produccion ServicioProduccion = new SO_Produccion();
@@ -555,6 +556,75 @@ namespace GrupoLideri.Models
             return ListaResultante;
         }
 
+        public static double GetPosteadosVSProduccionGerente(int idPersona, string fechaInicial, string fechaFinal)
+        {
+            double pct = 0;
+
+            SO_Produccion ServicioProduccion = new SO_Produccion();
+
+            DataSet informacionBD = ServicioProduccion.GetPosteadosVSProducionGerente(idPersona, fechaInicial, fechaFinal);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        pct = Convert.ToDouble(item["PCT_POSTEADOS"].ToString());
+                    }
+                }
+            }
+
+            return pct;
+        }
+
+        public static double GetPosteadosVSProduccionPromotor(int idPersona, string fechaIncial, string fechaFinal)
+        {
+            double pct = 0;
+
+            SO_Produccion ServicioProduccion = new SO_Produccion();
+
+            DataSet informacionBD = ServicioProduccion.GetPosteadosVSProduccionPromotor(idPersona, fechaIncial, fechaFinal);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        pct = Convert.ToDouble(item["PCT_POSTEADOS"].ToString());
+                    }
+                }
+            }
+
+            return pct;
+        } 
+        #endregion
+
+        #region Nominas
+
+        public static double GetNominaComisionesResumen()
+        {
+            SO_Nominas ServicioNominas = new SO_Nominas();
+
+            double pagoNomina = 0;
+
+            DataSet informarcionBD = ServicioNominas.GetNominaComisionResumen();
+
+            if (informarcionBD != null)
+            {
+                if (informarcionBD.Tables.Count > 0 && informarcionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informarcionBD.Tables[0].Rows)
+                    {
+                        pagoNomina = Convert.ToDouble(item["PAGO_TOTAL_NOMINA"].ToString());
+                    }
+                }
+            }
+
+            return pagoNomina;
+        }
+
         public static List<N_Folio_SIAC> GetNominaComisiones()
         {
             SO_Nominas ServicioNominas = new SO_Nominas();
@@ -603,29 +673,8 @@ namespace GrupoLideri.Models
             }
 
             return Lista;
-        }
-
-        public static double GetPosteadosVSProduccion(int idPersona, string fechaInicial, string fechaFinal)
-        {
-            double pct = 0;
-
-            SO_Produccion ServicioProduccion = new SO_Produccion();
-
-            DataSet informacionBD = ServicioProduccion.GetProduccionVSPosteados(idPersona, fechaInicial, fechaFinal);
-
-            if (informacionBD != null)
-            {
-                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
-                {
-                    foreach (DataRow item in informacionBD.Tables[0].Rows)
-                    {
-                        pct = Convert.ToDouble(item["PCT_POSTEADOS"].ToString());
-                    }
-                }
-            }
-
-            return pct;
-        }
+        } 
+        #endregion
 
 
     }

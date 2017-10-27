@@ -67,22 +67,52 @@ namespace GrupoLideri.Controllers
 
             return Json(historialComision);
         }
-        #endregion
 
-        #region NOMINAS
-
-        public JsonResult CargarPosteadosVSProduccion(string fechaInicial,string fechaFinal)
+        [HttpPost]
+        public JsonResult CargarPosteadosVSProduccionGerente(string fechaInicial, string fechaFinal)
         {
             double pct = 0;
 
             DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
 
-            if (usuarioConectado.idJerarquia.Equals(7))
+            if (usuarioConectado.idJerarquia.Equals(3) || usuarioConectado.idJerarquia.Equals(4))
             {
-                pct = DataManagerLideri.GetPosteadosVSProduccion(usuarioConectado.idPersona, fechaInicial, fechaFinal);
+                pct = DataManagerLideri.GetPosteadosVSProduccionGerente(usuarioConectado.idPersona, fechaInicial, fechaFinal);
             }
 
             return Json(pct);
+        }
+
+        [HttpPost]
+        public JsonResult CargarPosteadosVSProduccionPromotor(string fechaInicial, string fechaFinal)
+        {
+            double pct = 0;
+
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            if (usuarioConectado.idJerarquia.Equals(1) || usuarioConectado.idJerarquia.Equals(2))
+            {
+                pct = DataManagerLideri.GetPosteadosVSProduccionPromotor(usuarioConectado.idPersona, fechaInicial, fechaFinal);
+            }
+
+            return Json(pct);
+        }
+        #endregion
+
+        #region NOMINAS
+
+        public JsonResult CargarResumenNomina(string parametro)
+        {
+            double pagoNomina = 0;
+
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            if (usuarioConectado.idJerarquia.Equals(7))
+            {
+                pagoNomina = DataManagerLideri.GetNominaComisionesResumen();
+            }
+
+            return Json(pagoNomina);
         }
 
         #endregion

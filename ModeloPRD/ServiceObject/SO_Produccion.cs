@@ -15,9 +15,33 @@ namespace ModeloPRD.ServiceObject
         private string SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE = "SP_PROD_GET_PRODUCCION_FOLIOS_GERENTE";
         private string SP_PROD_GET_PAQUETES_GERENTE = "SP_PROD_GET_PAQUETES_GERENTE";
         private string SP_PROD_GET_POSTEADO_VS_PRODUCCION_GERENTE = "SP_PROD_GET_POSTEADO_VS_PRODUCCION_GERENTE";
+        private string SP_PROD_GET_POSTEADO_VS_PRODUCCION_PROMOTOR = "SP_PROD_GET_POSTEADO_VS_PRODUCCION_PROMOTOR";
         #endregion
 
-        public DataSet GetProduccionVSPosteados(int idPersona, string fechaInicial, string fechaFinal)
+        public DataSet GetPosteadosVSProduccionPromotor(int idPersona, string fechaInicial, string fechaFinal)
+        {
+            try
+            {
+                DataSet datos = null;
+
+                GrupoLideri_SQL conexion = new GrupoLideri_SQL();
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("", idPersona);
+                parametros.Add("", fechaInicial);
+                parametros.Add("", fechaFinal);
+
+                datos = conexion.EjecutarStoredProcedure(SP_PROD_GET_POSTEADO_VS_PRODUCCION_PROMOTOR, parametros);
+
+                return datos;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public DataSet GetPosteadosVSProducionGerente(int idPersona, string fechaInicial, string fechaFinal)
         {
             try
             {
