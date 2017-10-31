@@ -38,13 +38,27 @@ var Modals = function () {
                 box.modal('show');
             });
 
-            //Prompt modal
-            $('#prompt-modal').click(function() {
+            //rompt modal
+            $("#btnPagar").click(function () {
+                debugger;
                 box = bootbox.prompt({
-                    title: "What is your name ?",
+                    title: "Ingrese un nombre a la semana a pagar (ejemplo:Nomina 12)",
                     callback: function(result) {
-                        //callback result
-                        alert(result);
+                        
+                        $.ajax({
+                            type: "POST",
+                            url: NominaUrls.urlSetComisiones,
+                            data: JSON.stringify({ nombreSemana: result }),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                alert(data);
+                            },
+                            error: function (err) {
+                                alert("Error al setear la nómina");
+                            }
+                        });
+                        //alert(result);
                     }
                 });
                 $('body').adminPlugin('centerModal');

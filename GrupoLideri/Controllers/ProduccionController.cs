@@ -16,8 +16,11 @@ namespace GrupoLideri.Controllers
 
             List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
 
-            string fechaInicial = "01/01/2017";
-            string fechaFinal = "30/08/2017";
+            string fechaInicial = "01/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            string fechaFinal = endDate.Day + "/" + endDate.Month + "/" + endDate.Year;
+
 
             listaResultante = DataManagerLideri.GetProduccionGerente(usuarioConectado.idPersona, fechaInicial, fechaFinal);
 

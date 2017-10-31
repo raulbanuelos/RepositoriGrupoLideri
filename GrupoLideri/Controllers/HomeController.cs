@@ -50,6 +50,36 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
+        public JsonResult CargarResumenComisionGerente(string paramentro)
+        {
+            double totalComision = 0;
+
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            if (usuarioConectado.idJerarquia.Equals(3) || usuarioConectado.idJerarquia.Equals(4))
+            {
+                totalComision = DataManagerLideri.GetComisionGerenteTotal(usuarioConectado.idPersona);
+            }
+
+            return Json(totalComision);
+        }
+
+        [HttpPost]
+        public JsonResult CargarCantidadVentaGerente(string paramentro)
+        {
+            int foliosVendidos = 0;
+
+            DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            if (usuarioConectado.idJerarquia.Equals(3) || usuarioConectado.idJerarquia.Equals(4))
+            {
+                foliosVendidos = DataManagerLideri.GetFoliosVendidosGerente(usuarioConectado.idPersona);
+            }
+
+            return Json(foliosVendidos);
+        }
+
+        [HttpPost]
         public JsonResult CargarHistorialNominas(string parametro)
         {
             List<double> historialComision = new List<double>();
@@ -69,18 +99,29 @@ namespace GrupoLideri.Controllers
         }
 
         [HttpPost]
-        public JsonResult CargarPosteadosVSProduccionGerente(string fechaInicial, string fechaFinal)
+        public JsonResult CargarPosteadosVSProduccionGerente(string paramentros)
         {
             double pct = 0;
 
             DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
+
+            string fechaInicial = "01/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            string fechaFinal = endDate.Day + "/" + endDate.Month + "/" + endDate.Year;
 
             if (usuarioConectado.idJerarquia.Equals(3) || usuarioConectado.idJerarquia.Equals(4))
             {
                 pct = DataManagerLideri.GetPosteadosVSProduccionGerente(usuarioConectado.idPersona, fechaInicial, fechaFinal);
             }
 
-            return Json(pct);
+            double noPosteados = 100.0 - pct;
+            List<FO_Item_Paquete> l = new List<FO_Item_Paquete>();
+            l.Add(new FO_Item_Paquete { label = "Posteados", value = pct });
+            l.Add(new FO_Item_Paquete { label = "No posteados", value = noPosteados });
+
+
+            return Json(l);
         }
 
         [HttpPost]

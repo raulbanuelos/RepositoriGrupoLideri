@@ -34,17 +34,20 @@ namespace GrupoLideri.Controllers
             DO_Persona usuarioConectado = (DO_Persona)Session["UsuarioConectado"];
 
             List<N_Folio_SIAC> listaResultante = new List<N_Folio_SIAC>();
-
-            string fechaInicial = "01/01/2017";
-            string fechaFinal = "30/08/2017";
-
-            listaResultante = DataManagerLideri.GetComisionGerente(usuarioConectado.idPersona, fechaInicial, fechaFinal);
+            
+            listaResultante = DataManagerLideri.GetComisionGerente(usuarioConectado.idPersona);
 
             ViewBag.ListaFoliosPosteados = listaResultante;
 
             return View();
-        } 
-        
+        }
+
+        [HttpPost]
+        public JsonResult SetPagoNominaComisiones(string nombreSemana)
+        {
+            return Json(DataManagerLideri.SetPagoNominaComisiones(nombreSemana));
+        }
+
         #endregion
     }
 }

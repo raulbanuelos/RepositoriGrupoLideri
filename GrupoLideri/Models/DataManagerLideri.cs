@@ -100,7 +100,7 @@ namespace GrupoLideri.Models
 
             return ListaResultante;
         }
-
+        
         public static DO_Persona GetUsuario(int idUsuario)
         {
             SO_Persona ServicioPersona = new SO_Persona();
@@ -350,7 +350,7 @@ namespace GrupoLideri.Models
         #endregion
         
         #region Comisiones
-        public static List<N_Folio_SIAC> GetComisionGerente(int idUsuario, string fechaInicial, string fechaFinal)
+        public static List<N_Folio_SIAC> GetComisionGerente(int idUsuario)
         {
             SO_Comisiones ServiceComisiones = new SO_Comisiones();
 
@@ -358,7 +358,7 @@ namespace GrupoLideri.Models
 
             DataSet informacionBD = new DataSet();
 
-            informacionBD = ServiceComisiones.GetComosionesGerente(idUsuario, fechaInicial, fechaFinal);
+            informacionBD = ServiceComisiones.GetComosionesGerente(idUsuario);
 
             if (informacionBD != null)
             {
@@ -390,6 +390,60 @@ namespace GrupoLideri.Models
             }
 
             return listaResultante;
+        }
+
+        public static int GetFoliosVendidosGerente(int idPersona)
+        {
+            int cantidad = 0;
+
+            SO_Comisiones ServiceComisiones = new SO_Comisiones();
+
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServiceComisiones.GetComosionesGerente(idPersona);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow element in informacionBD.Tables[0].Rows)
+                    {
+                        cantidad += 1;
+
+                    }
+                }
+            }
+
+            return cantidad;
+        }
+
+        public static double GetComisionGerenteTotal(int idPersona)
+        {
+            SO_Comisiones ServiceComisiones = new SO_Comisiones();
+            
+            DataSet informacionBD = new DataSet();
+
+            informacionBD = ServiceComisiones.GetComosionesGerente(idPersona);
+
+            double comisionTotal = 0;
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow element in informacionBD.Tables[0].Rows)
+                    {
+                        N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                        
+                        folio.COMISION_TOTAL = Convert.ToDouble(element["COMISION_TOTAL"]);
+                        comisionTotal += Convert.ToDouble(folio.COMISION_TOTAL);
+                        
+                    }
+                }
+            }
+
+            return comisionTotal;
         }
         
         public static List<N_Folio_SIAC> GetComisionPromotor(int idUsuario, string fechaInicial, string fechaFinal)
@@ -674,6 +728,13 @@ namespace GrupoLideri.Models
 
             return Lista;
         } 
+
+        public static int SetPagoNominaComisiones(string nombreSemana)
+        {
+            SO_Nominas servicioNomina = new SO_Nominas();
+
+            return servicioNomina.SetPagoComisiones(nombreSemana);
+        }
         #endregion
 
 

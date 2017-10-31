@@ -34,7 +34,7 @@ namespace ModeloPRD.ServiceObject
             }
         }
 
-        public DataSet GetComosionesGerente(int idPersona, string fechaIncial, string fechaFinal)
+        public DataSet GetComosionesGerente(int idPersona)
         {
             try
             {
@@ -44,8 +44,7 @@ namespace ModeloPRD.ServiceObject
 
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
 
-                parametros.Add("fechaInicial", fechaIncial);
-                parametros.Add("fechaFinal", fechaFinal);
+               
                 parametros.Add("idUsuario", idPersona);
 
                 datos = conexion.EjecutarStoredProcedure("SP_PROD_GET_COMISION_FOLIOS_GERENTE", parametros);

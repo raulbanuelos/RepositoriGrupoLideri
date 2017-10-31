@@ -14,6 +14,7 @@ namespace ModeloPRD.ServiceObject
         private string SP_NOM_GET_COMISIONES = "SP_NOM_GET_COMISIONES";
         private string SP_NOM_GET_HISTORIAL_COMISION = "SP_NOM_GET_HISTORIAL_COMISION";
         private string SP_NOM_GET_COMISIONES_RESUMEN = "SP_NOM_GET_COMISIONES_RESUMEN";
+        private string SP_NOM_SET_FOLIOS_PAGADOS = "SP_NOM_SET_FOLIOS_PAGADOS";
 
         public DataSet GetNominaComisionResumen()
         {
@@ -68,6 +69,25 @@ namespace ModeloPRD.ServiceObject
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        public int SetPagoComisiones(string nombreSemana)
+        {
+            try
+            {
+                GrupoLideri_SQL conexion = new GrupoLideri_SQL();
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("semana", nombreSemana);
+
+                conexion.EjecutarStoredProcedure(SP_NOM_SET_FOLIOS_PAGADOS, parametros);
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
             }
         }
     }

@@ -177,6 +177,17 @@ var Dashboard = function () {
             }); 
         },
 
+        donutChartSocialPosteados : function(chartColours,dataa){
+            Morris.Donut({
+                element: 'posteados-donut',
+                data: dataa,
+                formatter: function (x) { return x + "%" },
+                colors: [chartColours.blue_dark, chartColours.blue_light, chartColours.red_dark, chartColours.red],
+                resize: true
+            });
+        },
+
+
         // Function to show different icons 
         //"clear-day", "clear-night", "partly-cloudy-day",
         //"partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
@@ -610,7 +621,7 @@ var Dashboard = function () {
                 spotRadius: 0, //remove spots
             });
             //sales
-            $("#sparkline-monthly-sales").sparkline([6,8,10,8,7,12,11,6,13,8,6,8,10,11,7,12,11], {
+            $("#sparkline-monthly-sales").sparkline([1,10], {
                 type: 'bar',
                 width: '100%',
                 height: '30px',
@@ -651,7 +662,38 @@ var Dashboard = function () {
 
 $(document).ready(function () {
 
+    
     //Gerentes y promotores
+    $.ajax({
+        type: "POST",
+        url: HomeURL.urlCargarResumenComisionGerente,
+        data: JSON.stringify({ parametro: "" }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            
+            $("#idResumenComisionGerente").html(data);
+        },
+        error: function (err) {
+            alert("Error");
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: HomeURL.urlCargarCantidadVentaGente,
+        data: JSON.stringify({ parametro: "" }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+            $("#idCantidadComisionGerente").html(data);
+        },
+        error: function (err) {
+            alert("Error");
+        }
+    });
+    
     $.ajax({
         type: "POST",
         url: HomeURL.urlCargarPaquetesVendidos,
@@ -673,8 +715,21 @@ $(document).ready(function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            //Dashboard.donutChartSocial(Dashboard.chartColours(), data);
             Dashboard.sparklines(Dashboard.chartColours(),data);
+        },
+        error: function (err) {
+            alert("Error al cargar el historial de nomina");
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: HomeURL.urlCargarPosteadosVsProduccionGerente,
+        data: JSON.stringify({ parametro: "" }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            Dashboard.donutChartSocialPosteados(Dashboard.chartColours(), data);
         },
         error: function (err) {
             alert("Error al cargar el historial de nomina");
@@ -690,8 +745,7 @@ $(document).ready(function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            debugger;
-            //Agregar la llamada al componete que lo va a mostrar.
+            $("#idPagoNominaHoy").html(data);
         },
         error: function (err) {
             alert("Error al cargar el resumen de nomina");
@@ -726,4 +780,4 @@ $(document).ready(function () {
         Dashboard.sparklines(Dashboard.chartColours());
     });
 
-}); 
+});
