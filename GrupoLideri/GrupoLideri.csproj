@@ -189,6 +189,11 @@
     <Compile Include="Models\FO_Item_Paquete.cs" />
     <Compile Include="Models\N_Folio_SIAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\dash\ajax\arrays.txt" />
@@ -1047,6 +1052,17 @@
     <Content Include="Content\bootstrap-select.css.map" />
     <None Include="Properties\PublishProfiles\GrupoLideri.pubxml" />
     <Content Include="Scripts\bootstrap-select.js.map" />
+    <Content Include="Reports\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\getorgchart.css" />
     <Content Include="Scripts\getorgchart.js" />

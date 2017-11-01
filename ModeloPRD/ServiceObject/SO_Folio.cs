@@ -144,5 +144,25 @@ namespace ModeloPRD.ServiceObject
                 return false;
             }
         }
+
+        public TBL_FOLIOS GetFolio(string folioSIAC)
+        {
+            try
+            {
+                TBL_FOLIOS folio = new TBL_FOLIOS();
+
+                using (var Conexion = new JudaPRDEntities())
+                {
+                    folio = Conexion.TBL_FOLIOS.Where(x => x.FOLIO_SIAC == folioSIAC).ToList().FirstOrDefault();
+                    
+                }
+
+                return folio;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

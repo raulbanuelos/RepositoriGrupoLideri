@@ -301,7 +301,13 @@ namespace GrupoLideri.Models
 
             if (existe)
             {
-                return ServicioFolio.UpdateFolioSIAC(n_folio);
+                if (!GetFolioSIAC(n_folio.FOLIO_SIAC).Equals(n_folio))
+                {
+                    return ServicioFolio.UpdateFolioSIAC(n_folio);
+                    
+                }
+
+                return true;
             }
             else
             {
@@ -309,6 +315,72 @@ namespace GrupoLideri.Models
                 return ServicioFolio.InsertFolio(n_folio);
             }
 
+
+        }
+
+        public static N_Folio_SIAC GetFolioSIAC(string folioSIAC)
+        {
+            SO_Folio ServicioFolios = new SO_Folio();
+
+            TBL_FOLIOS folioBD = ServicioFolios.GetFolio(folioSIAC);
+
+            if (folioBD != null)
+            {
+                N_Folio_SIAC folio = new N_Folio_SIAC();
+
+                folio.AREA = folioBD.AREA;
+                folio.CAMPANA = folioBD.CAMPANA;
+                folio.CLAVE_EMPRESA = folioBD.CLAVE_EMPRESA;
+                folio.CORREO_ELECTRONICO = folioBD.CORREO_ELECTRONICO;
+                folio.DESCRIPCION_VALIDA_ADEUDO = folioBD.DESCRIPCION_VALIDA_ADEUDO;
+                folio.Distrito = folioBD.DISTRITO;
+                folio.DIVICION = folioBD.DIVICION;
+                folio.ESTATUS_ATENCION_MULTIORDEN = folioBD.ESTATUS_ATENCION_MULTIORDEN;
+                folio.ESTATUS_PISA_MULTIORDEN = folioBD.ESTATUS_PISA_MULTIORDEN;
+                folio.ESTATUS_PISA_TV = folioBD.ESTATUS_PISA_TV;
+                folio.ESTATUS_SIAC = folioBD.ESTATUS_SIAC;
+                folio.ESTRATEGIA = folioBD.ESTRATEGIA;
+                folio.ETAPA_PISA_MULTIORDEN = folioBD.ETAPA_PISA_MULTIORDEN;
+                folio.ETAPA_PISA_TV = folioBD.ETAPA_PISA_TV;
+                folio.ETIQUETA_TRAFICO_VOZ = folioBD.ETIQUETA_TRAFICO_VOZ;
+                folio.FECHA_CAMBIO_ESTATUS_SIAC = folioBD.FECHA_CAMBIO_ESTATUS_SIAC;
+                folio.FECHA_CAPTURA = folioBD.FECHA_CAPTURA.ToString();
+                folio.FECHA_FACTURCION = folioBD.FECHA_FACTURCION;
+                folio.FECHA_NACIMIENTO = folioBD.FECHA_NACIMIENTO;
+                folio.FECHA_OS_ALTA_LINEA_MULTIORDEN = folioBD.FECHA_OS_ALTA_LINEA_MULTIORDEN;
+                folio.FECHA_OS_TV = folioBD.FECHA_OS_TV;
+                folio.FECHA_TRAFICO_DATOS = folioBD.FECHA_TRAFICO_DATOS;
+                folio.FECHA_TRAFICO_VOZ = folioBD.FECHA_TRAFICO_VOZ;
+                folio.FOLIO_SIAC = folioBD.FOLIO_SIAC;
+                folio.ID = folioBD.ID;
+                folio.LINEA_CONTRATADA = folioBD.LINEA_CONTRATADA;
+                folio.MOTIVO_RECHAZO = folioBD.MOTIVO_RECHAZO;
+                folio.NOMBRE_EMPRESA = folioBD.NOMBRE_EMPRESA;
+                folio.OBSERVACIONES = folioBD.OBSERVACIONES;
+                folio.ORDEN_SERVICIO_TV = folioBD.ORDEN_SERVICIO_TV;
+                folio.OS_ALTA_LINEA_MULTIORDEN = folioBD.OS_ALTA_LINEA_MULTIORDEN;
+                folio.PAQUETE = folioBD.PAQUETE;
+                folio.PISA_OS_FECHA_POSTEO_MULTIORDEN = folioBD.PISA_OS_FECHA_POSTEO_MULTIORDEN;
+                folio.PISA_OS_FECHA_POSTEO_TV = folioBD.PISA_OS_FECHA_POSTEO_TV;
+                folio.PROMOTOR = folioBD.PROMOTOR;
+                folio.RESPUESTA_TELMEX = folioBD.RESPUESTA_TELMEX;
+                folio.SERVICIO_FACTURACION_TERCEROS = folioBD.SERVICIO_FACTURACION_TERCEROS;
+                folio.TeCelular = folioBD.TECELULAR;
+                folio.TELEFONO_ASIGNADO = folioBD.TELEFONO_ASIGNADO;
+                folio.TELEFONO_PORTADO = folioBD.TELEFONO_PORTADO;
+                folio.Terminal = folioBD.TERMINAL;
+                folio.TIENDA = folioBD.TIENDA;
+                folio.TIPO_LINEA = folioBD.TIPO_LINEA;
+                folio.TRAFICO_DATOS = folioBD.TRAFICO_DATOS;
+                folio.TRAFICO_VOZ_ENTRANTE = folioBD.TRAFICO_VOZ_ENTRANTE;
+                folio.TRAFICO_VOZ_SALIENTE = folioBD.TRAFICO_VOZ_SALIENTE;
+                
+                return folio;
+            }
+            else
+            {
+                return null;
+            }
 
         }
         #endregion
