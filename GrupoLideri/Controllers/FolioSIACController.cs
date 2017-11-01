@@ -20,7 +20,7 @@ namespace GrupoLideri.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult SubirPIPES(HttpPostedFileBase file)
+        public JsonResult SubirPIPES(HttpPostedFileBase file)
         {
             try
             {
@@ -135,15 +135,15 @@ namespace GrupoLideri.Controllers
                         
                     }
                 }
+                return Json("Archivo PIPES Actualizado correctamente");
 
             }
             catch (Exception)
             {
-
-                throw;
+                return Json("Upps!, Se registro un error, por favor intente mas tarde.");
             }
 
-            return View("Index");
+            
         }
 
         public static bool IsDate(Object obj)

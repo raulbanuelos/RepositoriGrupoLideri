@@ -696,12 +696,29 @@ namespace GrupoLideri.Models
                 {
                     foreach (DataRow item in informacionBD.Tables[0].Rows)
                     {
-                        pct = Convert.ToDouble(item["PCT_POSTEADOS"].ToString());
+                        if (IsNumeric(item["PCT_POSTEADOS"].ToString()))
+                        {
+                            pct = Convert.ToDouble(item["PCT_POSTEADOS"].ToString() != null);
+                        }
+                        else
+                            pct = 0;
+                        
                     }
                 }
             }
 
             return pct;
+        }
+
+        /// <summary>
+        /// Método que indica si una cadena es un número.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsNumeric(string s)
+        {
+            float output;
+            return float.TryParse(s, out output);
         }
 
         public static double GetPosteadosVSProduccionPromotor(int idPersona, string fechaIncial, string fechaFinal)
