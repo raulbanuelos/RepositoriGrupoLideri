@@ -9,7 +9,7 @@
     <title>Cargar PIPES</title>
     <script type="text/javascript">
 
-        function SubirPIPES()
+        function SubirPIPESS()
         {
             var formData = new FormData();
             var totalFiles = document.getElementById("file").files.length;
@@ -33,6 +33,7 @@
                     alert("Error!");
                 }
             });
+
         }
     </script>
 </head>
@@ -50,7 +51,7 @@
         <tr>
             <td>&nbsp;</td>
             <td colspan="2" style="padding-top: 30px">
-                <input id="btnSubir" onclick="SubirPIPES()" class="btn btn-primary" type="button" value="Subir" name="submit" />
+                <input id="btnSubir" onclick="SubirPIPESS()" class="btn btn-primary" type="button" value="Subir" name="submit" />
             </td>
         </tr>
     </table>
