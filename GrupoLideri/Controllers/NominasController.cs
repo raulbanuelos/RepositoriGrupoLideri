@@ -12,11 +12,13 @@ namespace GrupoLideri.Controllers
         // GET: Nominas
         public ActionResult NominaComisiones()
         {
-            List<N_Folio_SIAC> listaNomina = new List<N_Folio_SIAC>();
+            //List<N_Folio_SIAC> listaNomina = new List<N_Folio_SIAC>();
 
-            listaNomina = DataManagerLideri.GetNominaComisiones();
+            //listaNomina = DataManagerLideri.GetNominaComisiones();
 
-            ViewBag.ListaNominaComision = listaNomina;
+            //ViewBag.ListaNominaComision = listaNomina;
+
+
 
             return View();
         }

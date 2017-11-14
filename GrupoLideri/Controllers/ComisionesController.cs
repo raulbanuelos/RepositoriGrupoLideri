@@ -11,6 +11,7 @@ namespace GrupoLideri.Controllers
     {
         #region Promotor
         // GET: Comisiones
+        [GrupoLideriVerificarRol]
         public ActionResult Promotor()
         {
             DO_Persona usuarioConectado = (DO_Persona)Session["usuarioConectado"];
@@ -29,6 +30,7 @@ namespace GrupoLideri.Controllers
         #endregion
 
         #region Gerente
+        [GrupoLideriVerificarRol]
         public ActionResult Gerente()
         {
             DO_Persona usuarioConectado = (DO_Persona)Session["UsuarioConectado"];

@@ -1,11 +1,12 @@
 ﻿@using GrupoLideri.Models
 @{
     ViewBag.Title = "NominaComisiones";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <h2>Reporte de nómina</h2>
-<div class="panel panel-default toggle panelMove panelClose panelRefresh">
+@Html.Partial("ApiReportNomina")
+@*<div class="panel panel-default toggle panelMove panelClose panelRefresh">
     <div class="panel-heading">
         <h4 class="panel-title">Nominas</h4>
     </div>
@@ -38,7 +39,8 @@
 </div>
 <div>
     <button id="btnPagar" type="button" class="btn btn-primary mr5 mb10">Pagar</button>
-</div>
+</div>*@
+
 
 
  <script type="text/javascript">

@@ -56,18 +56,11 @@ namespace GrupoLideri.Controllers
             List<int> JerarquiasPermitidas = new List<int>();
 
             #region Subir PIPES
-            //if (nombreControlador.Equals("FolioSIAC"))
-            //{
-            //    JerarquiasPermitidas.Add(15);
-            //    JerarquiasPermitidas.Add(17);
-            //    JerarquiasPermitidas.Add(2018);
-            //    JerarquiasPermitidas.Add(2019);
-
-            //    //Borrar
-            //    JerarquiasPermitidas.Add(1);
-
-            //    return JerarquiasPermitidas.Contains(idJerarquia);
-            //}
+            if (nombreControlador.Equals("FolioSIAC"))
+            {
+                JerarquiasPermitidas.Add(10);
+                return JerarquiasPermitidas.Contains(idJerarquia);
+            }
             #endregion
 
             #region Mi organigrama
@@ -92,10 +85,25 @@ namespace GrupoLideri.Controllers
             #endregion
 
             #region Mis comisiones
+            
             if (nombreControlador.Equals("MisComisiones"))
             {
                 JerarquiasPermitidas.Add(1);
                 JerarquiasPermitidas.Add(2);
+                JerarquiasPermitidas.Add(3);
+                JerarquiasPermitidas.Add(4);
+
+                return JerarquiasPermitidas.Contains(idJerarquia);
+            }
+            if (nombreControlador.Equals("Promotor"))
+            {
+                JerarquiasPermitidas.Add(1);
+                JerarquiasPermitidas.Add(2);
+
+                return JerarquiasPermitidas.Contains(idJerarquia);
+            }
+            if (nombreControlador.Equals("Gerente"))
+            {
                 JerarquiasPermitidas.Add(3);
                 JerarquiasPermitidas.Add(4);
 

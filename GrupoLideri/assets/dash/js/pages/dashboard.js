@@ -661,8 +661,6 @@ var Dashboard = function () {
 }();
 
 $(document).ready(function () {
-
-    
     //Gerentes y promotores
     $.ajax({
         type: "POST",

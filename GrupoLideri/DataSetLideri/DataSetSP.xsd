@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="JudaPRDDataSet" targetNamespace="http://tempuri.org/JudaPRDDataSet.xsd" xmlns:mstns="http://tempuri.org/JudaPRDDataSet.xsd" xmlns="http://tempuri.org/JudaPRDDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="DataSetSP" targetNamespace="http://tempuri.org/DataSetSP.xsd" xmlns:mstns="http://tempuri.org/DataSetSP.xsd" xmlns="http://tempuri.org/DataSetSP.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SP_NOM_GET_COMISIONESTableAdapter" GeneratorDataComponentClassName="SP_NOM_GET_COMISIONESTableAdapter" Name="SP_NOM_GET_COMISIONES" UserDataComponentName="SP_NOM_GET_COMISIONESTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="JudaPRDConnectionString (Web.config)" DbObjectName="JudaPRD.dbo.SP_NOM_GET_COMISIONES" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="JudaPRDConnectionString (Web.config)" DbObjectName="JudaPRD.dbo.SP_NOM_GET_COMISIONES" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SP_NOM_GET_COMISIONES</CommandText>
@@ -33,7 +33,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="JudaPRDDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="JudaPRDDataSet" msprop:Generator_UserDSName="JudaPRDDataSet">
+  <xs:element name="DataSetSP" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetSP" msprop:Generator_UserDSName="DataSetSP">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="SP_NOM_GET_COMISIONES" msprop:Generator_TableClassName="SP_NOM_GET_COMISIONESDataTable" msprop:Generator_TableVarName="tableSP_NOM_GET_COMISIONES" msprop:Generator_TablePropName="SP_NOM_GET_COMISIONES" msprop:Generator_RowDeletingName="SP_NOM_GET_COMISIONESRowDeleting" msprop:Generator_RowChangingName="SP_NOM_GET_COMISIONESRowChanging" msprop:Generator_RowEvHandlerName="SP_NOM_GET_COMISIONESRowChangeEventHandler" msprop:Generator_RowDeletedName="SP_NOM_GET_COMISIONESRowDeleted" msprop:Generator_UserTableName="SP_NOM_GET_COMISIONES" msprop:Generator_RowChangedName="SP_NOM_GET_COMISIONESRowChanged" msprop:Generator_RowEvArgName="SP_NOM_GET_COMISIONESRowChangeEvent" msprop:Generator_RowClassName="SP_NOM_GET_COMISIONESRow">
