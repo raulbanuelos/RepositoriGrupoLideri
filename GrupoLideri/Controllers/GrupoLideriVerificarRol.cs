@@ -166,6 +166,14 @@ namespace GrupoLideri.Controllers
             //}
             #endregion
 
+            #region Nominas
+            if (nombreControlador.Equals("Nominas"))
+            {
+                JerarquiasPermitidas.Add(7);
+                return JerarquiasPermitidas.Contains(idJerarquia);
+            }
+            #endregion
+
             return false;
         }
 

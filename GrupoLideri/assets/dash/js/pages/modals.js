@@ -52,7 +52,14 @@ var Modals = function () {
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function (data) {
-                                alert(data);
+                                if (data == 1)
+                                {
+                                    alert("Los folios fueron marcados como pagados");
+                                }else
+                                {
+                                    alert("Hubo un error, por favor intente mas tarde!");
+                                }
+                                
                             },
                             error: function (err) {
                                 alert("Error al setear la nómina");
