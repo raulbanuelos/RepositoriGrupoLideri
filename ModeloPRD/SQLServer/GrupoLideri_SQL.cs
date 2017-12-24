@@ -10,7 +10,8 @@ namespace ModeloPRD.SQLServer
 {
     public class GrupoLideri_SQL
     {
-        private string StringDeConexion = @"data source=74.208.227.248;initial catalog=JudaPRD;persist security info=True;user id=userPixie;password=Bd.KJY64;";
+        //private string StringDeConexion = @"data source=74.208.227.248;initial catalog=JudaPRD;persist security info=True;user id=userPixie;password=Bd.KJY64;";
+        private string StringDeConexion = @"data source=PIXIESERVER-PC\SQLPIXIE;initial catalog=JudaPRD;persist security info=True;user id=sa;password=3.1416;";
 
         public GrupoLideri_SQL()
         {

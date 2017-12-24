@@ -31,7 +31,7 @@ namespace ModeloPRD.ServiceObject
                     return registros > 0;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 // Registrar error en BD  con er.InnerException.ToString();
                 return false;
@@ -139,7 +139,7 @@ namespace ModeloPRD.ServiceObject
                     return r > 0 ? true : false;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return false;
             }

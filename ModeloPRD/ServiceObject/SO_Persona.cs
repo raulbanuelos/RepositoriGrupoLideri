@@ -25,7 +25,7 @@ namespace ModeloPRD.ServiceObject
                     return persona;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }
@@ -60,7 +60,7 @@ namespace ModeloPRD.ServiceObject
                     return persona.ID_USUARIO;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return 0;
             }
@@ -95,7 +95,7 @@ namespace ModeloPRD.ServiceObject
 
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return 0;
             }
@@ -114,7 +114,7 @@ namespace ModeloPRD.ServiceObject
                     return Conexion.SaveChanges();
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return 0;
             }
@@ -133,7 +133,7 @@ namespace ModeloPRD.ServiceObject
                     return usuario;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }
@@ -157,7 +157,7 @@ namespace ModeloPRD.ServiceObject
                     
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return 0;
             }
@@ -176,7 +176,7 @@ namespace ModeloPRD.ServiceObject
                     return persona;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
 
                 throw;
@@ -195,7 +195,7 @@ namespace ModeloPRD.ServiceObject
                     return ListaUsuarios;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }
@@ -214,7 +214,7 @@ namespace ModeloPRD.ServiceObject
                     return ListaUsuario;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }

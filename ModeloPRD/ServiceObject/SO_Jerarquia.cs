@@ -22,7 +22,7 @@ namespace ModeloPRD.ServiceObject
                     return Lista;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }
@@ -41,7 +41,7 @@ namespace ModeloPRD.ServiceObject
                     return valor;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return 0;
             }

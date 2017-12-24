@@ -34,7 +34,7 @@ namespace Modelo.ServiceObject
                     return persona;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 //Registrar error en base de datos.
                 return null;
@@ -57,7 +57,7 @@ namespace Modelo.ServiceObject
 
                 return datos;
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }
@@ -81,7 +81,7 @@ namespace Modelo.ServiceObject
                     return Lista;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }
@@ -99,7 +99,7 @@ namespace Modelo.ServiceObject
                     return Lista;
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return null;
             }

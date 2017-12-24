@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1071,8 +1072,10 @@
     <Content Include="DataSetLideri\DataSetSP.xss">
       <DependentUpon>DataSetSP.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\GrupoLideri.pubxml" />
     <Content Include="Scripts\bootstrap-select.js.map" />
+    <None Include="Properties\PublishProfiles\PublishLideri.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\getorgchart.css" />
     <Content Include="Scripts\getorgchart.js" />
@@ -1215,17 +1218,6 @@
       <Project>{0d42d2ee-d3be-45f5-9c43-54a7b35c0616}</Project>
       <Name>Modelo</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

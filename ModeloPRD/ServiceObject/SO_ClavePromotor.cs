@@ -25,7 +25,7 @@ namespace ModeloPRD.ServiceObject
                     return Conexion.SaveChanges();
                 }
             }
-            catch (Exception er)
+            catch (Exception)
             {
                 return 0;
             }
